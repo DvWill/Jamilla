@@ -15,6 +15,10 @@ const serif = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: 'Jamilla Salviano | Liderança, Educação e Gestão',
   description:'Formação, método e experiências para líderes e instituições que querem transformar equipes.',
+  icons: {
+    icon: '/favicon.svg?v=2',
+    shortcut: '/favicon.svg?v=2',
+  },
 };
 
 export default function RootLayout({

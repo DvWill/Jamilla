@@ -6,7 +6,7 @@ type ScrollRevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
-  variant?: 'up' | 'fade' | 'scale';
+  variant?: 'up' | 'fade' | 'left' | 'right' | 'image' | 'editorial' | 'scale';
 };
 
 /**
@@ -46,7 +46,7 @@ export function ScrollReveal({
           observer.disconnect();
         }
       },
-      { rootMargin: '0px 0px -7% 0px', threshold: 0.08 },
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.18 },
     );
 
     observer.observe(element);

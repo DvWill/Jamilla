@@ -44,7 +44,7 @@ export default function Page() {
               </p>
               <Cta href="/contato">Converse com Jamilla</Cta>
             </ScrollReveal>
-            <ScrollReveal className="about-hero__visual" delay={120} variant="scale">
+            <ScrollReveal className="about-hero__visual" delay={120} variant="image">
               <span className="about-hero__orbit" aria-hidden="true" />
               <figure className="about-hero__portrait">
                 <Image

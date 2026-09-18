@@ -63,7 +63,7 @@ export function ProductPage(p: Props) {
               <Cta href={primaryHref}>{primaryAction}</Cta>
             </ScrollReveal>
 
-            <ScrollReveal className="product-hero__visual" delay={140} variant="scale">
+            <ScrollReveal className="product-hero__visual" delay={120} variant="image">
               <span className="product-hero__orbit product-hero__orbit--outer" aria-hidden="true" />
               <span className="product-hero__orbit product-hero__orbit--inner" aria-hidden="true" />
               <figure className="product-photo">

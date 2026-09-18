@@ -23,7 +23,7 @@ import { ScrollReveal } from './scroll-reveal';
 
 const navItems = [
   { label: 'Sobre', href: '/sobre' },
-  { label: 'Trabalho', href: '/#solucoes' },
+  { label: 'Trabalho', href: '/inicio#solucoes' },
   { label: 'Trilha', href: '/trilha-da-lideranca' },
   { label: 'RESET', href: '/reset' },
   { label: 'Palestras', href: '/palestras' },
@@ -31,7 +31,7 @@ const navItems = [
 ];
 
 const mobileItems = [
-  { label: 'Início', href: '/' },
+  { label: 'Início', href: '/inicio' },
   ...navItems.filter((item) => item.label !== 'Trabalho'),
   { label: 'Contato', href: '/contato' },
 ];
@@ -218,7 +218,7 @@ export function Header() {
   return (
     <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
       <div className="header-inner">
-        <Link className="logo" href="/" aria-label="Jamilla Salviano — página inicial">
+        <Link className="logo" href="/inicio" aria-label="Jamilla Salviano — página inicial">
           <strong>JAMILLA SALVIANO</strong>
           <span>LIDERANÇA &amp; EDUCAÇÃO</span>
         </Link>
@@ -329,7 +329,7 @@ export function FinalCta({
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div className="wrap footer-grid">
+      <ScrollReveal className="wrap footer-grid">
         <div className="footer-brand">
           <Link className="logo" href="/" aria-label="Jamilla Salviano — página inicial">
             <strong>JAMILLA SALVIANO</strong>
@@ -356,8 +356,10 @@ export function Footer() {
           <span>LinkedIn</span>
           <span>YouTube</span>
         </div>
-      </div>
-      <div className="wrap copyright">© 2026 Jamilla Salviano. Todos os direitos reservados.</div>
+      </ScrollReveal>
+      <ScrollReveal className="wrap copyright" delay={90}>
+        © 2026 Jamilla Salviano. Todos os direitos reservados.
+      </ScrollReveal>
     </footer>
   );
 }
