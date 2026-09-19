@@ -1,12 +1,18 @@
 'use client';
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react';
 
 type ScrollRevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
-  variant?: 'up' | 'fade' | 'left' | 'right' | 'image' | 'editorial' | 'scale';
+  variant?: 'up' | 'left' | 'right' | 'image' | 'scale';
 };
 
 /**
@@ -25,7 +31,10 @@ export function ScrollReveal({
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (
+      !element ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
       return;
     }
 

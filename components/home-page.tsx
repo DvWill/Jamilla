@@ -1,9 +1,4 @@
-import {
-  ArrowUpRight,
-  Lightbulb,
-  Target,
-  UsersRound,
-} from 'lucide-react';
+import { ArrowUpRight, Lightbulb, Target, UsersRound } from 'lucide-react';
 import Image from 'next/image';
 import {
   Cta,
@@ -17,8 +12,6 @@ import {
   WhatsAppButton,
 } from '@/components/site';
 import { ScrollReveal } from '@/components/scroll-reveal';
-
-// Full institutional home, exposed at /inicio while / opens the links hub.
 
 const solutions = [
   {
@@ -66,7 +59,14 @@ const painPoints = [
   'Falta de clareza',
 ];
 
-const method = ['Clareza', 'Método', 'Comunicação', 'Responsabilidade', 'Gestão', 'Cultura'];
+const method = [
+  'Clareza',
+  'Método',
+  'Comunicação',
+  'Responsabilidade',
+  'Gestão',
+  'Cultura',
+];
 
 export default function Home() {
   return (
@@ -82,13 +82,14 @@ export default function Home() {
               </ScrollReveal>
               <ScrollReveal delay={55}>
                 <h1>
-                  Transformar uma escola começa por quem <em>lidera pessoas.</em>
+                  Transformar uma escola começa por quem{' '}
+                  <em>lidera pessoas.</em>
                 </h1>
               </ScrollReveal>
               <ScrollReveal delay={120}>
                 <p>
-                  Formação, método e experiências para líderes que querem conduzir
-                  equipes com mais clareza, coragem e propósito.
+                  Formação, método e experiências para líderes que querem
+                  conduzir equipes com mais clareza, coragem e propósito.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={180}>
@@ -100,7 +101,10 @@ export default function Home() {
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={230}>
-                <div className="hero-notes" aria-label="Diferenciais de Jamilla Salviano">
+                <div
+                  className="hero-notes"
+                  aria-label="Diferenciais de Jamilla Salviano"
+                >
                   <span>
                     <strong>20+</strong>
                     <small>Anos de experiência</small>
@@ -117,9 +121,19 @@ export default function Home() {
               </ScrollReveal>
             </div>
 
-            <ScrollReveal className="home-hero__visual" delay={120} variant="image">
-              <span className="hero-orbit hero-orbit--large" aria-hidden="true" />
-              <span className="hero-orbit hero-orbit--small" aria-hidden="true" />
+            <ScrollReveal
+              className="home-hero__visual"
+              delay={120}
+              variant="image"
+            >
+              <span
+                className="hero-orbit hero-orbit--large"
+                aria-hidden="true"
+              />
+              <span
+                className="hero-orbit hero-orbit--small"
+                aria-hidden="true"
+              />
               <figure className="home-hero__portrait">
                 <Image
                   fill
@@ -144,7 +158,8 @@ export default function Home() {
                 eyebrow="Manifesto"
                 title={
                   <>
-                    Uma escola nunca vai além da <em>liderança</em> que a conduz.
+                    Uma escola nunca vai além da <em>liderança</em> que a
+                    conduz.
                   </>
                 }
               />
@@ -156,8 +171,9 @@ export default function Home() {
                 condições para que cada profissional saiba como contribuir.
               </p>
               <p>
-                Quando a liderança encontra clareza e método, a instituição deixa
-                de reagir a urgências e passa a construir transformações sustentáveis.
+                Quando a liderança encontra clareza e método, a instituição
+                deixa de reagir a urgências e passa a construir transformações
+                sustentáveis.
               </p>
             </ScrollReveal>
           </div>
@@ -193,7 +209,11 @@ export default function Home() {
                 Conheça a trajetória
               </Cta>
             </ScrollReveal>
-            <ScrollReveal className="home-about__photo" delay={80} variant="image">
+            <ScrollReveal
+              className="home-about__photo"
+              delay={80}
+              variant="image"
+            >
               <figure className="editorial-photo">
                 <Image
                   fill
@@ -279,7 +299,8 @@ export default function Home() {
                 eyebrow="Soluções"
                 title={
                   <>
-                    Um trabalho. Diferentes caminhos para <em>transformar lideranças.</em>
+                    Um trabalho. Diferentes caminhos para{' '}
+                    <em>transformar lideranças.</em>
                   </>
                 }
               />
@@ -317,15 +338,23 @@ export default function Home() {
                 problemas em um plano de ação.
               </p>
               <div className="tag-row" aria-label="Temas da formação">
-                {['Comunicação', 'Delegação', 'Conflitos', 'Produtividade', 'Decisão'].map(
-                  (tag) => (
-                    <span key={tag}>{tag}</span>
-                  ),
-                )}
+                {[
+                  'Comunicação',
+                  'Delegação',
+                  'Conflitos',
+                  'Produtividade',
+                  'Decisão',
+                ].map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
               </div>
               <Cta href="/trilha-da-lideranca">Explorar a Trilha</Cta>
             </ScrollReveal>
-            <ScrollReveal className="feature-section__visual" delay={80} variant="image">
+            <ScrollReveal
+              className="feature-section__visual"
+              delay={80}
+              variant="image"
+            >
               <figure className="feature-photo">
                 <Image
                   fill
@@ -345,26 +374,29 @@ export default function Home() {
                 eyebrow="Experiência RESET"
                 title={
                   <>
-                    Antes de transformar sua equipe, <em>transforme a maneira como você lidera.</em>
+                    Antes de transformar sua equipe,{' '}
+                    <em>transforme a maneira como você lidera.</em>
                   </>
                 }
               />
             </ScrollReveal>
             <div className="format-grid format-grid--compact">
-              {['Mentoria individual', 'Líder + equipe', 'Palestra ou treinamento'].map(
-                (format, index) => {
-                  const icons = [UsersRound, Target, Lightbulb];
-                  const Icon = icons[index];
-                  return (
-                    <ScrollReveal delay={index * 85} key={format}>
-                      <div className="format-card">
-                        <Icon aria-hidden="true" size={27} strokeWidth={1.35} />
-                        <span>{format}</span>
-                      </div>
-                    </ScrollReveal>
-                  );
-                },
-              )}
+              {[
+                'Mentoria individual',
+                'Líder + equipe',
+                'Palestra ou treinamento',
+              ].map((format, index) => {
+                const icons = [UsersRound, Target, Lightbulb];
+                const Icon = icons[index];
+                return (
+                  <ScrollReveal delay={index * 85} key={format}>
+                    <div className="format-card">
+                      <Icon aria-hidden="true" size={27} strokeWidth={1.35} />
+                      <span>{format}</span>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
             </div>
             <ScrollReveal delay={190}>
               <Cta href="/reset">Conheça o RESET</Cta>

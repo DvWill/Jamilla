@@ -36,14 +36,8 @@ const mobileItems = [
   { label: 'Contato', href: '/contato' },
 ];
 
-export function Eyebrow({
-  children,
-  className = '',
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  return <p className={`eyebrow ${className}`}>{children}</p>;
+export function Eyebrow({ children }: { children: ReactNode }) {
+  return <p className="eyebrow">{children}</p>;
 }
 
 type CtaProps = {
@@ -51,26 +45,17 @@ type CtaProps = {
   children: ReactNode;
   ghost?: boolean;
   dark?: boolean;
-  wine?: boolean;
   className?: string;
 };
 
-/** Shared accessible link-button used for both internal and checkout CTAs. */
 export function Cta({
   href,
   children,
   ghost = false,
   dark = false,
-  wine = false,
   className = '',
 }: CtaProps) {
-  const variant = ghost
-    ? 'cta--ghost'
-    : wine
-      ? 'cta--wine'
-      : dark
-        ? 'cta--dark'
-        : 'cta--gold';
+  const variant = ghost ? 'cta--ghost' : dark ? 'cta--dark' : 'cta--gold';
   const classes = `cta ${variant} ${className}`.trim();
   const content = (
     <>
@@ -107,19 +92,14 @@ export function Hero({
 export function SectionHeader({
   eyebrow,
   title,
-  description,
-  className = '',
 }: {
   eyebrow: ReactNode;
   title: ReactNode;
-  description?: ReactNode;
-  className?: string;
 }) {
   return (
-    <div className={`section-header ${className}`}>
+    <div className="section-header">
       <Eyebrow>{eyebrow}</Eyebrow>
       <h2>{title}</h2>
-      {description ? <p className="section-header__description">{description}</p> : null}
     </div>
   );
 }
@@ -218,7 +198,11 @@ export function Header() {
   return (
     <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
       <div className="header-inner">
-        <Link className="logo" href="/inicio" aria-label="Jamilla Salviano — página inicial">
+        <Link
+          className="logo"
+          href="/inicio"
+          aria-label="Jamilla Salviano — página inicial"
+        >
           <strong>JAMILLA SALVIANO</strong>
           <span>LIDERANÇA &amp; EDUCAÇÃO</span>
         </Link>
@@ -289,7 +273,6 @@ export function FinalCta({
   href = '/contato',
   action = 'Falar com Jamilla',
   variant = 'wine',
-  className = '',
   imageSrc,
   imageAlt,
 }: {
@@ -299,17 +282,21 @@ export function FinalCta({
   href?: string;
   action?: ReactNode;
   variant?: 'wine' | 'navy';
-  className?: string;
   imageSrc?: string;
   imageAlt?: string;
 }) {
   return (
     <section
-      className={`final-cta final-cta--${variant}${imageSrc ? ' final-cta--with-media' : ''} ${className}`}
+      className={`final-cta final-cta--${variant}${imageSrc ? ' final-cta--with-media' : ''}`}
     >
       {imageSrc ? (
         <div className="final-cta__media">
-          <Image fill sizes="(max-width: 900px) 100vw, 50vw" src={imageSrc} alt={imageAlt ?? ''} />
+          <Image
+            fill
+            sizes="(max-width: 900px) 100vw, 50vw"
+            src={imageSrc}
+            alt={imageAlt ?? ''}
+          />
         </div>
       ) : null}
       <div className="wrap final-cta__wrap">
@@ -331,7 +318,11 @@ export function Footer() {
     <footer className="site-footer">
       <ScrollReveal className="wrap footer-grid">
         <div className="footer-brand">
-          <Link className="logo" href="/" aria-label="Jamilla Salviano — página inicial">
+          <Link
+            className="logo"
+            href="/inicio"
+            aria-label="Jamilla Salviano — página inicial"
+          >
             <strong>JAMILLA SALVIANO</strong>
             <span>LIDERANÇA &amp; EDUCAÇÃO</span>
           </Link>
@@ -339,7 +330,7 @@ export function Footer() {
         </div>
         <div>
           <b>Institucional</b>
-          <Link href="/">Início</Link>
+          <Link href="/inicio">Início</Link>
           <Link href="/sobre">Sobre</Link>
           <Link href="/contato">Contato</Link>
         </div>
@@ -366,7 +357,11 @@ export function Footer() {
 
 export function WhatsAppButton() {
   return (
-    <Link aria-label="Conversar pelo WhatsApp" className="whatsapp" href="/contato">
+    <Link
+      aria-label="Conversar pelo WhatsApp"
+      className="whatsapp"
+      href="/contato"
+    >
       <MessageCircle size={21} aria-hidden="true" />
     </Link>
   );

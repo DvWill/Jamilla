@@ -36,3 +36,12 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+
+# local review artifacts
+/.audit/
+/.audit-current/
+/.figma/
+/.vite/
+/test-results/
+/design-qa.md
+/tsconfig.tsbuildinfo
