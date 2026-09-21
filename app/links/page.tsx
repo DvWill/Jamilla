@@ -1,15 +1,8 @@
-/* oxlint-disable next/no-html-link-for-pages -- This standalone hub uses native navigation so every destination remains functional without client-side JavaScript. */
+/* oxlint-disable next/no-html-link-for-pages -- Standalone hub keeps native navigation for static export. */
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import {
-  ArrowRight,
-  BookOpenCheck,
-  FileText,
-  MessageCircle,
-  Mic2,
-  RotateCcw,
-  Target,
-} from 'lucide-react';
+import { ArrowRight, BookOpenCheck, FileText, MessageCircle, Mic2, RotateCcw } from 'lucide-react';
+import { LinksGpsCard } from '@/components/links-gps-card';
 
 export const metadata: Metadata = {
   title: 'Links | Jamilla Salviano',
@@ -17,101 +10,49 @@ export const metadata: Metadata = {
 };
 
 const links = [
-  {
-    title: 'GPS 5.0',
-    description: 'Formação completa em gestão escolar',
-    href: '/gps-5-0',
-    image: '/images/gps-modulo-1-editorial.png',
-    icon: Target,
-  },
-  {
-    title: 'Trilha da Liderança',
-    description: 'Formação prática para líderes',
-    href: '/trilha-da-lideranca',
-    image: '/images/jamilla-trilha.png',
-    icon: BookOpenCheck,
-  },
-  {
-    title: 'Experiência RESET',
-    description: 'Uma nova maneira de liderar',
-    href: '/reset',
-    image: '/images/jamilla-reset.png',
-    icon: RotateCcw,
-  },
-  {
-    title: 'Palestras para instituições',
-    description: 'Conversas que transformam equipes',
-    href: '/palestras',
-    image: '/images/jamilla-palestras.png',
-    icon: Mic2,
-  },
-  {
-    title: 'Mini curso ATA Inteligente',
-    description: 'Registros claros e profissionais',
-    href: '/ata-inteligente',
-    image: '/images/jamilla-ata.png',
-    icon: FileText,
-  },
-  {
-    title: 'Vamos conversar?',
-    description: 'Fale diretamente com Jamilla',
-    href: '/contato',
-    image: '/images/jamilla-diagnostico.webp',
-    icon: MessageCircle,
-  },
+  { title: 'Trilha da Liderança', description: 'Formação prática para líderes', href: '/trilha-da-lideranca', image: '/images/jamilla-trilha.png', position: 'center 52%', icon: BookOpenCheck },
+  { title: 'Experiência RESET', description: 'Uma nova maneira de liderar', href: '/reset', image: '/images/jamilla-reset.png', position: 'center 48%', icon: RotateCcw },
+  { title: 'Palestras para instituições', description: 'Conversas que transformam equipes', href: '/palestras', image: '/images/jamilla-palestras-transparent.png', position: 'center 32%', icon: Mic2 },
+  { title: 'Mini curso ATA Inteligente', description: 'Registros claros e profissionais', href: '/ata-inteligente', image: '/images/jamilla-red.webp', position: 'center 24%', icon: FileText },
+  { title: 'Vamos conversar?', description: 'Fale diretamente com Jamilla', href: '/contato', image: '/images/jamilla-diagnostico.webp', position: 'center 34%', icon: MessageCircle },
 ];
 
 export default function LinksPage() {
   return (
-    <main className="links-page">
-      <div className="links-page__glow" aria-hidden="true" />
-      <section className="links-card" aria-labelledby="links-title">
-        <a className="links-home" href="/inicio" aria-label="Abrir o site completo">
-          <span aria-hidden="true">JS</span>
-        </a>
-
-        <div className="links-portrait">
-          <Image
-            fill
-            priority
-            sizes="(max-width: 620px) 100vw, 560px"
-            src="/images/jamilla-navy-smile.webp"
-            alt="Retrato de Jamilla Salviano"
-          />
-          <div className="links-portrait__shade" aria-hidden="true" />
-          <div className="links-intro">
-            <p>Liderança • educação • gestão</p>
-            <h1 id="links-title">Jamilla Salviano</h1>
-            <span>Mentora de líderes e equipes de sucesso</span>
+    <main className="links-v2">
+      <div className="links-v2__ambient" aria-hidden="true" />
+      <div className="links-v2__frame">
+        <section className="links-v2__hero" aria-labelledby="links-v2-title">
+          <a className="links-v2__monogram" href="/inicio" aria-label="Abrir o site completo">JS</a>
+          <div className="links-v2__hero-art" aria-hidden="true">
+            <span className="links-v2__halo" />
+            <span className="links-v2__hero-label">LIDERANÇA<br />EDUCAÇÃO<br />GESTÃO</span>
+            <Image fill priority sizes="(max-width: 620px) 92vw, 520px" src="/images/jamilla-gps-hero.png" alt="" />
+            <span className="links-v2__hero-line" />
           </div>
-        </div>
+          <div className="links-v2__intro">
+            <p id="links-v2-title">MENTORA DE LÍDERES E EQUIPES DE SUCESSO</p>
+          </div>
+        </section>
 
-        <div className="links-list" aria-label="Links principais">
-          {links.map(({ title, description, href, image, icon: Icon }, index) => (
-            <a className="links-item" href={href} key={href}>
-              <span className="links-item__number" aria-hidden="true">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <span className="links-item__image">
-                <Image fill sizes="58px" src={image} alt="" />
-              </span>
-              <span className="links-item__copy">
-                <strong>{title}</strong>
-                <small>{description}</small>
-              </span>
-              <span className="links-item__action" aria-hidden="true">
-                <Icon className="links-item__icon" size={17} strokeWidth={1.55} />
-                <ArrowRight className="links-item__arrow" size={17} strokeWidth={1.55} />
-              </span>
+        <LinksGpsCard />
+
+        <nav className="links-v2__list" aria-label="Produtos e serviços">
+          {links.map(({ title, description, href, image, position, icon: Icon }, index) => (
+            <a className="links-v2__item" href={href} key={href}>
+              <span className="links-v2__item-number" aria-hidden="true">{String(index + 2).padStart(2, '0')}</span>
+              <span className="links-v2__item-image"><Image fill sizes="64px" src={image} alt="" style={{ objectPosition: position }} /></span>
+              <span className="links-v2__item-copy"><strong>{title}</strong><small>{description}</small></span>
+              <span className="links-v2__item-arrow" aria-hidden="true"><Icon size={16} /><ArrowRight size={17} /></span>
             </a>
           ))}
-        </div>
+        </nav>
 
-        <footer className="links-footer">
+        <footer className="links-v2__footer">
           <a href="/inicio">jamillasalviano.com.br</a>
-          <span>Formação que transforma pessoas e resultados.</span>
+          <span>FORMAÇÃO QUE TRANSFORMA PESSOAS E RESULTADOS.</span>
         </footer>
-      </section>
+      </div>
     </main>
   );
 }
