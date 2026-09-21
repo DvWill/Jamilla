@@ -1,91 +1,60 @@
 import type { Metadata } from 'next';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import { Eyebrow, Footer, Header, WhatsAppButton } from '@/components/site';
+import { ContactForm } from './contact-form';
+import styles from './page.module.css';
+import { WHATSAPP_URL } from './whatsapp';
 
 export const metadata: Metadata = {
   title: 'Contato | Jamilla Salviano',
 };
 
-const interests = [
-  'Trilha da Liderança',
-  'RESET',
-  'Palestra',
-  'ATA Inteligente',
-  'Outro',
-];
-
 export default function ContactPage() {
   return (
     <>
       <Header />
-      <main className="contact-page">
-        <section className="section">
-          <div className="wrap contact-grid">
-            <div>
+      <main className={styles.page}>
+        <section className={styles.section}>
+          <span className={styles.arcLeft} aria-hidden="true" />
+          <span className={styles.arcRight} aria-hidden="true" />
+          <span className={styles.decorLine} aria-hidden="true" />
+
+          <div className={styles.layout}>
+            <div className={styles.intro}>
               <Eyebrow>Contato</Eyebrow>
               <h1>
-                Uma conversa primeiro.
-                <br />
+                <span>Uma conversa primeiro.</span>
                 <em>O formato certo depois.</em>
               </h1>
-              <p>
+              <p className={styles.lead}>
                 Conte o momento da sua equipe, escola ou instituição. A partir
                 dele, identificamos a experiência que faz mais sentido.
               </p>
-              <div className="contact-note">
-                <small>Canal direto</small>
-                <strong>WhatsApp</strong>
-                <span>Atendimento mediante mensagem.</span>
+
+              <div className={styles.contactRule} aria-hidden="true" />
+
+              <div className={styles.directContact}>
+                <span className={styles.contactIcon} aria-hidden="true">
+                  <MessageCircle size={25} strokeWidth={1.55} />
+                </span>
+                <div className={styles.contactCopy}>
+                  <small>Canal direto</small>
+                  <strong>WhatsApp</strong>
+                  <span>Atendimento mediante mensagem.</span>
+                </div>
+                <a
+                  className={styles.whatsappCta}
+                  href={WHATSAPP_URL}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span>Conversar agora</span>
+                  <ArrowRight size={17} aria-hidden="true" />
+                </a>
               </div>
             </div>
 
-            <form>
-              <label>
-                Nome
-                <input name="nome" placeholder="Seu nome" />
-              </label>
-              <div className="form-row">
-                <label>
-                  WhatsApp
-                  <input name="whatsapp" placeholder="(00) 00000-0000" />
-                </label>
-                <label>
-                  E-mail
-                  <input
-                    name="email"
-                    type="email"
-                    placeholder="voce@email.com"
-                  />
-                </label>
-              </div>
-              <div className="form-row">
-                <label>
-                  Instituição
-                  <input name="instituicao" />
-                </label>
-                <label>
-                  Cargo
-                  <input name="cargo" />
-                </label>
-              </div>
-              <fieldset>
-                <legend>Tenho interesse em</legend>
-                {interests.map((interest) => (
-                  <label className="check" key={interest}>
-                    <input name="interesse" type="checkbox" value={interest} />
-                    {interest}
-                  </label>
-                ))}
-              </fieldset>
-              <label>
-                Mensagem
-                <textarea
-                  name="mensagem"
-                  rows={5}
-                  placeholder="Conte brevemente o seu momento."
-                />
-              </label>
-              <button type="submit">Enviar mensagem →</button>
-            </form>
+            <ContactForm />
           </div>
         </section>
       </main>

@@ -1,0 +1,541 @@
+.page {
+  --contact-paper: #f4efe6;
+  --contact-ink: #051725;
+  --contact-gold: #d8ba70;
+  min-height: 0;
+  padding-top: var(--header-height);
+  overflow: hidden;
+  background: var(--contact-paper);
+  color: var(--contact-ink);
+}
+
+.section {
+  position: relative;
+  padding-block: clamp(3.5rem, 4vw, 4rem);
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(31rem, 0.58fr);
+  align-items: center;
+  gap: clamp(3rem, 6vw, 6.5rem);
+  width: min(1280px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+.intro {
+  min-width: 0;
+}
+
+.intro :global(.eyebrow) {
+  margin-bottom: 1.65rem;
+  color: #a47d2f;
+}
+
+.intro h1 {
+  color: var(--contact-ink);
+  font-size: clamp(4rem, 4.7vw, 5.35rem);
+  line-height: 0.91;
+}
+
+.intro h1 span,
+.intro h1 em {
+  display: block;
+}
+
+.intro h1 span {
+  max-width: 12ch;
+}
+
+.intro h1 em {
+  max-width: 12ch;
+  margin-top: 0.2rem;
+  color: #c69b43;
+  font-weight: 500;
+}
+
+.lead {
+  max-width: 35rem;
+  margin-top: 1.8rem;
+  color: var(--contact-ink);
+  font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+  line-height: 1.55;
+}
+
+.contactRule {
+  width: 100%;
+  height: 1px;
+  margin-block: 2rem 1.5rem;
+  background: linear-gradient(90deg, var(--contact-gold), transparent 92%);
+}
+
+.directContact {
+  display: grid;
+  grid-template-columns: auto minmax(9.5rem, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contactIcon {
+  display: grid;
+  width: 3.8rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--contact-gold);
+  border-radius: 50%;
+  color: #a47d2f;
+  box-shadow: inset 0 0 0 5px var(--contact-paper);
+  outline: 1px solid rgba(216, 186, 112, 0.35);
+  outline-offset: -6px;
+}
+
+.contactCopy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.contactCopy small {
+  color: #a47d2f;
+  font-size: 0.61rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.contactCopy strong {
+  margin-top: 0.2rem;
+  color: var(--contact-ink);
+  font: 500 1.8rem/1 var(--font-display);
+}
+
+.contactCopy > span {
+  margin-top: 0.35rem;
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+}
+
+.whatsappCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 3.1rem;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid #bc8c33;
+  border-radius: 0.35rem;
+  color: var(--contact-ink);
+  font-size: 0.61rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.whatsappCta svg {
+  color: #a47d2f;
+}
+
+.whatsappCta:hover {
+  background: var(--contact-gold);
+  color: var(--contact-ink);
+  transform: translateY(-2px);
+}
+
+.formCard {
+  position: relative;
+  width: 100%;
+  padding: clamp(2rem, 3.5vw, 3rem);
+  overflow: hidden;
+  border: 1px solid rgba(5, 23, 37, 0.13);
+  border-top: 2px solid #caa451;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 22px 55px rgba(5, 23, 37, 0.09);
+}
+
+.formCard::after {
+  position: absolute;
+  top: 0;
+  right: 12%;
+  width: 5rem;
+  height: 1px;
+  background: var(--contact-gold);
+  content: '';
+}
+
+.formHeader h2 {
+  color: var(--contact-ink);
+  font-size: clamp(2rem, 2.2vw, 2.25rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.formHeader p {
+  margin-top: 0.45rem;
+  color: #5d6973;
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+.fieldsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.35rem;
+  margin-top: 1.7rem;
+}
+
+.formCard label,
+.formCard legend {
+  display: block;
+  color: var(--contact-ink);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.formCard input:not([type='checkbox']),
+.formCard textarea {
+  width: 100%;
+  margin-top: 0.48rem;
+  border: 1px solid rgba(70, 82, 93, 0.27);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.56);
+  color: var(--contact-ink);
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  outline: 0;
+  text-transform: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.formCard input:not([type='checkbox']) {
+  height: 2.85rem;
+  padding: 0 0.85rem;
+}
+
+.formCard textarea {
+  min-height: 5.8rem;
+  padding: 0.8rem 0.9rem;
+  resize: vertical;
+}
+
+.formCard input::placeholder,
+.formCard textarea::placeholder {
+  color: #7a858d;
+  opacity: 1;
+}
+
+.formCard input:not([type='checkbox']):focus,
+.formCard textarea:focus {
+  border-color: #b88c37;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(216, 186, 112, 0.2);
+}
+
+.interests {
+  margin: 1.45rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.interestOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem clamp(1rem, 2vw, 1.65rem);
+  margin-top: 0.75rem;
+}
+
+.formCard .check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #243643;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.check input {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0;
+  accent-color: #b68c3c;
+}
+
+.messageField {
+  margin-top: 1.35rem;
+}
+
+.formActions {
+  display: flex;
+  align-items: center;
+  margin-top: 1.2rem;
+}
+
+.formActions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100%, 18rem);
+  min-height: 3.35rem;
+  padding: 0.95rem 1.35rem;
+  border: 0;
+  border-radius: 4px;
+  background: var(--contact-ink);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.formActions button svg {
+  color: var(--contact-gold);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.formActions button:hover {
+  background: #0b2a3d;
+  box-shadow: 0 12px 25px rgba(5, 23, 37, 0.17);
+  transform: translateY(-2px);
+}
+
+.formActions button:hover svg {
+  transform: translateX(4px);
+}
+
+.arcLeft,
+.arcRight {
+  position: absolute;
+  width: clamp(19rem, 27vw, 31rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(190, 142, 52, 0.66);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.arcLeft {
+  top: 12%;
+  left: calc(clamp(19rem, 27vw, 31rem) * -0.78);
+}
+
+.arcRight {
+  top: 3%;
+  right: calc(clamp(19rem, 27vw, 31rem) * -0.68);
+}
+
+.arcLeft::after,
+.arcRight::after,
+.decorLine::after {
+  position: absolute;
+  width: 0.8rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #c79b46;
+  content: '';
+}
+
+.arcLeft::after {
+  top: 32%;
+  right: -0.4rem;
+}
+
+.arcRight::after {
+  right: 21%;
+  bottom: -0.4rem;
+}
+
+.decorLine {
+  position: absolute;
+  right: 3.7%;
+  bottom: 20%;
+  width: 1px;
+  height: 11rem;
+  background: rgba(190, 142, 52, 0.66);
+  pointer-events: none;
+}
+
+.decorLine::after {
+  top: 44%;
+  left: -0.39rem;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(0, 0.4fr) minmax(29rem, 0.6fr);
+    gap: 3rem;
+  }
+
+  .intro h1 {
+    font-size: clamp(3.8rem, 6vw, 5rem);
+  }
+
+  .directContact {
+    grid-template-columns: auto 1fr;
+  }
+
+  .whatsappCta {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding-block: 4.5rem;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    width: min(46rem, calc(100% - 48px));
+  }
+
+  .intro {
+    max-width: 39rem;
+  }
+
+  .intro h1 {
+    font-size: clamp(4rem, 11vw, 6rem);
+  }
+
+  .intro h1 span,
+  .intro h1 em {
+    max-width: 8.4ch;
+  }
+
+  .directContact {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .whatsappCta {
+    grid-column: auto;
+  }
+
+  .arcLeft,
+  .arcRight,
+  .decorLine {
+    opacity: 0.45;
+  }
+}
+
+@media (max-width: 620px) {
+  .section {
+    padding-block: 3.5rem 4.5rem;
+  }
+
+  .layout {
+    width: min(100% - 32px, 46rem);
+    gap: 3rem;
+  }
+
+  .intro :global(.eyebrow) {
+    margin-bottom: 1.2rem;
+  }
+
+  .intro h1 {
+    font-size: clamp(3.35rem, 15.5vw, 4.6rem);
+  }
+
+  .lead {
+    margin-top: 1.4rem;
+    font-size: 0.94rem;
+  }
+
+  .contactRule {
+    margin-block: 1.6rem 1.3rem;
+  }
+
+  .directContact {
+    grid-template-columns: auto 1fr;
+  }
+
+  .contactIcon {
+    width: 3.35rem;
+  }
+
+  .whatsappCta {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .formCard {
+    padding: 1.4rem 1.15rem 1.3rem;
+    border-radius: 10px;
+  }
+
+  .formHeader h2 {
+    font-size: clamp(2rem, 10vw, 2.65rem);
+  }
+
+  .formHeader p {
+    font-size: 0.9rem;
+  }
+
+  .fieldsGrid {
+    grid-template-columns: 1fr;
+    gap: 0.95rem;
+    margin-top: 1.5rem;
+  }
+
+  .formCard input:not([type='checkbox']) {
+    height: 3rem;
+  }
+
+  .interestOptions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem 0.75rem;
+  }
+
+  .formActions {
+    display: block;
+  }
+
+  .formActions button {
+    width: 100%;
+  }
+
+  .arcLeft,
+  .arcRight {
+    width: 18rem;
+  }
+
+  .arcLeft {
+    left: -15rem;
+  }
+
+  .arcRight {
+    top: 33%;
+    right: -15rem;
+  }
+
+  .decorLine {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsappCta,
+  .formActions button,
+  .formActions button svg {
+    transition: none;
+  }
+}
