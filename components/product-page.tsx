@@ -1,4 +1,5 @@
 import {
+  Brain,
   ChartNoAxesCombined,
   CircleCheck,
   FileText,
@@ -32,7 +33,7 @@ type Props = {
   items: string[];
   formats: string[];
   cta: string;
-  heroVariant?: 'talks' | 'trilha';
+  heroVariant?: 'talks' | 'trilha' | 'reset';
   heroBackgroundImage?: string;
   showcase?: {
     title: string;
@@ -61,6 +62,11 @@ const trilhaHeroBenefits = [
   [UsersRound, 'Mais segurança\nnas decisões'],
   [ChartNoAxesCombined, 'Resultados\nno dia a dia escolar'],
 ] as const;
+const resetHeroBenefits = [
+  [Brain, 'Autoconhecimento', 'para decisões mais conscientes'],
+  [UsersRound, 'Relações mais saudáveis', 'no ambiente de trabalho'],
+  [ChartNoAxesCombined, 'Resultados reais', 'na sua liderança'],
+] as const;
 const heroTopics = ['Liderança escolar', 'Gestão de pessoas', 'Cultura de equipe', 'Comunicação', 'Tomada de decisão'];
 
 export function ProductPage(p: Props) {
@@ -71,8 +77,34 @@ export function ProductPage(p: Props) {
     <>
       <Header />
       <main className={`product-page product-page--${p.theme}`}>
-        <Hero className={`product-hero${p.heroBackgroundImage ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}${p.heroVariant === 'trilha' ? ' trilha-hero' : ''}`}>
-          {p.heroVariant === 'trilha' ? (
+        <Hero className={`product-hero${p.heroBackgroundImage ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}${p.heroVariant === 'trilha' ? ' trilha-hero' : ''}${p.heroVariant === 'reset' ? ' reset-hero' : ''}`}>
+          {p.heroVariant === 'reset' ? (
+            <div className="wrap reset-hero__grid">
+              <ScrollReveal className="reset-hero__copy">
+                <Eyebrow>{p.eyebrow}</Eyebrow>
+                <h1><span>Você precisa</span><em>liderar</em><em>pessoas.</em></h1>
+                <p>{p.intro}</p>
+                <Cta href={primaryHref}>{primaryAction}</Cta>
+                <ul className="reset-hero__benefits" aria-label="Diferenciais da Experiência RESET">
+                  {resetHeroBenefits.map(([Icon, title, description], index) => {
+                    const BenefitIcon = Icon as typeof Brain;
+                    return <li key={title} className={index > 0 ? 'reset-hero__benefit--divided' : ''}><BenefitIcon size={32} strokeWidth={1.6} /><span><strong>{title}</strong><small>{description}</small></span></li>;
+                  })}
+                </ul>
+              </ScrollReveal>
+              <ScrollReveal className="reset-hero__visual" delay={120} variant="image">
+                <span className="reset-hero__arch" aria-hidden="true" />
+                <span className="reset-hero__arch-glow" aria-hidden="true" />
+                <Image className="reset-hero__portrait" fill priority sizes="(max-width: 768px) 92vw, 43vw" src="/images/jamilla-reset-cutout.png" alt="Jamilla Salviano" />
+                <aside className="reset-hero__signature" aria-label="Assinatura de Jamilla Salviano">
+                  <p>Pessoas.<br />Método.<br />Resultados.</p>
+                  <span>JAMILLA</span>
+                  <strong>Salviano</strong>
+                  <small>LIDERANÇA<br />QUE TRANSFORMA<br />REALIDADES.</small>
+                </aside>
+              </ScrollReveal>
+            </div>
+          ) : p.heroVariant === 'trilha' ? (
             <div className="wrap trilha-hero__grid">
               <ScrollReveal className="trilha-hero__copy">
                 <Eyebrow>{p.eyebrow}</Eyebrow>

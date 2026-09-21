@@ -10,7 +10,7 @@ export default function Page() {
       title="Você precisa "
       accent="liderar pessoas."
       intro="Antes de transformar sua equipe, transforme a maneira como você lidera."
-      image="/images/jamilla-navy.webp"
+      image="/images/jamilla-reset-portrait.png"
       problem="Trabalhar mais não corrige uma liderança mal estruturada."
       items={[
         'Reconhecer padrões',
@@ -26,6 +26,7 @@ export default function Page() {
         'Palestra ou treinamento',
       ]}
       cta="Uma conversa primeiro. O formato certo depois."
+      heroVariant="reset"
     />
   );
 }

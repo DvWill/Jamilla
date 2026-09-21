@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronLeft, ChevronRight, Volume2 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './gps-landing.module.css';
 
 const videos = [
@@ -12,7 +12,21 @@ const videos = [
 
 export function TestimonialsCarousel() {
   const [active, setActive] = useState(0);
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const goTo = (index: number) => setActive((index + videos.length) % videos.length);
+
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
+
+      if (index === active) {
+        video.load();
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  }, [active]);
 
   return (
     <div className={styles.testimonialCarousel} aria-label="Histórias reais em vídeo">
@@ -20,7 +34,14 @@ export function TestimonialsCarousel() {
         <div className={styles.testimonialTrack} style={{ transform: `translateX(-${active * 100}%)` }}>
           {videos.map((video, index) => (
             <article className={styles.testimonialSlide} key={video.src} aria-hidden={active !== index}>
-              <video controls muted playsInline preload={index === 0 ? 'metadata' : 'none'} src={video.src} title={video.label} />
+              <video
+                ref={(element) => { videoRefs.current[index] = element; }}
+                controls
+                playsInline
+                preload={index === active ? 'metadata' : 'none'}
+                src={video.src}
+                title={video.label}
+              />
               <div className={styles.testimonialVideoMeta}>
                 <span>{video.label}</span>
                 <span><Volume2 size={15} /> Toque para ouvir</span>
