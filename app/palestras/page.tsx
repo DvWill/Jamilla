@@ -10,7 +10,18 @@ export default function Page() {
       title="Uma escola nunca vai além da "
       accent="liderança que a conduz."
       intro="Conversas que encontram o contexto real da escola e transformam reflexão em movimento."
-      image="/images/jamilla-red.webp"
+      image="/images/jamilla-palestras-transparent.png"
+      heroVariant="talks"
+      heroBackgroundImage="/images/palestras-hero-background.jpeg"
+      showcase={{
+        title: 'Presença',
+        words: ['Presença', 'Clareza', 'Coragem', 'Estratégia'],
+        images: [
+          { src: '/images/jamilla-navy.webp', label: 'Clareza para pensar' },
+          { src: '/images/jamilla-diagnostico.webp', label: 'Coragem para decidir' },
+          { src: '/images/jamilla-cream.webp', label: 'Estratégia para agir' },
+        ],
+      }}
       problem="Preencher a agenda é fácil. Mudar uma realidade exige método."
       items={[
         'Gestão que mobiliza',

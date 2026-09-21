@@ -8,7 +8,7 @@ import {
   MessageCircle,
   Mic2,
   RotateCcw,
-  UserRound,
+  Target,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -18,11 +18,11 @@ export const metadata: Metadata = {
 
 const links = [
   {
-    title: 'Conheça Jamilla Salviano',
-    description: 'Trajetória, propósito e experiência',
-    href: '/sobre',
-    image: '/images/jamilla-cream.webp',
-    icon: UserRound,
+    title: 'GPS 5.0',
+    description: 'Formação completa em gestão escolar',
+    href: '/gps-5-0',
+    image: '/images/gps-modulo-1-editorial.png',
+    icon: Target,
   },
   {
     title: 'Trilha da Liderança',

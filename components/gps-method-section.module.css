@@ -1,0 +1,403 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  padding: 8.8rem 0 7.2rem;
+  background: #f5f0e7;
+  color: #14202b;
+  overflow: hidden;
+}
+.section:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 8%;
+  right: -18rem;
+  width: 48rem;
+  height: 48rem;
+  border: 1px solid rgba(200, 155, 75, 0.18);
+  border-radius: 50%;
+}
+.section:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 20%;
+  right: -10rem;
+  width: 36rem;
+  height: 36rem;
+  border: 1px solid rgba(7, 28, 45, 0.08);
+  border-radius: 50%;
+}
+.wrap {
+  width: min(1180px, calc(100% - 3rem));
+  margin: 0 auto;
+}
+.topGrid {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: clamp(3rem, 7vw, 7.8rem);
+  align-items: center;
+}
+.intro {
+  max-width: 34rem;
+}
+.eyebrow {
+  margin: 0 0 1.2rem;
+  color: #8a6630;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+.intro h2 {
+  margin: 0;
+  font: 600 clamp(3rem, 5.2vw, 5.1rem)/0.92 var(--font-serif);
+  letter-spacing: -0.055em;
+}
+.intro h2 em {
+  font-weight: 500;
+  color: #b38436;
+}
+.intro > p:not(.eyebrow) {
+  margin: 1.8rem 0 0;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: #4a575e;
+}
+.manifesto {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1.1rem;
+  margin-top: 3.1rem;
+  padding: 1.1rem 0 1.1rem 1.35rem;
+  border-left: 2px solid #d5ac5b;
+  font: 600 1.22rem/1.34 var(--font-serif);
+  letter-spacing: -0.025em;
+}
+.manifestoCount {
+  color: #c89b4b;
+  font: 500 3.35rem/0.95 var(--font-serif);
+  letter-spacing: -0.08em;
+}
+.manifesto > div { display: grid; gap: .12rem; }
+.manifesto i { display: block; }
+.manifesto i {
+  color: #9b7132;
+  font-weight: 500;
+}
+.wheelWrap {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  padding: 2.4rem 2.2rem 1.75rem;
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity 0.65s ease 0.16s,
+    transform 0.65s ease 0.16s;
+}
+.wheelWrap:before {
+  content: '';
+  position: absolute;
+  inset: 0.65rem 0.2rem 4.6rem;
+  z-index: -1;
+  border-top: 1px solid rgba(200, 155, 75, 0.32);
+  border-bottom: 1px solid rgba(20, 32, 43, 0.12);
+  background: radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0) 67%);
+}
+.section[data-visible='true'] .wheelWrap {
+  opacity: 1;
+  transform: scale(1);
+}
+.wheel {
+  width: min(100%, 32rem);
+  overflow: visible;
+}
+.segmentGroup {
+  cursor: pointer;
+}
+.segment {
+  fill: #0e344f;
+  stroke: #f5f0e7;
+  stroke-width: 3;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    fill 0.25s ease,
+    transform 0.25s ease,
+    opacity 0.25s ease;
+  outline: none;
+}
+.segmentGroup:not(.segmentActive) .segment {
+  opacity: 0.78;
+}
+.segmentGroup:hover .segment,
+.segmentGroup:focus-within .segment,
+.segmentActive .segment {
+  fill: #d5ac5b;
+  opacity: 1;
+  transform: scale(1.04);
+}
+.segmentNumber {
+  fill: #f5f0e7;
+  font: 700 21px var(--font-sans);
+  letter-spacing: -0.06em;
+  pointer-events: none;
+  transition: fill 0.25s ease;
+}
+.segmentActive .segmentNumber {
+  fill: #14202b;
+}
+.wheelCore {
+  fill: #071c2d;
+  stroke: #e4c77f;
+  stroke-width: 1;
+}
+.coreName {
+  fill: #fff;
+  font: 600 31px var(--font-serif);
+  letter-spacing: -0.075em;
+}
+.coreLabel {
+  fill: #e4c77f;
+  font: 700 8px var(--font-sans);
+  letter-spacing: 2px;
+}
+.compass {
+  fill: #d5ac5b;
+}
+.wheelCaption {
+  width: min(100%, 26rem);
+  margin-top: -0.65rem;
+  padding: 1rem 1.2rem 0;
+  border-top: 1px solid rgba(200, 155, 75, 0.58);
+  text-align: center;
+}
+.wheelCaption span {
+  display: block;
+  color: #8a6630;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.59rem;
+  font-weight: 800;
+}
+.wheelCaption strong {
+  display: block;
+  margin-top: 0.42rem;
+  color: #071c2d;
+  font: 600 1.8rem/0.95 var(--font-serif);
+  letter-spacing: -0.04em;
+}
+.wheelCaption p {
+  max-width: 20rem;
+  margin: 0.45rem auto 0;
+  color: #51606a;
+  font-size: 0.83rem;
+  line-height: 1.42;
+}
+.pillarList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 5.25rem;
+  border-top: 1px solid rgba(20, 32, 43, 0.22);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.65s ease 0.32s,
+    transform 0.65s ease 0.32s;
+}
+.section[data-visible='true'] .pillarList {
+  opacity: 1;
+  transform: translateY(0);
+}
+.pillarItem {
+  position: relative;
+  min-height: 12rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-content: start;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.75rem 1.25rem 1.5rem 0;
+  border: 0;
+  border-right: 1px solid rgba(20, 32, 43, 0.16);
+  background: transparent;
+  text-align: left;
+  color: #14202b;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.pillarItem:not(:first-child) {
+  padding-left: 1.15rem;
+}
+.pillarItem:last-child {
+  border-right: 0;
+}
+.pillarItem:hover,
+.pillarItem:focus-visible,
+.pillarItemActive {
+  background: rgba(255, 255, 255, 0.52);
+  outline: none;
+}
+.pillarNumber {
+  color: #b38436;
+  font: 600 2.65rem/0.8 var(--font-serif);
+  letter-spacing: -0.08em;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+.pillarItem:hover .pillarNumber,
+.pillarItem:focus-visible .pillarNumber,
+.pillarItemActive .pillarNumber {
+  color: #d5ac5b;
+  transform: translateX(4px);
+}
+.pillarBody {
+  display: grid;
+  gap: 0.48rem;
+  padding-top: 0.16rem;
+}
+.pillarBody b {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+}
+.pillarBody span {
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: #526069;
+}
+.pillarLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #d5ac5b;
+  transition: width 0.28s ease;
+}
+.pillarItem:hover .pillarLine,
+.pillarItem:focus-visible .pillarLine,
+.pillarItemActive .pillarLine {
+  width: 100%;
+}
+.section[data-visible='true'] .pillarItem:nth-child(1) {
+  animation: pillar-enter 0.45s ease 0.32s both;
+}
+.section[data-visible='true'] .pillarItem:nth-child(2) {
+  animation: pillar-enter 0.45s ease 0.42s both;
+}
+.section[data-visible='true'] .pillarItem:nth-child(3) {
+  animation: pillar-enter 0.45s ease 0.52s both;
+}
+.section[data-visible='true'] .pillarItem:nth-child(4) {
+  animation: pillar-enter 0.45s ease 0.62s both;
+}
+.section[data-visible='true'] .pillarItem:nth-child(5) {
+  animation: pillar-enter 0.45s ease 0.72s both;
+}
+@keyframes pillar-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.intro {
+  opacity: 0;
+  transform: translateY(25px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+.section[data-visible='true'] .intro {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 900px) {
+  .topGrid {
+    gap: 3rem;
+  }
+  .pillarList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pillarItem:nth-child(3) {
+    border-right: 0;
+  }
+  .pillarItem:nth-child(n + 4) {
+    border-top: 1px solid rgba(20, 32, 43, 0.16);
+  }
+}
+@media (max-width: 680px) {
+  .section {
+    padding: 5.4rem 0;
+  }
+  .wrap {
+    width: min(100% - 2rem, 1180px);
+  }
+  .topGrid {
+    grid-template-columns: 1fr;
+    gap: 2.7rem;
+  }
+  .intro h2 {
+    font-size: clamp(3rem, 13vw, 4.15rem);
+  }
+  .wheel {
+    width: clamp(17.5rem, 82vw, 20.5rem);
+  }
+  .wheelWrap {
+    padding: 1.7rem 0.4rem 1.4rem;
+  }
+  .wheelWrap:before {
+    inset: 0.3rem -1rem 4.7rem;
+  }
+  .wheelCaption {
+    margin-top: -0.7rem;
+  }
+  .pillarList {
+    grid-template-columns: 1fr;
+    margin-top: 3.5rem;
+  }
+  .pillarItem,
+  .pillarItem:not(:first-child) {
+    min-height: auto;
+    padding: 1.35rem 0;
+    border-right: 0;
+    border-top: 1px solid rgba(20, 32, 43, 0.16);
+    grid-template-columns: 4rem 1fr;
+  }
+  .pillarItem:last-child {
+    border-bottom: 1px solid rgba(20, 32, 43, 0.16);
+  }
+  .pillarNumber {
+    font-size: 3rem;
+  }
+  .pillarBody span {
+    font-size: 0.92rem;
+  }
+  .pillarLine {
+    bottom: -1px;
+  }
+  .manifesto {
+    margin-top: 2rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .wheelWrap,
+  .pillarList,
+  .pillarItem,
+  .segment,
+  .segmentNumber,
+  .pillarNumber,
+  .pillarLine {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

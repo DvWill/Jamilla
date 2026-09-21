@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { DM_Sans, Cormorant_Garamond } from 'next/font/google';
+import { RouteScrollReset } from '@/components/route-scroll-reset';
 import './globals.css';
 
 const sans = DM_Sans({
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${sans.variable} ${serif.variable}`}>
+        <RouteScrollReset />
         {children}
       </body>
     </html>

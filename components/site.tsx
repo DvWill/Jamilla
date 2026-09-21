@@ -22,8 +22,7 @@ import {
 import { ScrollReveal } from './scroll-reveal';
 
 const navItems = [
-  { label: 'Sobre', href: '/sobre' },
-  { label: 'Trabalho', href: '/inicio#solucoes' },
+  { label: 'GPS 5.0', href: '/gps-5-0' },
   { label: 'Trilha', href: '/trilha-da-lideranca' },
   { label: 'RESET', href: '/reset' },
   { label: 'Palestras', href: '/palestras' },
@@ -32,7 +31,7 @@ const navItems = [
 
 const mobileItems = [
   { label: 'Início', href: '/inicio' },
-  ...navItems.filter((item) => item.label !== 'Trabalho'),
+  ...navItems,
   { label: 'Contato', href: '/contato' },
 ];
 

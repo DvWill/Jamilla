@@ -1,6 +1,8 @@
 import {
+  ChartNoAxesCombined,
   CircleCheck,
   FileText,
+  MessageCircle,
   MonitorPlay,
   UsersRound,
 } from 'lucide-react';
@@ -29,6 +31,13 @@ type Props = {
   items: string[];
   formats: string[];
   cta: string;
+  heroVariant?: 'talks';
+  heroBackgroundImage?: string;
+  showcase?: {
+    title: string;
+    words?: string[];
+    images: Array<{ src: string; label: string }>;
+  };
   checkoutHref?: string;
   offer?: {
     bullets?: string[];
@@ -41,6 +50,12 @@ type Props = {
 
 const contentIcons = ['chart', 'message', 'users', 'zap', 'target', 'file'] as const;
 const formatIcons = [MonitorPlay, FileText, UsersRound];
+const talksHeroBenefits = [
+  [UsersRound, 'Conexão com a realidade'],
+  [MessageCircle, 'Reflexão que gera ação'],
+  [ChartNoAxesCombined, 'Resultados sustentáveis'],
+] as const;
+const heroTopics = ['Liderança escolar', 'Gestão de pessoas', 'Cultura de equipe', 'Comunicação', 'Tomada de decisão'];
 
 export function ProductPage(p: Props) {
   const primaryHref = p.checkoutHref ?? '/contato';
@@ -50,15 +65,13 @@ export function ProductPage(p: Props) {
     <>
       <Header />
       <main className={`product-page product-page--${p.theme}`}>
-        <Hero className="product-hero">
+        <Hero className={`product-hero${p.heroBackgroundImage ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}`}>
+          {p.heroBackgroundImage ? <div className="product-hero__backdrop" aria-hidden="true"><Image fill priority sizes="100vw" src={p.heroBackgroundImage} alt="" /></div> : null}
           <div className="product-hero__texture" aria-hidden="true" />
           <div className="wrap product-hero-grid">
             <ScrollReveal className="product-hero__copy">
               <Eyebrow>{p.eyebrow}</Eyebrow>
-              <h1>
-                {p.title}
-                <em>{p.accent}</em>
-              </h1>
+              {p.heroVariant === 'talks' ? <h1 className="talks-hero-title"><span>Uma escola</span><span>nunca vai além da</span><em>liderança que</em><em>a conduz.</em></h1> : <h1>{p.title}<em>{p.accent}</em></h1>}
               <p>{p.intro}</p>
               <Cta href={primaryHref}>{primaryAction}</Cta>
             </ScrollReveal>
@@ -78,8 +91,11 @@ export function ProductPage(p: Props) {
               <span className="product-hero__side-note" aria-hidden="true">
                 Pessoas · método · resultados
               </span>
+              {p.heroVariant === 'talks' ? <aside className="talks-hero-details" aria-hidden="true"><p>Pessoas.<br />Método.<br />Resultados.</p><div><span>Jamilla</span><strong>Salviano</strong><small>Educação que transforma realidades.</small></div></aside> : null}
             </ScrollReveal>
+            {p.heroVariant === 'talks' ? <ul className="talks-hero-benefits">{talksHeroBenefits.map(([Icon, text]) => { const BenefitIcon = Icon as typeof UsersRound; return <li key={text}><BenefitIcon size={22} strokeWidth={1.5} /><span>{text}</span></li>; })}</ul> : null}
           </div>
+          {p.heroBackgroundImage ? <div className="product-hero__topics" aria-label="Temas das palestras"><div className="product-hero__topics-track">{[...heroTopics, ...heroTopics].map((topic, index) => <span key={`${topic}-${index}`}>{topic}</span>)}</div></div> : null}
         </Hero>
 
         <section className="section surface-cream product-challenge">
@@ -97,7 +113,7 @@ export function ProductPage(p: Props) {
           </div>
         </section>
 
-        <section className="section product-content surface-paper">
+        {p.showcase ? <section className="section talks-showcase"><div className="wrap"><div className="talks-showcase__composition">{p.showcase.images.map((image, index) => <figure className={`talks-showcase__image talks-showcase__image--${index + 1}`} key={image.src}><Image fill sizes="(max-width: 760px) 78vw, 29vw" src={image.src} alt="Jamilla Salviano" /><figcaption>{image.label}</figcaption></figure>)}<h2 className={p.showcase.words ? 'talks-showcase__words' : ''}>{(p.showcase.words ?? [p.showcase.title]).map((word, index) => <span key={word} style={{ animationDelay: `${index * 3}s` }}>{word}</span>)}</h2></div></div></section> : <section className="section product-content surface-paper">
           <div className="wrap">
             <ScrollReveal>
               <SectionHeader
@@ -125,7 +141,7 @@ export function ProductPage(p: Props) {
               ))}
             </div>
           </div>
-        </section>
+        </section>}
 
         <section className="section formats-section">
           <div className="wrap">
