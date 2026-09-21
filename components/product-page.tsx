@@ -4,6 +4,7 @@ import {
   FileText,
   MessageCircle,
   MonitorPlay,
+  Target,
   UsersRound,
 } from 'lucide-react';
 import Image from 'next/image';
@@ -31,7 +32,7 @@ type Props = {
   items: string[];
   formats: string[];
   cta: string;
-  heroVariant?: 'talks';
+  heroVariant?: 'talks' | 'trilha';
   heroBackgroundImage?: string;
   showcase?: {
     title: string;
@@ -55,6 +56,11 @@ const talksHeroBenefits = [
   [MessageCircle, 'Reflexão que gera ação'],
   [ChartNoAxesCombined, 'Resultados sustentáveis'],
 ] as const;
+const trilhaHeroBenefits = [
+  [Target, 'Ferramentas\npara a sua realidade'],
+  [UsersRound, 'Mais segurança\nnas decisões'],
+  [ChartNoAxesCombined, 'Resultados\nno dia a dia escolar'],
+] as const;
 const heroTopics = ['Liderança escolar', 'Gestão de pessoas', 'Cultura de equipe', 'Comunicação', 'Tomada de decisão'];
 
 export function ProductPage(p: Props) {
@@ -65,7 +71,32 @@ export function ProductPage(p: Props) {
     <>
       <Header />
       <main className={`product-page product-page--${p.theme}`}>
-        <Hero className={`product-hero${p.heroBackgroundImage ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}`}>
+        <Hero className={`product-hero${p.heroBackgroundImage ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}${p.heroVariant === 'trilha' ? ' trilha-hero' : ''}`}>
+          {p.heroVariant === 'trilha' ? (
+            <div className="wrap trilha-hero__grid">
+              <ScrollReveal className="trilha-hero__copy">
+                <Eyebrow>{p.eyebrow}</Eyebrow>
+                <h1><span>Pare de liderar</span><span>no <em>achismo.</em></span></h1>
+                <p>{p.intro}</p>
+                <Cta href={primaryHref}>{primaryAction}</Cta>
+              </ScrollReveal>
+              <ScrollReveal className="trilha-hero__visual" delay={120} variant="image">
+                <span className="trilha-hero__arc" aria-hidden="true" />
+                <span className="trilha-hero__arc-glow" aria-hidden="true" />
+                <Image className="trilha-hero__portrait" fill priority sizes="(max-width: 900px) 100vw, 48vw" src={p.image} alt="Jamilla Salviano sentada" />
+                <aside className="trilha-hero__signature" aria-hidden="true">
+                  <span>Jamilla</span>
+                  <strong>Salviano</strong>
+                  <small>Liderança que transforma realidades.</small>
+                </aside>
+                <span className="trilha-hero__side-words" aria-hidden="true">Pessoas.<br />Método.<br />Resultados.</span>
+              </ScrollReveal>
+              <ul className="trilha-hero__benefits">
+                {trilhaHeroBenefits.map(([Icon, text]) => { const BenefitIcon = Icon as typeof Target; return <li key={text}><BenefitIcon size={30} strokeWidth={1.5} /><span>{text}</span></li>; })}
+              </ul>
+            </div>
+          ) : (
+          <>
           {p.heroBackgroundImage ? <div className="product-hero__backdrop" aria-hidden="true"><Image fill priority sizes="100vw" src={p.heroBackgroundImage} alt="" /></div> : null}
           <div className="product-hero__texture" aria-hidden="true" />
           <div className="wrap product-hero-grid">
@@ -96,6 +127,8 @@ export function ProductPage(p: Props) {
             {p.heroVariant === 'talks' ? <ul className="talks-hero-benefits">{talksHeroBenefits.map(([Icon, text]) => { const BenefitIcon = Icon as typeof UsersRound; return <li key={text}><BenefitIcon size={22} strokeWidth={1.5} /><span>{text}</span></li>; })}</ul> : null}
           </div>
           {p.heroBackgroundImage ? <div className="product-hero__topics" aria-label="Temas das palestras"><div className="product-hero__topics-track">{[...heroTopics, ...heroTopics].map((topic, index) => <span key={`${topic}-${index}`}>{topic}</span>)}</div></div> : null}
+          </>
+          )}
         </Hero>
 
         <section className="section surface-cream product-challenge">

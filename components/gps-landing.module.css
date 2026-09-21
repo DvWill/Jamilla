@@ -162,6 +162,125 @@
 .button:hover svg {
   transform: translateX(5px);
 }
+.fixedCta {
+  position: fixed;
+  z-index: 30;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 4.3rem;
+  width: min(28rem, calc(100vw - 2rem));
+  padding: 0.55rem 0.65rem 0.55rem 0.75rem;
+  overflow: hidden;
+  border: 1px solid #f6dda0;
+  background: linear-gradient(110deg, #c18a36 0%, #f4d48b 25%, #d9ad60 55%, #f5d994 75%, #b98532 100%);
+  color: #0d2030;
+  box-shadow: inset 0 0 0 2px rgba(117, 75, 18, 0.28), inset 0 0 1rem rgba(255, 245, 202, 0.42), 0 1rem 2.4rem rgba(20, 32, 43, 0.34), 0 0 1.25rem rgba(234, 190, 91, 0.48);
+  font-size: 0.74rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  animation: fixedCtaPulse 2.4s ease-in-out infinite;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+.fixedCta::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(280px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.38), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+.fixedCta::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -50%;
+  left: -35%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(18deg);
+  transition: left 500ms ease;
+  pointer-events: none;
+}
+.fixedCta:hover::before { opacity: 1; }
+.fixedCta:hover::after { left: 115%; }
+.fixedCta:hover {
+  color: #14202b;
+  filter: brightness(1.08);
+  transform: translateY(-0.18rem);
+  box-shadow: inset 0 0 0 2px rgba(117, 75, 18, 0.24), inset 0 0 1.2rem rgba(255, 245, 202, 0.5), 0 1rem 2.7rem rgba(20, 32, 43, 0.4), 0 0 1.8rem rgba(249, 211, 119, 0.75);
+}
+.fixedCta:focus-visible {
+  outline: 3px solid #0d2030;
+  outline-offset: 4px;
+}
+.fixedCtaCrown,
+.fixedCtaArrow {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid rgba(244, 212, 139, 0.78);
+  border-radius: 50%;
+  background: #0d2030;
+  color: #f4d48b;
+  box-shadow: 0 0 0.8rem rgba(255, 218, 125, 0.38);
+}
+.fixedCtaCrown {
+  border-color: rgba(13, 32, 48, 0.7);
+  background: rgba(13, 32, 48, 0.9);
+}
+.fixedCtaCopy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.22rem;
+  text-align: left;
+}
+.fixedCtaCopy small {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+.fixedCtaCopy strong {
+  font: 700 clamp(1rem, 2vw, 1.35rem) var(--font-serif);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.fixedCtaDivider {
+  width: 1px;
+  height: 2.15rem;
+  background: rgba(13, 32, 48, 0.34);
+}
+.fixedCtaArrow {
+  transition: background 300ms ease, box-shadow 300ms ease;
+}
+.fixedCta:hover .fixedCtaArrow {
+  background: #132c42;
+  box-shadow: 0 0 1.15rem rgba(255, 218, 125, 0.72);
+}
+.fixedCtaArrow svg {
+  flex: none;
+  transition: transform 180ms ease;
+}
+.fixedCta:hover .fixedCtaArrow svg {
+  transform: translateX(0.2rem);
+}
+@keyframes fixedCtaPulse {
+  0%, 100% { box-shadow: inset 0 0 0 2px rgba(117, 75, 18, 0.28), inset 0 0 1rem rgba(255, 245, 202, 0.42), 0 1rem 2.4rem rgba(20, 32, 43, 0.34), 0 0 1.25rem rgba(234, 190, 91, 0.48); }
+  50% { box-shadow: inset 0 0 0 2px rgba(117, 75, 18, 0.2), inset 0 0 1.25rem rgba(255, 245, 202, 0.58), 0 1rem 2.6rem rgba(20, 32, 43, 0.4), 0 0 2rem rgba(249, 211, 119, 0.78); }
+}
 .videoButton {
   display: inline-flex;
   align-items: center;
@@ -567,20 +686,34 @@
   max-width: 33rem;
 }
 .videoFrame {
-  min-height: 30rem;
   position: relative;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #cfd0cc;
+  padding: 0.7rem;
+  background: #101317;
+  clip-path: polygon(7% 0, 100% 0, 100% 88%, 91% 100%, 0 100%, 0 11%);
+  filter: drop-shadow(0 1.2rem 1.8rem rgba(20, 32, 43, 0.18));
 }
 .videoFrame:after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(0deg, rgba(6, 26, 44, 0.4), transparent 50%);
+  pointer-events: none;
 }
 .videoFrame img {
   object-fit: cover;
   object-position: center 15%;
+}
+.videoMedia {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+  clip-path: polygon(7% 0, 100% 0, 100% 88%, 91% 100%, 0 100%, 0 11%);
+  object-fit: contain;
+  background: #061a2c;
 }
 .play {
   position: absolute;
@@ -1057,6 +1190,35 @@
   }
 }
 @media (max-width: 760px) {
+  .fixedCta {
+    top: 50%;
+    right: 0;
+    bottom: auto;
+    width: 4.1rem;
+    min-height: 11rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.65rem 0.45rem;
+    border-radius: 0.8rem 0 0 0.8rem;
+    transform: translateY(-50%);
+  }
+  .fixedCtaCrown,
+  .fixedCtaArrow {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+  .fixedCtaCopy {
+    flex: none;
+    align-items: center;
+    gap: 0;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+  .fixedCtaCopy small { display: none; }
+  .fixedCtaCopy strong { font-size: 0.86rem; letter-spacing: 0.04em; }
+  .fixedCtaDivider { width: 1.8rem; height: 1px; }
+  .fixedCta:hover { transform: translate(-0.18rem, -50%); }
   .wrap {
     width: min(100% - 2rem, 1180px);
   }
@@ -1157,7 +1319,7 @@
     padding: 0.4rem;
   }
   .videoFrame {
-    min-height: 26rem;
+    min-height: 0;
   }
   .finalPhoto {
     height: 31rem;
@@ -1177,6 +1339,22 @@
   }
 }
 @media (max-width: 440px) {
+  .fixedCta {
+    width: 3.55rem;
+    min-height: 9.6rem;
+    gap: 0.45rem;
+    padding: 0.5rem 0.35rem;
+  }
+  .fixedCtaCrown,
+  .fixedCtaArrow {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+  .fixedCtaCrown svg { width: 1rem; }
+  .fixedCtaArrow svg { width: 1.1rem; }
+  .fixedCtaCopy { gap: 0; }
+  .fixedCtaCopy strong { font-size: 0.78rem; }
+  .fixedCtaDivider { width: 1.55rem; height: 1px; }
   .heroProof,
   .audienceGrid,
   .benefits .wrap {
@@ -1244,5 +1422,6 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .heroCopy,
-  .heroVisual { animation: none; }
+  .heroVisual,
+  .fixedCta { animation: none; }
 }

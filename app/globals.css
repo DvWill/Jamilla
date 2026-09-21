@@ -2329,6 +2329,76 @@ p {
   .talks-showcase__words span:not(:first-child) { display: none; }
 }
 
+/* Trilha da Liderança editorial hero */
+.trilha-hero {
+  --trilha-wine: #2b111c;
+  --trilha-gold: #d9ad60;
+  --trilha-gold-light: #f0d59d;
+  min-height: 45rem;
+  overflow: hidden;
+  background:
+    linear-gradient(115deg, rgba(33, 10, 19, .9), rgba(43, 17, 28, .74) 58%, rgba(57, 25, 35, .88)),
+    url('/images/trilha-hero-portrait.png') center 28% / cover no-repeat,
+    radial-gradient(circle at 68% 34%, rgba(122, 43, 58, .26), transparent 27rem),
+    linear-gradient(115deg, #210a13, var(--trilha-wine) 58%, #391923);
+}
+.trilha-hero::before { position: absolute; z-index: 0; inset: 0; background: url('/images/trilha-hero-portrait.png') center 12% / min(58rem, 64vw) auto no-repeat; content: ''; opacity: .22; filter: saturate(.72) blur(.4px); pointer-events: none; }
+.trilha-hero::after { position: absolute; z-index: 0; top: -9rem; right: 7%; width: 1px; height: 70rem; background: linear-gradient(transparent, rgba(217,173,96,.65), transparent); content: ''; transform: rotate(25deg); opacity: .62; pointer-events: none; }
+.trilha-hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 52%) minmax(0, 48%); grid-template-areas: 'copy visual' 'benefits visual'; align-items: center; min-height: 45rem; padding-block: 4.5rem 3.3rem; }
+.trilha-hero__copy { grid-area: copy; position: relative; z-index: 4; align-self: end; padding-bottom: 1rem; }
+.trilha-hero__copy .eyebrow { color: #fff; font-size: .78rem; letter-spacing: .34em; }
+.trilha-hero__copy .eyebrow::after { display: inline-block; width: 4.5rem; height: 1px; margin: 0 0 .22rem 1rem; background: var(--trilha-gold); content: ''; }
+.trilha-hero__copy h1 { max-width: 46rem; margin-top: 1.75rem; color: #fff; font-family: var(--font-display); font-size: clamp(5rem, 6.5vw, 6.4rem) !important; font-weight: 500; letter-spacing: -.06em; line-height: .98; }
+.trilha-hero__copy h1 span { display: block; }
+.trilha-hero__copy h1 em { color: var(--trilha-gold); font-style: italic; }
+.trilha-hero__copy > p { max-width: 36rem; margin-top: 1.55rem; color: rgba(255,255,255,.82); font-size: clamp(1.05rem, 1.35vw, 1.25rem); line-height: 1.48; }
+.trilha-hero__copy .cta { margin-top: 2rem; min-height: 3.5rem; padding-inline: 1.75rem; }
+.trilha-hero__visual { grid-area: visual; position: relative; align-self: stretch; min-height: 40rem; margin-right: -4rem; }
+.trilha-hero__arc { position: absolute; z-index: 1; top: 4%; right: 5%; width: 86%; height: 92%; border: 2px solid rgba(240,213,157,.85); border-bottom-color: rgba(240,213,157,.45); border-radius: 50% 50% 0 0; box-shadow: 0 -4px 20px rgba(217,173,96,.16); }
+.trilha-hero__arc-glow { position: absolute; z-index: 1; top: 8%; right: 10%; width: .55rem; height: .55rem; border-radius: 50%; background: var(--trilha-gold-light); box-shadow: 0 0 1rem .3rem rgba(240,213,157,.65); }
+.trilha-hero__portrait { z-index: 2; object-fit: contain; object-position: center bottom; filter: saturate(.98) contrast(1.03); transform: translateY(18rem) scale(1.45); transform-origin: center bottom; }
+.trilha-hero__side-words { position: absolute; z-index: 4; top: 27%; right: -1rem; color: var(--trilha-gold-light); font-size: .64rem; font-weight: 800; letter-spacing: .23em; line-height: 2.1; text-transform: uppercase; }
+.trilha-hero__signature { position: absolute; z-index: 4; right: -1.2rem; bottom: 12%; display: flex; flex-direction: column; color: var(--trilha-gold-light); }
+.trilha-hero__signature span { margin-left: .2rem; font-size: .55rem; letter-spacing: .24em; text-transform: uppercase; }
+.trilha-hero__signature strong { font: 500 clamp(1.8rem, 3vw, 2.7rem)/.9 var(--font-display); }
+.trilha-hero__signature small { max-width: 10rem; margin-top: .9rem; font-size: .52rem; letter-spacing: .14em; line-height: 1.55; text-transform: uppercase; }
+.trilha-hero__benefits { grid-area: benefits; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-self: start; margin: 1.2rem 0 0; padding: 1.1rem 0 0; list-style: none; border-top: 1px solid rgba(240,213,157,.32); }
+.trilha-hero__benefits li { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: .7rem; min-height: 3.8rem; padding: 0 .9rem; color: rgba(255,255,255,.86); font-size: .74rem; line-height: 1.35; white-space: pre-line; }
+.trilha-hero__benefits li:first-child { padding-left: 0; }
+.trilha-hero__benefits li + li { border-left: 1px solid rgba(240,213,157,.25); }
+.trilha-hero__benefits svg { color: var(--trilha-gold); flex: none; }
+@media (max-width: 900px) {
+  .trilha-hero { min-height: 0; }
+  .trilha-hero__grid { grid-template-columns: 1fr; grid-template-areas: 'copy' 'visual' 'benefits'; min-height: 0; padding-block: 4rem 3rem; }
+  .trilha-hero__copy { align-self: auto; padding-bottom: 0; }
+  .trilha-hero__copy h1 { font-size: clamp(4rem, 9vw, 5rem) !important; }
+  .trilha-hero__visual { width: min(100%, 38rem); min-height: 37rem; margin: 1rem auto -2rem; }
+  .trilha-hero__side-words, .trilha-hero__signature { right: 0; }
+  .trilha-hero__arc { right: 9%; width: 82%; }
+  .trilha-hero__portrait { transform: translateY(5rem) scale(1.3); }
+}
+@media (max-width: 620px) {
+  .trilha-hero__grid { width: min(100% - 2rem, 34rem); padding-block: 3.2rem 2.3rem; }
+  .trilha-hero__copy .eyebrow { font-size: .62rem; letter-spacing: .24em; }
+  .trilha-hero__copy .eyebrow::after { width: 2.8rem; margin-left: .55rem; }
+  .trilha-hero__copy h1 { margin-top: 1.25rem; font-size: clamp(3.3rem, 11vw, 4rem) !important; }
+  .trilha-hero__copy > p { margin-top: 1.15rem; font-size: .98rem; }
+  .trilha-hero__copy .cta { width: 100%; margin-top: 1.5rem; }
+  .trilha-hero__visual { min-height: 28rem; margin-top: 0; margin-bottom: -1rem; }
+  .trilha-hero__arc { top: 5%; right: 8%; width: 86%; }
+  .trilha-hero__portrait { transform: translateY(1.5rem) scale(1.22); }
+  .trilha-hero__side-words { display: none; }
+  .trilha-hero__signature { right: .2rem; bottom: 12%; }
+  .trilha-hero__signature strong { font-size: 2rem; }
+  .trilha-hero__benefits { grid-template-columns: 1fr; gap: .2rem; margin-top: 0; padding-top: 1rem; }
+  .trilha-hero__benefits li, .trilha-hero__benefits li:first-child { min-height: 0; padding: .65rem 0; }
+  .trilha-hero__benefits li + li { border-top: 1px solid rgba(240,213,157,.18); border-left: 0; }
+  .trilha-hero::before { background-size: 34rem auto; background-position: center 4%; opacity: .14; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trilha-hero__arc, .trilha-hero__portrait, .trilha-hero__copy, .trilha-hero__benefits { animation: none !important; transition: none !important; }
+}
+
 /* Premium links page v2 */
 .links-v2 {
   --links-wine: #2b111c;

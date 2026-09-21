@@ -8,7 +8,8 @@ export default function Page() {
       title="Pare de liderar no "
       accent="achismo."
       intro="Aprenda a diagnosticar padrões, interpretar comportamentos e transformar problemas em um plano de ação."
-      image="/images/jamilla-mentora.webp"
+      heroVariant="trilha"
+      image="/images/trilha-hero-portrait.png"
       problem="Talvez o problema não seja apenas a sua equipe."
       items={[
         'Diagnóstico de liderança',
