@@ -4,11 +4,12 @@ export default function Page() {
   return (
     <ProductPage
       theme="navy"
+      heroVariant="ata"
       eyebrow="Mini curso ATA Inteligente"
       title="Não deixe sua gestão vulnerável ao "
       accent="‘ninguém me avisou’."
       intro="Aprenda a registrar reuniões, acordos e conversas difíceis com clareza, objetividade e segurança."
-      image="/images/jamilla-navy-smile.webp"
+      image="/images/jamilla-ata-section.png"
       problem="Improvisar uma ata pode comprometer decisões importantes da gestão."
       items={[
         'Manual estratégico de ata',

@@ -360,7 +360,7 @@ export function Footer() {
 
 export function WhatsAppButton() {
   return (
-    <Link aria-label="Fale com a Jamilla" className="whatsapp" href="/contato">
+    <Link aria-label="Fale com a Jamilla" className="whatsapp" href="/contato?chat=open">
       <span className="whatsapp__label">Fale com a Jamilla</span>
       <span className="whatsapp__icon" aria-hidden="true">
         <svg viewBox="0 0 32 32" role="img">

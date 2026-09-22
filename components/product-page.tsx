@@ -33,7 +33,7 @@ type Props = {
   items: string[];
   formats: string[];
   cta: string;
-  heroVariant?: 'talks' | 'trilha' | 'reset';
+  heroVariant?: 'talks' | 'trilha' | 'reset' | 'ata';
   heroBackgroundImage?: string;
   showcase?: {
     title: string;
@@ -67,6 +67,11 @@ const resetHeroBenefits = [
   [UsersRound, 'Relações mais saudáveis', 'no ambiente de trabalho'],
   [ChartNoAxesCombined, 'Resultados reais', 'na sua liderança'],
 ] as const;
+const ataHeroBenefits = [
+  [FileText, 'Registros claros', 'e bem estruturados'],
+  [Brain, 'Mais segurança', 'para a sua gestão'],
+  [UsersRound, 'Menos conflitos', 'e mais alinhamento'],
+] as const;
 const heroTopics = ['Liderança escolar', 'Gestão de pessoas', 'Cultura de equipe', 'Comunicação', 'Tomada de decisão'];
 
 export function ProductPage(p: Props) {
@@ -77,8 +82,37 @@ export function ProductPage(p: Props) {
     <>
       <Header />
       <main className={`product-page product-page--${p.theme}`}>
-        <Hero className={`product-hero${p.heroBackgroundImage ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}${p.heroVariant === 'trilha' ? ' trilha-hero' : ''}${p.heroVariant === 'reset' ? ' reset-hero' : ''}`}>
-          {p.heroVariant === 'reset' ? (
+        <Hero className={`product-hero${p.heroBackgroundImage ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}${p.heroVariant === 'trilha' ? ' trilha-hero' : ''}${p.heroVariant === 'reset' ? ' reset-hero' : ''}${p.heroVariant === 'ata' ? ' ata-hero' : ''}`}>
+          {p.heroVariant === 'ata' ? (
+            <div className="wrap ata-hero__grid">
+              <ScrollReveal className="ata-hero__copy">
+                <Eyebrow>{p.eyebrow}</Eyebrow>
+                <h1>
+                  <span>Não deixe sua</span>
+                  <span>gestão vulnerável ao</span>
+                  <em>‘ninguém me avisou’.</em>
+                </h1>
+                <p>{p.intro}</p>
+                <Cta href={primaryHref}>{primaryAction}</Cta>
+              </ScrollReveal>
+              <ScrollReveal className="ata-hero__visual" delay={120} variant="image">
+                <span className="ata-hero__arch" aria-hidden="true" />
+                <span className="ata-hero__arch-glow" aria-hidden="true" />
+                <Image className="ata-hero__portrait" fill priority sizes="(max-width: 768px) 94vw, 45vw" src={p.image} alt="Jamilla Salviano" />
+                <aside className="ata-hero__signature" aria-label="Assinatura de Jamilla Salviano">
+                  <p>PESSOAS.<br />MÉTODO.<br />RESULTADOS.</p>
+                  <strong>Jamilla<br />Salviano</strong>
+                  <small>LIDERANÇA<br />QUE TRANSFORMA<br />REALIDADES.</small>
+                </aside>
+              </ScrollReveal>
+              <ul className="ata-hero__benefits" aria-label="Diferenciais do minicurso">
+                {ataHeroBenefits.map(([Icon, title, description], index) => {
+                  const BenefitIcon = Icon as typeof FileText;
+                  return <li key={title} className={index > 0 ? 'ata-hero__benefit--divided' : ''}><BenefitIcon size={32} strokeWidth={1.55} /><span><strong>{title}</strong><small>{description}</small></span></li>;
+                })}
+              </ul>
+            </div>
+          ) : p.heroVariant === 'reset' ? (
             <div className="wrap reset-hero__grid">
               <ScrollReveal className="reset-hero__copy">
                 <Eyebrow>{p.eyebrow}</Eyebrow>
