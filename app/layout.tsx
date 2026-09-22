@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { DM_Sans, Cormorant_Garamond } from 'next/font/google';
 import { RouteScrollReset } from '@/components/route-scroll-reset';
+import { ContactForm } from '@/app/contato/contact-form';
 import './globals.css';
 
 const sans = DM_Sans({
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className={`${sans.variable} ${serif.variable}`}>
         <RouteScrollReset />
         {children}
+        <ContactForm global />
       </body>
     </html>
   );

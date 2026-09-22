@@ -74,7 +74,7 @@ function questionText(prompt: string, name: string) {
   return prompt.replace('{name}', name || 'você');
 }
 
-export function ContactForm() {
+export function ContactForm({ global = false }: { global?: boolean }) {
   const [started, setStarted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -90,6 +90,16 @@ export function ContactForm() {
       setStarted(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (!global) return;
+    const openChat = () => {
+      setIsOpen(true);
+      setStarted(true);
+    };
+    window.addEventListener('jamilla:open-chat', openChat);
+    return () => window.removeEventListener('jamilla:open-chat', openChat);
+  }, [global]);
 
   useEffect(() => {
     const history = historyRef.current;
@@ -182,6 +192,8 @@ export function ContactForm() {
   function openWhatsApp() {
     window.open(`${WHATSAPP_URL}?text=${encodeURIComponent(buildMessage())}`, '_blank', 'noopener,noreferrer');
   }
+
+  if (global && !isOpen) return null;
 
   return (
     <>

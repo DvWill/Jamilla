@@ -580,6 +580,10 @@
   padding: 1.7rem;
 }
 
+.chatLauncherBody .primaryAction {
+  width: min(100%, 22rem);
+}
+
 .chatOverlay {
   position: fixed;
   z-index: 100;
@@ -994,6 +998,10 @@
     padding: 1.1rem;
   }
 
+  .chatLauncherBody .primaryAction {
+    width: 100%;
+  }
+
   .chatOverlay {
     align-items: end;
     padding: 0.5rem;
@@ -1039,6 +1047,10 @@
 
   .chatActions {
     align-items: stretch;
+  }
+
+  .chatActions .backAction {
+    min-width: 4.5rem;
   }
 
   .chatComposer .primaryAction {

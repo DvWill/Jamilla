@@ -21,6 +21,8 @@ export function TestimonialsCarousel() {
 
       if (index === active) {
         video.load();
+        video.muted = true;
+        void video.play().catch(() => undefined);
       } else {
         video.pause();
         video.currentTime = 0;
@@ -37,10 +39,13 @@ export function TestimonialsCarousel() {
               <video
                 ref={(element) => { videoRefs.current[index] = element; }}
                 controls
+                autoPlay={index === active}
+                muted={index === active}
                 playsInline
                 preload={index === active ? 'metadata' : 'none'}
                 src={video.src}
                 title={video.label}
+                onCanPlay={(event) => { if (index === active) void event.currentTarget.play().catch(() => undefined); }}
               />
               <div className={styles.testimonialVideoMeta}>
                 <span>{video.label}</span>
