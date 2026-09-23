@@ -20,6 +20,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { ScrollReveal } from './scroll-reveal';
+import { FooterAgencyCredit } from './footer-agency-credit';
 
 const navItems = [
   { label: 'GPS 5.0', href: '/gps-5-0' },
@@ -354,6 +355,7 @@ export function Footer() {
       <ScrollReveal className="wrap copyright" delay={90}>
         © 2026 Jamilla Salviano. Todos os direitos reservados.
       </ScrollReveal>
+      <FooterAgencyCredit className="wrap" />
     </footer>
   );
 }

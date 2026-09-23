@@ -5,6 +5,7 @@ import { Header } from './site';
 import { GPSMethodSection } from './gps-method-section';
 import { TestimonialsCarousel } from './testimonials-carousel';
 import { PremiumCta } from './premium-cta';
+import { FooterAgencyCredit } from './footer-agency-credit';
 import styles from './gps-landing.module.css';
 
 type CourseModuleProps = { number: string; image: string; title: string; objective: string; lessons: string[]; materials: string[]; theme: 'light' | 'dark' };
@@ -70,7 +71,7 @@ export function GPSLanding() {
 
       <section className={styles.finalCta}><div className={`${styles.wrap} ${styles.finalGrid}`}><div><p className={styles.eyebrow}>GPS 5.0</p><h2>Sua próxima fase<br />na gestão escolar<br />pode começar <em>hoje.</em></h2><p>O GPS 5.0 vai te guiar com método, clareza e prática para uma gestão mais humana e eficiente.</p><Link href="#inscricao" className={styles.button}>Quero me inscrever agora <ArrowRight size={18} /></Link></div><div className={styles.finalPhoto}><div className={styles.finalWords}>Planeje<br />Lidere<br />Organize<br /><b>Transforme</b></div><Image src="/images/jamilla-cream.webp" alt="Jamilla Salviano" fill sizes="(max-width: 900px) 100vw, 45vw" /></div></div></section>
     </main>
-    <footer className={styles.footer}><div className={`${styles.wrap} ${styles.footerGrid}`}><div><div className={styles.footerBrand}>GPS <b>5.0</b></div><p>Formação em gestão escolar e liderança.</p></div><nav>{[['Início', '#inicio'], ['Sobre', '#sobre'], ['Módulos', '#modulos'], ['Depoimentos', '#depoimentos'], ['FAQ', '#faq'], ['Contato', '/contato']].map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</nav><div><p>Jamilla Salviano</p><span>Instagram</span><span>LinkedIn</span></div></div><div className={`${styles.wrap} ${styles.footerBottom}`}><span>© 2026 Jamilla Salviano. Todos os direitos reservados.</span><span>Política de Privacidade &nbsp; • &nbsp; Termos de Uso</span></div></footer>
+    <footer className={styles.footer}><div className={`${styles.wrap} ${styles.footerGrid}`}><div><div className={styles.footerBrand}>GPS <b>5.0</b></div><p>Formação em gestão escolar e liderança.</p></div><nav>{[['Início', '#inicio'], ['Sobre', '#sobre'], ['Módulos', '#modulos'], ['Depoimentos', '#depoimentos'], ['FAQ', '#faq'], ['Contato', '/contato']].map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</nav><div><p>Jamilla Salviano</p><span>Instagram</span><span>LinkedIn</span></div></div><div className={`${styles.wrap} ${styles.footerBottom}`}><span>© 2026 Jamilla Salviano. Todos os direitos reservados.</span><span>Política de Privacidade &nbsp; • &nbsp; Termos de Uso</span></div><FooterAgencyCredit className={styles.wrap} /></footer>
     <PremiumCta />
   </div>;
 }

@@ -11,6 +11,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import { LinksGpsCard } from '@/components/links-gps-card';
+import { FooterAgencyCredit } from '@/components/footer-agency-credit';
 
 export const metadata: Metadata = {
   title: 'Links | Jamilla Salviano',
@@ -141,6 +142,7 @@ export default function LinksPage() {
         <footer className="links-v2__footer">
           <a href="/inicio">jamillasalviano.com.br</a>
           <span>FORMAÇÃO QUE TRANSFORMA PESSOAS E RESULTADOS.</span>
+          <FooterAgencyCredit />
         </footer>
       </div>
     </main>
