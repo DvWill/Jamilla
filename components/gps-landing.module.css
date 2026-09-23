@@ -1061,6 +1061,12 @@
 .faqList details[open] summary svg {
   transform: rotate(180deg);
 }
+.faqList details > p {
+  margin: -0.35rem 2.25rem 1.35rem 0;
+  color: #526069;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
 .finalCta {
   background: #0a2940;
   color: #fff;

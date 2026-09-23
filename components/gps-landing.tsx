@@ -27,7 +27,32 @@ const modules: CourseModuleProps[] = [
   { number: '05', image: '/images/gps-modulo-5-editorial.png', title: 'Altas expectativas com suporte', objective: 'Ensinar a gerar impacto real e mensurável na aprendizagem, na gestão e na comunidade.', lessons: ['Cultura de resultados: como implantar sem virar um gestor cobrador', 'Metodologias práticas para melhorar os índices da escola', 'Indicadores que importam: como medir o que realmente conta', 'Projetos que conectam a escola à comunidade (60 ideias de projetos)', 'Ferramentas Ciclo PDCA e 5W2H para gestão de projetos', 'Como priorizar ações mesmo em meio ao caos', 'Ferramentas de produtividade', 'Formação continuada na escola: como fazer e ter sucesso', 'Mediação de conflitos'], materials: ['Modelo de relatório de impacto escolar', 'Roteiro de plano de ação para melhoria do IDEB', 'Banco de ideias de projetos escolares com alto engajamento'], theme: 'light' },
 ];
 
-const faq = ['Como funciona o acesso ao curso?', 'Recebo certificado?', 'Os materiais são editáveis?', 'Por quanto tempo terei acesso?', 'E se eu tiver dúvidas durante o curso?', 'Posso comprar para a minha equipe?'];
+const faq = [
+  {
+    question: 'Como funciona o acesso ao curso?',
+    answer: 'Após a confirmação da inscrição, você receberá as orientações de acesso à plataforma pelo e-mail cadastrado. Lá estarão disponíveis as aulas, os materiais complementares e demais conteúdos previstos no programa.',
+  },
+  {
+    question: 'Recebo certificado?',
+    answer: 'Sim. Após a conclusão da formação, você poderá receber seu certificado de participação/conclusão, reconhecido pelo MEC.',
+  },
+  {
+    question: 'Os materiais são editáveis?',
+    answer: 'Alguns materiais são disponibilizados para aplicação prática e podem ser preenchidos ou adaptados conforme a proposta de cada ferramenta. Os formatos disponíveis estarão indicados dentro da plataforma.',
+  },
+  {
+    question: 'Por quanto tempo terei acesso?',
+    answer: 'Você terá acesso por 1 ano. Durante esse prazo, poderá acessar as aulas e os materiais disponíveis quantas vezes precisar.',
+  },
+  {
+    question: 'E se eu tiver dúvidas durante o curso?',
+    answer: 'Você não estará sozinho. Dependendo da formação escolhida, haverá canais de suporte e momentos de acompanhamento para ajudar na aplicação do conteúdo à sua realidade profissional.',
+  },
+  {
+    question: 'Posso comprar para a minha equipe?',
+    answer: 'Sim. Também trabalhamos com inscrições para equipes e formações destinadas a escolas, Secretarias de Educação e redes de ensino. Para condições institucionais, aquisição de múltiplos acessos ou de um pacote completo para a equipe, entre em contato com nossa equipe.',
+  },
+];
 
 export function CourseModule({ number, image, title, objective, lessons, materials }: CourseModuleProps) {
   return <article className={styles.module}>
@@ -67,7 +92,7 @@ export function GPSLanding() {
 
       <section id="depoimentos" className={`${styles.section} ${styles.testimonials}`}><div className={styles.wrap}><div className={styles.testimonialsHeader}><div><p className={styles.eyebrowDark}>Depoimentos</p><h2>Histórias reais.<br /><em>Resultados reais.</em></h2></div><p>Experiências de quem está transformando a rotina escolar com mais clareza, método e direção.</p></div><TestimonialsCarousel /></div></section>
 
-      <section id="faq" className={`${styles.section} ${styles.faq}`}><div className={`${styles.wrap} ${styles.faqGrid}`}><div><p className={styles.eyebrowDark}>FAQ</p><h2>Ainda tem<br /><em>alguma dúvida?</em></h2><p>As informações da sua inscrição podem ser confirmadas diretamente pelo nosso contato.</p><Link href="/contato" className={styles.textLink}>Falar com a equipe <ArrowRight size={17} /></Link></div><div className={styles.faqList}>{faq.map(question => <details key={question}><summary>{question}<ChevronDown size={19} /></summary></details>)}</div></div></section>
+      <section id="faq" className={`${styles.section} ${styles.faq}`}><div className={`${styles.wrap} ${styles.faqGrid}`}><div><p className={styles.eyebrowDark}>FAQ</p><h2>Ainda tem<br /><em>alguma dúvida?</em></h2><p>As informações da sua inscrição podem ser confirmadas diretamente pelo nosso contato.</p><Link href="/contato" className={styles.textLink}>Falar com a equipe <ArrowRight size={17} /></Link></div><div className={styles.faqList}>{faq.map(({ question, answer }) => <details key={question}><summary>{question}<ChevronDown size={19} /></summary><p>{answer}</p></details>)}</div></div></section>
 
       <section className={styles.finalCta}><div className={`${styles.wrap} ${styles.finalGrid}`}><div><p className={styles.eyebrow}>GPS 5.0</p><h2>Sua próxima fase<br />na gestão escolar<br />pode começar <em>hoje.</em></h2><p>O GPS 5.0 vai te guiar com método, clareza e prática para uma gestão mais humana e eficiente.</p><Link href="#inscricao" className={styles.button}>Quero me inscrever agora <ArrowRight size={18} /></Link></div><div className={styles.finalPhoto}><div className={styles.finalWords}>Planeje<br />Lidere<br />Organize<br /><b>Transforme</b></div><Image src="/images/jamilla-cream.webp" alt="Jamilla Salviano" fill sizes="(max-width: 900px) 100vw, 45vw" /></div></div></section>
     </main>
