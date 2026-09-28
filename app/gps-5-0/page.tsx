@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import { GPSLanding } from '@/components/gps-landing';
 
 export const metadata: Metadata = {
-  title: 'GPS 5.0 | Gestão Escolar e Liderança | Jamilla Salviano',
-  description: 'Formação completa para gestores escolares que querem desenvolver liderança, estratégia, gestão de equipes e resultados.',
+  title: 'Método GPS da Liderança Escolar | Jamilla Salviano',
+  description: 'Formação para gestores escolares que querem liderar com clareza, método, firmeza e humanidade.',
   alternates: { canonical: '/gps-5-0' },
   openGraph: {
-    title: 'GPS 5.0 | Gestão Escolar e Liderança | Jamilla Salviano',
-    description: 'Formação completa para gestores escolares que querem desenvolver liderança, estratégia, gestão de equipes e resultados.',
+    title: 'Método GPS da Liderança Escolar | Jamilla Salviano',
+    description: 'Formação para gestores escolares que querem liderar com clareza, método, firmeza e humanidade.',
     type: 'website',
   },
 };

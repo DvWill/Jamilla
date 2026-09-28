@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Award, Check, ChevronDown, CirclePlay, ClipboardList, FileDown, GraduationCap, HeartHandshake, LayoutTemplate, Sparkles, UsersRound } from 'lucide-react';
-import { Header } from './site';
+import { ArrowRight, Award, Check, ChevronDown, ClipboardList, FileDown, GraduationCap, HeartHandshake, LayoutTemplate, Sparkles, UsersRound } from 'lucide-react';
+import { SITE_CONFIG } from '@/lib/site-config';
 import { GPSMethodSection } from './gps-method-section';
 import { TestimonialsCarousel } from './testimonials-carousel';
 import { PremiumCta } from './premium-cta';
@@ -34,7 +34,7 @@ const faq = [
   },
   {
     question: 'Recebo certificado?',
-    answer: 'Sim. Após a conclusão da formação, você poderá receber seu certificado de participação/conclusão, reconhecido pelo MEC.',
+    answer: `${SITE_CONFIG.certificateLabel} A disponibilidade e o formato devem ser confirmados na inscrição.`,
   },
   {
     question: 'Os materiais são editáveis?',
@@ -46,7 +46,7 @@ const faq = [
   },
   {
     question: 'E se eu tiver dúvidas durante o curso?',
-    answer: 'Você não estará sozinho. Dependendo da formação escolhida, haverá canais de suporte e momentos de acompanhamento para ajudar na aplicação do conteúdo à sua realidade profissional.',
+    answer: SITE_CONFIG.supportLabel,
   },
   {
     question: 'Posso comprar para a minha equipe?',
@@ -62,14 +62,22 @@ export function CourseModule({ number, image, title, objective, lessons, materia
   </article>;
 }
 
+function GPSHeader() {
+  return <header className={styles.gpsHeader}>
+    <Link className={styles.gpsBrand} href="/gps-5-0" aria-label="GPS — início"><span>GPS</span><small>Método GPS da Liderança Escolar</small></Link>
+    <nav aria-label="Navegação do GPS"><a href="#metodo">Método</a><a href="#formacao">Formação</a><a href="#beneficios">O que você recebe</a><a href="#faq">Dúvidas</a></nav>
+    <Link href="/contato" className={styles.gpsHeaderCta}>Falar com a equipe <ArrowRight size={16} /></Link>
+  </header>;
+}
+
 export function GPSLanding() {
   return <div className={styles.page}>
-    <Header />
+    <GPSHeader />
     <main>
       <section id="inicio" className={styles.hero}>
         <div className={styles.heroLines} aria-hidden="true" />
         <div className={`${styles.wrap} ${styles.heroGrid}`}>
-          <div className={styles.heroCopy}><p className={styles.eyebrow}>Curso online <i /> GPS 5.0</p><h1>Da rotina à<br />excelência na<br /><em>gestão escolar.</em></h1><p className={styles.heroLead}>O GPS 5.0 é uma formação completa para gestores escolares que querem liderar com mais clareza, estratégia, equilíbrio e resultados.</p><div className={styles.heroActions}><Link href="#inscricao" className={styles.button}>Quero começar agora <ArrowRight size={18} /></Link><Link href="#video" className={styles.videoButton}><CirclePlay size={21} /> Assistir ao vídeo</Link></div><ul className={styles.heroProof}>{['Conteúdo prático e aplicável', 'Materiais exclusivos e editáveis', 'Certificado de conclusão', 'Acesso imediato e 100% online'].map(item => <li key={item}><Check size={16} />{item}</li>)}</ul></div>
+          <div className={styles.heroCopy}><p className={styles.eyebrow}>Método GPS da Liderança Escolar</p><h1>Torne-se a liderança que inspira respeito, exerce influência e <em>gera resultados — sem perder a humanidade.</em></h1><p className={styles.heroLead}>Uma formação para gestores cansados de apenas apagar incêndios e que querem liderar com mais clareza, método, firmeza e segurança.</p><div className={styles.heroActions}><Link href="#inscricao" className={styles.button}>Conhecer a formação <ArrowRight size={18} /></Link><Link href="#metodo" className={styles.videoButton}>Ver como funciona <ArrowRight size={18} /></Link></div><ul className={styles.heroProof}>{['Conteúdo prático e aplicável', 'Mentorias mensais', 'Livros digitais da Jamilla', 'Comunidade de gestores'].map(item => <li key={item}><Check size={16} />{item}</li>)}</ul></div>
           <div className={styles.heroVisual}><div className={styles.heroTags}><span>Gestão</span><span>Liderança</span><span>Estratégia</span><span>Resultados</span></div><div className={styles.heroImage}><Image priority src="/images/jamilla-gps-hero.png" alt="Jamilla Salviano" fill sizes="(max-width: 900px) 90vw, 43vw" /></div><p className={styles.heroSignature}>Jamilla<br /><strong>Salviano</strong></p></div>
         </div>
       </section>
@@ -78,15 +86,17 @@ export function GPSLanding() {
 
       <section id="sobre" className={`${styles.section} ${styles.about}`}><div className={`${styles.wrap} ${styles.aboutGrid}`}><div className={styles.aboutVisual}><div className={styles.mockupLaptop}><Image src="/images/gps-device-module-5.png" alt="GPS 5.0 no computador, tablet e celular" fill sizes="(max-width: 760px) 80vw, 40vw" /></div></div><div className={styles.aboutCopy}><p className={styles.eyebrowDark}>Aulas bônus</p><h2>Ao acessar o curso<br /><em>Liderança Escolar<br />Transformadora...</em></h2><p>Você terá acesso às aulas bônus que vão te ajudar a projetar o próximo nível da sua carreira com autoridade e propósito.</p><div className={styles.bonusPanel}><h3>Aulas Bônus</h3><ul>{['Construindo sua autoridade como gestor referência', 'Do gestor ao mentor: novas oportunidades e caminhos na educação', 'Oratória', 'Processo seletivo: como ser aprovado?'].map(item => <li key={item}><Check size={16} />{item}</li>)}</ul></div></div></div></section>
 
-      <section className={`${styles.section} ${styles.mentorBonus}`}><div className={`${styles.wrap} ${styles.mentorBonusGrid}`}><div className={styles.mentorBonusImage}><Image src="/images/jamilla-bonus-seal.png" alt="Jamil.IA, mentora em liderança escolar" fill sizes="(max-width: 760px) 100vw, 38vw" /></div><div className={styles.mentorBonusCopy}><p className={styles.eyebrowDark}>Bônus exclusivo</p><h2>Jamil.IA — sua mentora em <em>liderança escolar</em>, 24h por dia.</h2><p>Ao se inscrever no Método GPS 5.0, você não leva apenas um curso. Você ganha acesso à Jamil.IA, uma inteligência artificial treinada para pensar como uma mentora experiente em gestão e liderança escolar.</p><p>A Jamil.IA foi criada para apoiar diretores, gestores e coordenadores pedagógicos nos desafios reais da escola: tomada de decisão, liderança de equipes, gestão estratégica e resolução de conflitos — na prática e no dia a dia.</p><p><strong>É como ter a Jamil.IA ao seu lado, 24 horas por dia,</strong> orientando, esclarecendo dúvidas e ajudando você a agir com mais segurança, clareza e autoridade.</p><p><strong>Você não estará mais sozinho na liderança.</strong> Com o Método GPS e a Jamil.IA, suas decisões deixam de ser improviso e passam a ser estratégicas.</p><Link href="https://pay.kiwify.com.br/2oTcve7" target="_blank" rel="noreferrer" className={styles.button}>Quero ter acesso a todos os bônus <ArrowRight size={18} /></Link></div></div></section>
+      <section className={`${styles.section} ${styles.mentorBonus}`}><div className={`${styles.wrap} ${styles.mentorBonusGrid}`}><div className={styles.mentorBonusImage}><Image src="/images/jamilla-bonus-seal.png" alt="Material complementar do Método GPS" fill sizes="(max-width: 760px) 100vw, 38vw" /></div><div className={styles.mentorBonusCopy}><p className={styles.eyebrowDark}>Acompanhamento e comunidade</p><h2>Você não precisa liderar <em>sozinho.</em></h2><p>O GPS combina formação, mentorias mensais e uma comunidade de gestores para discutir situações reais, trocar experiências e receber direcionamento prático.</p><p>Também estão previstos livros digitais da Jamilla sobre liderança, conflitos, feedback, comportamento, formação continuada e gestão escolar.</p><p><strong>As condições de suporte, calendário das mentorias e materiais disponíveis devem ser confirmados na inscrição.</strong></p><Link href="/contato" className={styles.button}>Quero entender como funciona <ArrowRight size={18} /></Link></div></div></section>
 
-      <GPSMethodSection />
+      <section id="dores" className={`${styles.section} ${styles.gpsPainPoints}`}><div className={styles.wrap}><p className={styles.eyebrowDark}>Quando liderar pesa</p><div className={styles.audienceHeader}><h2>Você não precisa continuar <em>apagando incêndios.</em></h2><p>O GPS acolhe dores concretas da gestão: sobrecarga, dificuldade de cobrar e delegar, conversas difíceis, fofocas, conflitos, reuniões improdutivas, famílias exigentes e a solidão das decisões.</p></div><div className={styles.audienceGrid}>{['Reagir a tudo, sem tempo para pensar', 'Cobrar e delegar com culpa', 'Lidar com resistência e conflitos internos', 'Perder autoridade tentando agradar', 'Tomar decisões difíceis sozinho', 'Sentir o peso emocional da gestão'].map((item, index) => <article key={item}><span>0{index + 1}</span><UsersRound size={21} /><h3>{item}</h3><p>Um desafio que pode ser trabalhado com mais clareza, repertório e método.</p></article>)}</div></div></section>
+
+      <div id="metodo"><GPSMethodSection /></div>
 
       <section className={`${styles.section} ${styles.audience}`}><div className={styles.wrap}><p className={styles.eyebrow}>Para quem é</p><div className={styles.audienceHeader}><h2>Se você vive estes desafios,<br />o GPS 5.0 é para você.</h2><p>Uma formação para quem acredita que a liderança escolar pode ser mais clara, humana e estratégica.</p></div><div className={styles.audienceGrid}>{audience.map(([title, description], index) => <article key={title}><span>0{index + 1}</span><UsersRound size={21} /><h3>{title}</h3><p>{description}</p></article>)}</div></div></section>
 
-      <section id="modulos" className={`${styles.section} ${styles.modules}`}><div className={styles.wrap}><div className={styles.modulesIntro}><div><p className={styles.eyebrowDark}>A formação</p><h2>O caminho para uma<br /><em>gestão que transforma.</em></h2></div><p>Cinco módulos completos para aplicar no seu contexto, respeitando o ritmo e a complexidade da gestão escolar.</p></div><div className={styles.moduleList}>{modules.map(module => <CourseModule key={module.number} {...module} />)}</div></div></section>
+      <section id="formacao" className={`${styles.section} ${styles.modules}`}><div className={styles.wrap}><div className={styles.modulesIntro}><div><p className={styles.eyebrowDark}>A formação</p><h2>O caminho para uma<br /><em>gestão que transforma.</em></h2></div><p>Cinco módulos para organizar sua liderança, conduzir melhor a equipe, dar feedback, delegar com segurança, proteger o tempo pedagógico e transformar reuniões em direção e resultado.</p></div><div className={styles.moduleList}>{modules.map(module => <CourseModule key={module.number} {...module} />)}</div></div></section>
 
-      <section className={styles.benefits}><div className={styles.wrap}>{[[GraduationCap, 'Conteúdo 100% prático e aplicável'], [LayoutTemplate, 'Materiais exclusivos e editáveis'], [Award, 'Certificado de conclusão'], [Sparkles, 'Acesso imediato e 100% online'], [HeartHandshake, 'Suporte durante o programa']].map(([Icon, text]) => { const BenefitIcon = Icon as typeof Award; return <div key={text as string}><BenefitIcon size={23} /><span>{text as string}</span></div> })}</div></section>
+      <section id="beneficios" className={styles.benefits}><div className={styles.wrap}>{[[GraduationCap, 'Formação em liderança escolar'], [LayoutTemplate, 'Mentorias mensais com situações reais'], [Award, 'Livros digitais da Jamilla'], [Sparkles, 'Comunidade com gestores'], [HeartHandshake, SITE_CONFIG.supportLabel]].map(([Icon, text]) => { const BenefitIcon = Icon as typeof Award; return <div key={text as string}><BenefitIcon size={23} /><span>{text as string}</span></div> })}</div></section>
 
       <section id="inscricao" className={styles.conversion}><div className={`${styles.wrap} ${styles.conversionGrid}`}><div><p className={styles.eyebrow}>Sua jornada começa aqui</p><h2>Chegou a hora de <em>transformar</em><br />a sua gestão escolar.</h2><p>Escolha liderar com método, intenção e clareza — começando pelo próximo passo.</p></div><div className={styles.conversionBox}><Link href="/contato" className={styles.button}>Quero fazer parte agora <ArrowRight size={18} /></Link><div><span>Pagamento seguro</span><span>Acesso imediato</span><span>Informações pelo contato</span></div></div></div></section>
 

@@ -13,13 +13,32 @@ export default function Page() {
       image="/images/jamilla-palestras-transparent.png"
       heroVariant="talks"
       heroBackgroundImage="/images/palestras-hero-background.jpeg"
+      editorialShowcase={{
+        words: ['Clareza', 'Estratégia', 'Coragem'],
+        images: [
+          {
+            src: '/images/jamilla-navy.webp',
+            label: 'Clareza para pensar',
+            alt: 'Jamilla Salviano em retrato de roupa azul',
+          },
+          {
+            src: '/images/jamilla-mentora.webp',
+            label: 'Coragem para decidir',
+            alt: 'Jamilla Salviano sentada em retrato editorial',
+          },
+          {
+            src: '/images/jamilla-cream.webp',
+            label: 'Estratégia para agir',
+            alt: 'Jamilla Salviano em retrato com blazer claro',
+          },
+        ],
+      }}
       showcase={{
         title: 'Presença',
-        words: ['Presença', 'Clareza', 'Coragem', 'Estratégia'],
         images: [
-          { src: '/images/jamilla-navy.webp', label: 'Clareza para pensar' },
-          { src: '/images/jamilla-diagnostico.webp', label: 'Coragem para decidir' },
-          { src: '/images/jamilla-cream.webp', label: 'Estratégia para agir' },
+          { src: '/images/palestras-hero-background.jpeg', label: 'Imagem de palco disponível no projeto', alt: 'Palco de uma palestra disponível nos materiais da Jamilla Salviano' },
+          { src: '/images/links-stage-bg.jpeg', label: 'Apresentação para uma plateia', alt: 'Jamilla Salviano em uma apresentação para uma plateia' },
+          { src: '/images/jamilla-palestras.png', label: 'Material visual da página de palestras', alt: 'Jamilla Salviano em material visual da página de palestras' },
         ],
       }}
       problem="Preencher a agenda é fácil. Mudar uma realidade exige método."

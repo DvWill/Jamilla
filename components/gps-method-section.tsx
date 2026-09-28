@@ -28,12 +28,12 @@ function wedgePath(index: number) {
 
 export function GPSPillarWheel({ activeIndex, onSelect }: { activeIndex: number; onSelect: (index: number) => void }) {
   return <div className={styles.wheelWrap}>
-    <svg className={styles.wheel} viewBox="0 0 360 360" role="group" aria-label="Os cinco pilares do Método GPS 5.0">
+    <svg className={styles.wheel} viewBox="0 0 360 360" aria-label="Os cinco pilares do Método GPS 5.0">
       {pillars.map((pillar, index) => {
         const [x, y] = point(index * 72 + 36, 118);
         const isActive = activeIndex === index;
         return <g key={pillar.number} className={`${styles.segmentGroup} ${isActive ? styles.segmentActive : ''}`}>
-          <path className={styles.segment} d={wedgePath(index)} onMouseEnter={() => onSelect(index)} onFocus={() => onSelect(index)} onClick={() => onSelect(index)} tabIndex={0} role="button" aria-label={`Pilar ${pillar.number}: ${pillar.title}`} />
+          <path className={styles.segment} d={wedgePath(index)} onMouseEnter={() => onSelect(index)} onFocus={() => onSelect(index)} onClick={() => onSelect(index)} tabIndex={0} aria-label={`Pilar ${pillar.number}: ${pillar.title}`} />
           <text className={styles.segmentNumber} x={x} y={y + 6} textAnchor="middle" aria-hidden="true">{pillar.number}</text>
         </g>;
       })}

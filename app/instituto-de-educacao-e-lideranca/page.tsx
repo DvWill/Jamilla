@@ -60,6 +60,29 @@ const pillars: Pillar[] = [
   },
 ];
 
+const heroBenefits = [
+  {
+    title: 'Formação de gestores',
+    description: 'Clareza para conduzir pessoas e decisões.',
+    icon: BookOpenCheck,
+  },
+  {
+    title: 'Redes de ensino',
+    description: 'Estratégia que alcança toda a comunidade.',
+    icon: Network,
+  },
+  {
+    title: 'Liderança escolar',
+    description: 'Presença, método e visão de futuro.',
+    icon: GraduationCap,
+  },
+  {
+    title: 'Impacto real',
+    description: 'Transformação que se sustenta na prática.',
+    icon: Compass,
+  },
+];
+
 // Conteúdo centralizado para receber novas ações confirmadas pelo Instituto.
 const initiatives = [
   {
@@ -120,7 +143,12 @@ export default function InstitutoPage() {
             <ScrollReveal className={styles.heroCopy}>
               <Eyebrow>Instituto de Educação e Liderança</Eyebrow>
               <h1 id="instituto-title">
-                Educação que inspira. <em>Liderança que transforma.</em>
+                Educação<br />
+                que inspira.
+                <em>
+                  Liderança<br />
+                  que transforma.
+                </em>
               </h1>
               <p>
                 Liderança escolar na prática e formação de gestores e redes de
@@ -140,23 +168,27 @@ export default function InstitutoPage() {
               delay={120}
               variant="image"
             >
-              <figure className={styles.heroPhoto}>
+              <figure className={styles.heroLogo}>
                 <Image
                   fill
                   priority
                   sizes="(max-width: 900px) 100vw, 46vw"
-                  src="/images/links-stage-bg.jpeg"
-                  alt="Jamilla Salviano em apresentação institucional"
+                  src="/images/instituto-logo.png"
+                  alt="Instituto de Educação e Liderança"
                 />
               </figure>
-              <div className={styles.heroSeal} aria-hidden="true">
-                <GraduationCap size={25} strokeWidth={1.35} />
-                <span>IEL</span>
-              </div>
-              <p className={styles.heroCaption}>
-                Formação de gestores <span>·</span> Redes de ensino
-              </p>
             </ScrollReveal>
+            <ul className={styles.heroBenefits} aria-label="Atuação do Instituto">
+              {heroBenefits.map(({ title, description, icon: Icon }) => (
+                <li key={title}>
+                  <Icon size={20} strokeWidth={1.45} aria-hidden="true" />
+                  <span>
+                    <strong>{title}</strong>
+                    <small>{description}</small>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 

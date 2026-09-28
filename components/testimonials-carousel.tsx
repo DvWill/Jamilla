@@ -46,7 +46,9 @@ export function TestimonialsCarousel() {
                 src={video.src}
                 title={video.label}
                 onCanPlay={(event) => { if (index === active) void event.currentTarget.play().catch(() => undefined); }}
-              />
+              >
+                <track kind="captions" srcLang="pt-BR" src="/videos/captions-empty.vtt" label="Português" />
+              </video>
               <div className={styles.testimonialVideoMeta}>
                 <span>{video.label}</span>
                 <span><Volume2 size={15} /> Toque para ouvir</span>

@@ -28,12 +28,12 @@ export default function Page() {
       checkoutHref="https://pay.kiwify.com.br/ZrK7t7E"
       offer={{
         meta: [
-          { label: 'Data', value: '1º de outubro' },
-          { label: 'Horário', value: '20h — Brasília' },
-          { label: 'Formato', value: 'Ao vivo no Google Meet' },
+          { label: 'Imersão', value: 'Ao vivo pelo Google Meet' },
+          { label: 'Data', value: 'A confirmar' },
+          { label: 'Horário', value: 'A confirmar' },
         ],
-        price: '1º lote — R$ 27,90 até 20/09',
-        note: 'Após 20/09 — R$ 37,90',
+        price: 'R$ 37,90',
+        note: 'Condições e acesso conforme confirmação no checkout.',
         button: 'Quero participar da Trilha',
       }}
     />

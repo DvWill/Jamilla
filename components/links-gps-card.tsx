@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight, Award, BarChart3, BookOpenCheck } from 'lucide-react';
 import { useRef } from 'react';
 
@@ -10,7 +11,7 @@ const benefits = [
   { label: 'Resultados reais', icon: BarChart3 },
 ];
 
-export function LinksGpsCard() {
+export function LinksTrilhaCard() {
   const cardRef = useRef<HTMLAnchorElement>(null);
   const frameRef = useRef<number | null>(null);
   const pointRef = useRef({ x: '50%', y: '50%' });
@@ -43,25 +44,25 @@ export function LinksGpsCard() {
   };
 
   return (
-    <a
+    <Link
       ref={cardRef}
       className="links-v2__gps"
-      href="/gps-5-0"
+      href="/trilha-da-lideranca"
       onPointerMove={updateSpotlight}
       onPointerLeave={clearSpotlight}
     >
-      <span className="links-v2__gps-image"><Image fill sizes="(max-width: 620px) 100vw, 300px" src="/images/gps-modulo-1.png" alt="GPS 5.0 — Gestão escolar na prática" /></span>
+      <span className="links-v2__gps-image"><Image fill sizes="(max-width: 620px) 100vw, 300px" src="/images/jamilla-trilha-cutout.png" alt="Jamilla Salviano — Trilha da Liderança" /></span>
       <span className="links-v2__gps-content">
         <span className="links-v2__badge">★ DESTAQUE</span>
-        <span className="links-v2__kicker">CURSO ONLINE</span>
-        <strong>GPS 5.0</strong>
-        <span className="links-v2__gps-description">Formação completa para gestores que querem ir além.</span>
+        <span className="links-v2__kicker">FORMAÇÃO PRÁTICA</span>
+        <strong>TRILHA</strong>
+        <span className="links-v2__gps-description">Desenvolva sua liderança com mais clareza, método e segurança.</span>
         <span className="links-v2__benefits">
           {benefits.map(({ label, icon: Icon }) => <span key={label}><Icon size={23} strokeWidth={1.45} /><small>{label}</small></span>)}
         </span>
-        <span className="links-v2__gps-cta">CONHECER O GPS 5.0 <ArrowRight size={17} aria-hidden="true" /></span>
+        <span className="links-v2__gps-cta">CONHECER A TRILHA <ArrowRight size={17} aria-hidden="true" /></span>
       </span>
       <span className="links-v2__round-arrow" aria-hidden="true"><ArrowRight size={22} /></span>
-    </a>
+    </Link>
   );
 }

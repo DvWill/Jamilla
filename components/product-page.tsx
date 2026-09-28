@@ -1,7 +1,9 @@
 import {
   Brain,
+  BookOpenCheck,
   ChartNoAxesCombined,
   CircleCheck,
+  Compass,
   FileText,
   MessageCircle,
   MonitorPlay,
@@ -21,6 +23,7 @@ import {
   WhatsAppButton,
 } from './site';
 import { ScrollReveal } from './scroll-reveal';
+import { TalksGallery } from './talks-gallery';
 
 type Props = {
   eyebrow: string;
@@ -38,7 +41,11 @@ type Props = {
   showcase?: {
     title: string;
     words?: string[];
-    images: Array<{ src: string; label: string }>;
+    images: Array<{ src: string; label: string; alt?: string }>;
+  };
+  editorialShowcase?: {
+    words: string[];
+    images: Array<{ src: string; label: string; alt?: string }>;
   };
   checkoutHref?: string;
   offer?: {
@@ -73,6 +80,16 @@ const ataHeroBenefits = [
   [UsersRound, 'Menos conflitos', 'e mais alinhamento'],
 ] as const;
 const heroTopics = ['Liderança escolar', 'Gestão de pessoas', 'Cultura de equipe', 'Comunicação', 'Tomada de decisão'];
+const talksCredentials = [
+  'Professora especialista em Gestão Escolar',
+  'Especialista em Supervisão Escolar',
+  'Especialista em Docência do Ensino Superior',
+  'Especialista em Orientação Escolar',
+  'Assessora e Consultora Educacional',
+  'Mentora de Gestores Escolares',
+  'Palestrante em Liderança Escolar',
+  'Experiência como professora, coordenadora, supervisora e diretora',
+];
 
 export function ProductPage(p: Props) {
   const primaryHref = p.checkoutHref ?? '/contato';
@@ -197,6 +214,58 @@ export function ProductPage(p: Props) {
           )}
         </Hero>
 
+        {p.heroVariant === 'talks' && p.editorialShowcase ? (
+          <section className="section talks-showcase" aria-label="Clareza, estratégia e coragem">
+            <div className="wrap">
+              <div className="talks-showcase__composition">
+                {p.editorialShowcase.images.map((image, index) => (
+                  <figure
+                    className={`talks-showcase__image talks-showcase__image--${index + 1}`}
+                    key={image.src}
+                  >
+                    <Image
+                      fill
+                      sizes="(max-width: 760px) 78vw, 29vw"
+                      src={image.src}
+                      alt={image.alt ?? `Jamilla Salviano — ${image.label}`}
+                    />
+                    <figcaption>{image.label}</figcaption>
+                  </figure>
+                ))}
+                <h2 className="talks-showcase__words" aria-live="polite">
+                  {p.editorialShowcase.words.map((word, index) => (
+                    <span key={word} style={{ animationDelay: `${index * 3}s` }}>
+                      {word}
+                    </span>
+                  ))}
+                </h2>
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {p.heroVariant === 'trilha' ? (
+          <>
+            <section className="trilha-live-note" aria-label="Imersão ao vivo da Trilha da Liderança">
+              <MonitorPlay size={24} aria-hidden="true" />
+              <div><strong>Imersão ao vivo pelo Google Meet</strong><span>Data, horário e duração serão confirmados nesta página assim que estiverem definidos.</span></div>
+            </section>
+            <section className="section trilha-details" aria-labelledby="trilha-o-que-e">
+              <div className="wrap">
+                <SectionHeader eyebrow="Trilha da Liderança" title={<><span id="trilha-o-que-e">Uma formação prática para liderar com mais clareza.</span> <em>Sem achismo.</em></>} />
+                <div className="trilha-details__grid">
+                  <article className="trilha-detail-card"><h3>O que é</h3><p>Um percurso direto para gestores escolares reconhecerem padrões, organizarem decisões e aplicarem ferramentas de liderança na rotina.</p></article>
+                  <article className="trilha-detail-card"><h3>Para quem é</h3><p>Para gestores, coordenadores e profissionais da educação que precisam conduzir pessoas e situações reais com mais segurança.</p></article>
+                  <article className="trilha-detail-card"><h3>O que você aprende</h3><ul>{p.items.map((item) => <li key={item}>{item}</li>)}</ul></article>
+                  <article className="trilha-detail-card"><h3>O que você recebe</h3><ul>{p.formats.map((item) => <li key={item}>{item}</li>)}<li>Imersão ao vivo pelo Google Meet, com dados a confirmar.</li></ul></article>
+                  <article className="trilha-detail-card"><h3>Dificuldades que poderá superar</h3><ul><li>Repetição de conversas sem mudança prática.</li><li>Insegurança para delegar, cobrar e tomar decisões.</li><li>Conflitos e padrões de comportamento difíceis de interpretar.</li></ul></article>
+                  <article className="trilha-detail-card"><h3>Investimento</h3><p className="offer-price">R$ 37,90</p><p>Condições e acesso conforme a confirmação no checkout.</p></article>
+                </div>
+              </div>
+            </section>
+          </>
+        ) : null}
+
         <section className="section surface-cream product-challenge">
           <div className="wrap split split--challenge">
             <ScrollReveal>
@@ -212,7 +281,96 @@ export function ProductPage(p: Props) {
           </div>
         </section>
 
-        {p.showcase ? <section className="section talks-showcase"><div className="wrap"><div className="talks-showcase__composition">{p.showcase.images.map((image, index) => <figure className={`talks-showcase__image talks-showcase__image--${index + 1}`} key={image.src}><Image fill sizes="(max-width: 760px) 78vw, 29vw" src={image.src} alt="Jamilla Salviano" /><figcaption>{image.label}</figcaption></figure>)}<h2 className={p.showcase.words ? 'talks-showcase__words' : ''}>{(p.showcase.words ?? [p.showcase.title]).map((word, index) => <span key={word} style={{ animationDelay: `${index * 3}s` }}>{word}</span>)}</h2></div></div></section> : <section className="section product-content surface-paper">
+        {p.heroVariant === 'talks' ? <>
+          <section className="section talks-gallery-section surface-paper" aria-labelledby="palestras-galeria-title">
+            <div className="wrap">
+              <ScrollReveal>
+                <SectionHeader eyebrow="Palestras na prática" title={<><span id="palestras-galeria-title">Presença que se transforma em</span> <em>movimento.</em></>} />
+              </ScrollReveal>
+              {p.showcase ? <TalksGallery items={p.showcase.images.map((image) => ({ ...image, alt: image.alt ?? `Jamilla Salviano em ${image.label.toLowerCase()}` }))} /> : null}
+            </div>
+          </section>
+          <section className="section talks-authority" aria-labelledby="quem-e-jamilla">
+            <div className="wrap talks-authority__grid">
+              <ScrollReveal className="talks-authority__visual" variant="image">
+                <figure className="talks-authority__photo">
+                  <Image
+                    fill
+                    sizes="(max-width: 700px) 100vw, (max-width: 1050px) 42vw, 38vw"
+                    src="/images/jamilla-mentora.webp"
+                    alt="Jamilla Salviano em retrato profissional"
+                  />
+                </figure>
+                <span aria-hidden="true">Educação · Liderança</span>
+              </ScrollReveal>
+
+              <div className="talks-authority__content">
+                <ScrollReveal>
+                  <Eyebrow>Quem é Jamilla Salviano</Eyebrow>
+                  <h2 id="quem-e-jamilla">
+                    Experiência na escola. <em>Autoridade para falar sobre liderança.</em>
+                  </h2>
+                </ScrollReveal>
+                <ScrollReveal className="talks-authority__intro" delay={70}>
+                  <p>
+                    Professora e especialista em Gestão Escolar, Jamilla Salviano
+                    construiu sua trajetória vivendo de perto os desafios da
+                    liderança na educação.
+                  </p>
+                  <p>
+                    Atuou como professora, coordenadora, supervisora e diretora de
+                    escola pública de grande porte. Hoje é assessora e consultora
+                    educacional, mentora de gestores escolares e palestrante em
+                    liderança escolar.
+                  </p>
+                </ScrollReveal>
+
+                <div className="talks-authority__credentials" aria-label="Credenciais de Jamilla Salviano">
+                  {talksCredentials.map((credential, index) => (
+                    <ScrollReveal delay={110 + index * 45} key={credential}>
+                      <div className="talks-authority__credential">
+                        <span>{String(index + 1).padStart(2, '0')}</span>
+                        <strong>{credential}</strong>
+                      </div>
+                    </ScrollReveal>
+                  ))}
+                </div>
+
+                <div className="talks-authority__highlights">
+                  <ScrollReveal delay={120}>
+                    <article>
+                      <BookOpenCheck size={25} strokeWidth={1.35} aria-hidden="true" />
+                      <p>Autora do livro</p>
+                      <h3>O Inimigo Oculto da Gestão Escolar</h3>
+                    </article>
+                  </ScrollReveal>
+                  <ScrollReveal delay={180}>
+                    <article>
+                      <Compass size={25} strokeWidth={1.35} aria-hidden="true" />
+                      <p>Criadora do</p>
+                      <h3>Método GPS da Liderança Escolar</h3>
+                    </article>
+                  </ScrollReveal>
+                </div>
+
+                <ScrollReveal delay={220}>
+                  <Cta href="/contato" className="talks-authority__cta">
+                    Leve Jamilla para o seu evento
+                  </Cta>
+                </ScrollReveal>
+              </div>
+            </div>
+          </section>
+          <section className="section talks-themes surface-paper">
+            <div className="wrap talks-themes__inner">
+              <div><Eyebrow>Temas de palestras</Eyebrow><h2>Conteúdos para o momento que sua escola está vivendo.</h2></div>
+              <details className="talks-themes__disclosure">
+                <summary>Ver temas de palestras <span aria-hidden="true">+</span></summary>
+                <ul>{(p.showcase?.words?.length ? p.showcase.words : ['Temas em atualização pela Jamilla']).map((theme) => <li key={theme}>{theme}</li>)}</ul>
+              </details>
+            </div>
+          </section>
+        </> : p.showcase ? <section className="section talks-showcase"><div className="wrap"><div className="talks-showcase__composition">{p.showcase.images.map((image, index) => <figure className={`talks-showcase__image talks-showcase__image--${index + 1}`} key={image.src}><Image fill sizes="(max-width: 760px) 78vw, 29vw" src={image.src} alt={image.alt ?? `Jamilla Salviano em ${image.label.toLowerCase()}`} /><figcaption>{image.label}</figcaption></figure>)}<h2 className={p.showcase.words ? 'talks-showcase__words' : ''}>{(p.showcase.words ?? [p.showcase.title]).map((word, index) => <span key={word} style={{ animationDelay: `${index * 3}s` }}>{word}</span>)}</h2></div></div></section> : <section className="section product-content surface-paper">
           <div className="wrap">
             <ScrollReveal>
               <SectionHeader

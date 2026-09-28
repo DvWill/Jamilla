@@ -3,14 +3,13 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import {
   ArrowRight,
-  BookOpenCheck,
   FileText,
   GraduationCap,
   MessageCircle,
   Mic2,
   RotateCcw,
 } from 'lucide-react';
-import { LinksGpsCard } from '@/components/links-gps-card';
+import { LinksTrilhaCard } from '@/components/links-gps-card';
 import { FooterAgencyCredit } from '@/components/footer-agency-credit';
 
 export const metadata: Metadata = {
@@ -19,14 +18,6 @@ export const metadata: Metadata = {
 };
 
 const links = [
-  {
-    title: 'Trilha da Liderança',
-    description: 'Formação prática para líderes',
-    href: '/trilha-da-lideranca',
-    image: '/images/jamilla-trilha.png',
-    position: 'center 52%',
-    icon: BookOpenCheck,
-  },
   {
     title: 'Experiência RESET',
     description: 'Uma nova maneira de liderar',
@@ -105,7 +96,7 @@ export default function LinksPage() {
           </div>
         </section>
 
-        <LinksGpsCard />
+        <LinksTrilhaCard />
 
         <nav className="links-v2__list" aria-label="Produtos e serviços">
           {links.map(

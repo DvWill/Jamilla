@@ -85,13 +85,6 @@ export function ContactForm({ global = false }: { global?: boolean }) {
   const current = questions[step];
 
   useEffect(() => {
-    if (window.location.search.includes('chat=open')) {
-      setIsOpen(true);
-      setStarted(true);
-    }
-  }, []);
-
-  useEffect(() => {
     if (!global) return;
     const openChat = () => {
       setIsOpen(true);
@@ -213,7 +206,7 @@ export function ContactForm({ global = false }: { global?: boolean }) {
         </section>
       ) : (
         <div className={styles.chatOverlay} role="presentation">
-          <section className={styles.chatCard} role="dialog" aria-modal="true" aria-label="Conversa com a equipe da Jamilla">
+          <dialog className={styles.chatCard} open aria-label="Conversa com a equipe da Jamilla">
             <button className={styles.chatClose} type="button" onClick={() => setIsOpen(false)} aria-label="Fechar conversa"><X size={18} /></button>
       <header className={styles.chatHeader}>
         <div>
@@ -280,7 +273,7 @@ export function ContactForm({ global = false }: { global?: boolean }) {
           </form>
         </>
       )}
-          </section>
+          </dialog>
         </div>
       )}
     </>

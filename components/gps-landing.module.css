@@ -11,6 +11,32 @@
   font-family: var(--font-sans);
 }
 
+.gpsHeader {
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 76px;
+  padding: 0.8rem clamp(1rem, 4vw, 4rem);
+  border-bottom: 1px solid rgba(227, 197, 125, 0.22);
+  background: rgba(6, 26, 44, 0.92);
+  color: #fff;
+  backdrop-filter: blur(14px);
+}
+.gpsBrand { display: flex; flex-direction: column; line-height: 1; }
+.gpsBrand span { color: var(--gold); font-size: 1.1rem; font-weight: 900; letter-spacing: 0.16em; }
+.gpsBrand small { margin-top: 0.35rem; color: rgba(255,255,255,.64); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
+.gpsHeader nav { display: flex; gap: clamp(0.8rem, 2vw, 1.8rem); }
+.gpsHeader nav a { color: rgba(255,255,255,.78); font-size: .72rem; }
+.gpsHeader nav a:hover { color: var(--gold); }
+.gpsHeaderCta { display: inline-flex; align-items: center; gap: .45rem; padding: .7rem .9rem; border: 1px solid var(--gold); color: var(--gold); font-size: .68rem; font-weight: 800; }
+.gpsPainPoints { background: #f5f0e7; }
+
 .wrap {
   width: min(1180px, calc(100% - 3rem));
   margin: 0 auto;
@@ -1196,6 +1222,9 @@
   }
 }
 @media (max-width: 760px) {
+  .gpsHeader { min-height: 64px; }
+  .gpsHeader nav { display: none; }
+  .gpsHeaderCta { padding: .6rem .7rem; font-size: .6rem; }
   .fixedCta {
     top: 50%;
     right: 0;
