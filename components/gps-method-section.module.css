@@ -64,6 +64,13 @@
   line-height: 1.75;
   color: #4a575e;
 }
+.intro .methodStatement {
+  max-width: 46rem;
+  color: #132c3e;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.1vw, 1.75rem);
+  line-height: 1.35;
+}
 .manifesto {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -385,6 +392,108 @@
   .manifesto {
     margin-top: 2rem;
   }
+}
+
+@media (max-width: 768px) {
+  .section {
+    width: 100%;
+    max-width: 100%;
+    padding: 4.75rem 0;
+    overflow: hidden;
+  }
+  .section::before,
+  .section::after {
+    right: -16rem;
+    width: 28rem;
+    height: 28rem;
+  }
+  .wrap {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  .topGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+  .intro {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .intro h2 {
+    max-width: 100%;
+    font-size: clamp(2.25rem, 10vw, 3.25rem);
+    line-height: 0.95;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+  .intro > p:not(.eyebrow),
+  .intro .methodStatement {
+    max-width: 100%;
+  }
+  .wheelWrap {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.25rem 0 1rem;
+  }
+  .wheelWrap::before { inset-inline: 0; }
+  .wheel {
+    width: min(100%, 23.75rem);
+    height: auto;
+    margin-inline: auto;
+  }
+  .wheelCaption {
+    width: min(100%, 23rem);
+    max-width: 100%;
+  }
+  .pillarList {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 3.25rem;
+  }
+  .pillarItem,
+  .pillarItem:not(:first-child) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: auto;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    padding: 1.25rem 0;
+    border-right: 0;
+    border-top: 1px solid rgba(20, 32, 43, 0.16);
+  }
+  .pillarItem:last-child { border-bottom: 1px solid rgba(20, 32, 43, 0.16); }
+  .pillarBody { min-width: 0; }
+  .pillarBody span {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .section { padding-block: 4.25rem; }
+  .manifesto {
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+    column-gap: 0.8rem;
+    padding-left: 0.9rem;
+    font-size: 1.05rem;
+  }
+  .manifestoCount { font-size: 2.8rem; }
+  .wheel { width: min(100%, 21rem); }
+  .wheelCaption { padding-inline: 0.5rem; }
+}
+
+@media (max-width: 390px) {
+  .wrap { padding-inline: 16px; }
+  .intro h2 { font-size: clamp(2.2rem, 9.8vw, 2.8rem); }
+  .section::before,
+  .section::after { display: none; }
+  .wheel { width: min(100%, 19rem); }
+  .pillarItem,
+  .pillarItem:not(:first-child) {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+  .pillarNumber { font-size: 2.65rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .intro,

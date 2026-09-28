@@ -73,7 +73,7 @@ export function GPSMethodSection() {
   return <section className={styles.section} ref={sectionRef} data-visible={visible} aria-labelledby="method-title">
     <div className={styles.wrap}>
       <div className={styles.topGrid}>
-        <div className={styles.intro}><p className={styles.eyebrow}>O método</p><h2 id="method-title">Como funciona o<br />Método <em>GPS 5.0</em></h2><p>O Método GPS 5.0 é composto por 5 pilares práticos que você irá aplicar na sua rotina como gestor escolar.</p><div className={styles.manifesto}><span className={styles.manifestoCount}>5</span><div><span>pilares.</span><i>Um método.</i><span>Uma transformação completa.</span></div></div></div>
+        <div className={styles.intro}><p className={styles.eyebrow}>O método</p><h2 id="method-title">Como funciona o<br />Método <em>GPS 5.0</em></h2><p className={styles.methodStatement}>O GPS transforma problemas que parecem subjetivos em situações que podem ser analisadas, organizadas e conduzidas com método.</p><p>O Método GPS 5.0 é composto por 5 pilares práticos que você irá aplicar na sua rotina como gestor escolar.</p><div className={styles.manifesto}><span className={styles.manifestoCount}>5</span><div><span>pilares.</span><i>Um método.</i><span>Uma transformação completa.</span></div></div></div>
         <GPSPillarWheel activeIndex={activeIndex} onSelect={setActiveIndex} />
       </div>
       <div className={styles.pillarList}>{pillars.map((pillar, index) => <GPSPillarItem key={pillar.number} pillar={pillar} index={index} active={activeIndex === index} onSelect={setActiveIndex} />)}</div>
