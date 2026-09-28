@@ -139,6 +139,15 @@ export default function InstitutoPage() {
       <main className={styles.page}>
         <section className={styles.hero} aria-labelledby="instituto-title">
           <div className={styles.heroTexture} aria-hidden="true" />
+          <div className={styles.heroBackdrop} aria-hidden="true">
+            <Image
+              fill
+              priority
+              sizes="100vw"
+              src="/images/palestras-hero-background.jpeg"
+              alt=""
+            />
+          </div>
           <div className={`wrap ${styles.heroGrid}`}>
             <ScrollReveal className={styles.heroCopy}>
               <Eyebrow>Instituto de Educação e Liderança</Eyebrow>

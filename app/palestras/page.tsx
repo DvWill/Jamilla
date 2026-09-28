@@ -12,7 +12,7 @@ export default function Page() {
       intro="Conversas que encontram o contexto real da escola e transformam reflexão em movimento."
       image="/images/jamilla-palestras-transparent.png"
       heroVariant="talks"
-      heroBackgroundImage="/images/palestras-hero-background.jpeg"
+      heroBackgroundVideo="/videos/instituto-hero.mp4"
       editorialShowcase={{
         words: ['Clareza', 'Estratégia', 'Coragem'],
         images: [

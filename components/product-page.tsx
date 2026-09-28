@@ -38,6 +38,7 @@ type Props = {
   cta: string;
   heroVariant?: 'talks' | 'trilha' | 'reset' | 'ata';
   heroBackgroundImage?: string;
+  heroBackgroundVideo?: string;
   showcase?: {
     title: string;
     words?: string[];
@@ -94,12 +95,13 @@ const talksCredentials = [
 export function ProductPage(p: Props) {
   const primaryHref = p.checkoutHref ?? '/contato';
   const primaryAction = p.checkoutHref ? 'Quero me inscrever' : 'Quero saber mais';
+  const hasHeroBackdrop = Boolean(p.heroBackgroundImage || p.heroBackgroundVideo);
 
   return (
     <>
       <Header />
       <main className={`product-page product-page--${p.theme}`}>
-        <Hero className={`product-hero${p.heroBackgroundImage ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}${p.heroVariant === 'trilha' ? ' trilha-hero' : ''}${p.heroVariant === 'reset' ? ' reset-hero' : ''}${p.heroVariant === 'ata' ? ' ata-hero' : ''}`}>
+        <Hero className={`product-hero${hasHeroBackdrop ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}${p.heroVariant === 'trilha' ? ' trilha-hero' : ''}${p.heroVariant === 'reset' ? ' reset-hero' : ''}${p.heroVariant === 'ata' ? ' ata-hero' : ''}`}>
           {p.heroVariant === 'ata' ? (
             <div className="wrap ata-hero__grid">
               <ScrollReveal className="ata-hero__copy">
@@ -180,7 +182,7 @@ export function ProductPage(p: Props) {
             </div>
           ) : (
           <>
-          {p.heroBackgroundImage ? <div className="product-hero__backdrop" aria-hidden="true"><Image fill priority sizes="100vw" src={p.heroBackgroundImage} alt="" /></div> : null}
+          {hasHeroBackdrop ? <div className="product-hero__backdrop" aria-hidden="true">{p.heroBackgroundVideo ? <video autoPlay loop muted playsInline preload="metadata"><source src={p.heroBackgroundVideo} type="video/mp4" /></video> : <Image fill priority sizes="100vw" src={p.heroBackgroundImage!} alt="" />}</div> : null}
           <div className="product-hero__texture" aria-hidden="true" />
           <div className="wrap product-hero-grid">
             <ScrollReveal className="product-hero__copy">
@@ -209,7 +211,7 @@ export function ProductPage(p: Props) {
             </ScrollReveal>
             {p.heroVariant === 'talks' ? <ul className="talks-hero-benefits">{talksHeroBenefits.map(([Icon, text]) => { const BenefitIcon = Icon as typeof UsersRound; return <li key={text}><BenefitIcon size={22} strokeWidth={1.5} /><span>{text}</span></li>; })}</ul> : null}
           </div>
-          {p.heroBackgroundImage ? <div className="product-hero__topics" aria-label="Temas das palestras"><div className="product-hero__topics-track">{[...heroTopics, ...heroTopics].map((topic, index) => <span key={`${topic}-${index}`}>{topic}</span>)}</div></div> : null}
+          {hasHeroBackdrop ? <div className="product-hero__topics" aria-label="Temas das palestras"><div className="product-hero__topics-track">{[...heroTopics, ...heroTopics].map((topic, index) => <span key={`${topic}-${index}`}>{topic}</span>)}</div></div> : null}
           </>
           )}
         </Hero>
