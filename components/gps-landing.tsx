@@ -185,11 +185,11 @@ export function GPSLanding() {
 
       <div id="metodo"><GPSMethodSection /></div>
 
-      <section className={`${styles.section} ${styles.transformation}`}>
+      <section id="transformacao" className={`${styles.section} ${styles.transformation}`}>
         <div className={`${styles.wrap} ${styles.transformationInner}`}>
           <div className={styles.transformationHeading}><p className={styles.eyebrow}>Como você entra / como você sai</p><h2>Do modo reativo a uma liderança mais consciente.</h2></div>
-          <div className={styles.transformationMarker} aria-label="Antes, GPS, depois"><span>Antes</span><ArrowRight aria-hidden="true" /><strong>GPS</strong><ArrowRight aria-hidden="true" /><span>Depois</span></div>
           <div className={styles.transformationGrid}>
+            <div className={styles.transformationMarker} aria-label="Antes, GPS, depois"><span>Antes</span><ArrowRight aria-hidden="true" /><strong>GPS</strong><ArrowRight aria-hidden="true" /><span>Depois</span></div>
             <ScrollReveal className={`${styles.transformationColumn} ${styles.beforeColumn}`}>
               <div className={styles.transformationLabel}>Antes do GPS</div>
               <h3>Você reage.</h3>
@@ -205,15 +205,10 @@ export function GPSLanding() {
         </div>
       </section>
 
-      <section id="para-quem" className={`${styles.section} ${styles.audience}`}>
+      <section id="depoimentos" className={`${styles.section} ${styles.testimonials}`}>
         <div className={styles.wrap}>
-          <p className={styles.eyebrow}>Para quem é</p>
-          <div className={styles.audienceHeader}><h2>Se você vive esses desafios,<br />o GPS 5.0 é para você.</h2><p>Resultados que aparecem na rotina, nas relações e na segurança com que você conduz a escola.</p></div>
-          <div className={styles.audienceGrid}>
-            {results.map((item, index) => (
-              <ScrollReveal delay={index * 45} key={item.title}><Check /><h3>{item.title}</h3><p>{item.description}</p></ScrollReveal>
-            ))}
-          </div>
+          <div className={styles.testimonialsHeader}><div><p className={styles.eyebrowDark}>Depoimentos</p><h2>Histórias reais.<br /><em>Resultados reais.</em></h2></div><p>Experiências de quem está transformando a rotina escolar com mais método, posicionamento e segurança.</p></div>
+          <TestimonialsCarousel />
         </div>
       </section>
 
@@ -224,10 +219,15 @@ export function GPSLanding() {
         </div>
       </section>
 
-      <section id="depoimentos" className={`${styles.section} ${styles.testimonials}`}>
+      <section id="para-quem" className={`${styles.section} ${styles.audience}`}>
         <div className={styles.wrap}>
-          <div className={styles.testimonialsHeader}><div><p className={styles.eyebrowDark}>Depoimentos</p><h2>Histórias reais.<br /><em>Resultados reais.</em></h2></div><p>Experiências de quem está transformando a rotina escolar com mais método, posicionamento e segurança.</p></div>
-          <TestimonialsCarousel />
+          <p className={styles.eyebrow}>Para quem é</p>
+          <div className={styles.audienceHeader}><h2>Se você vive esses desafios,<br />o GPS 5.0 é para você.</h2><p>Resultados que aparecem na rotina, nas relações e na segurança com que você conduz a escola.</p></div>
+          <div className={styles.audienceGrid}>
+            {results.map((item, index) => (
+              <ScrollReveal delay={index * 45} key={item.title}><Check /><h3>{item.title}</h3><p>{item.description}</p></ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
