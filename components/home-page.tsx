@@ -106,8 +106,8 @@ export default function Home() {
                   aria-label="Diferenciais de Jamilla Salviano"
                 >
                   <span>
-                    <strong>20+</strong>
-                    <small>Anos de experiência</small>
+                    <strong>Trajetória</strong>
+                    <small>Construída na educação</small>
                   </span>
                   <span>
                     <strong>Método</strong>
@@ -193,8 +193,8 @@ export default function Home() {
               </p>
               <div className="stats">
                 <div>
-                  <strong>20+</strong>
-                  <span>Anos de experiência</span>
+                  <strong>Trajetória</strong>
+                  <span>Vivida na educação</span>
                 </div>
                 <div>
                   <strong>Método</strong>

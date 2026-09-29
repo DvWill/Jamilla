@@ -11,6 +11,9 @@ export const SITE_CONFIG = {
     'Olá, Jamilla! Vim pelo site e gostaria de entender qual solução faz mais sentido para a minha escola.',
   supportLabel: 'Suporte pelos canais informados após a inscrição.',
   certificateLabel: 'Certificado de conclusão da formação.',
+  instituteInstagram:
+    'https://www.instagram.com/institutodeeducacaoelideranca_/',
+  trilhaFeaturedUntil: '2026-10-02T00:00:00-03:00',
   campaign: {
     trilhaToGpsAt: null as string | null,
     gpsStartAt: null as string | null,
@@ -21,6 +24,10 @@ export const SITE_CONFIG = {
 
 export function whatsappUrl(message: string = SITE_CONFIG.whatsappDefaultMessage) {
   return `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+export function isTrilhaFeatured(now = new Date()) {
+  return now < new Date(SITE_CONFIG.trilhaFeaturedUntil);
 }
 
 export function getCampaignMode(now = new Date()) {

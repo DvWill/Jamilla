@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { ScrollReveal } from './scroll-reveal';
 import { FooterAgencyCredit } from './footer-agency-credit';
-import { getCampaignMode, isGpsCampaignExpired, whatsappUrl } from '@/lib/site-config';
+import { SITE_CONFIG, whatsappUrl } from '@/lib/site-config';
 
 const navItems = [
   { label: 'Trilha', href: '/trilha-da-lideranca' },
@@ -32,6 +32,7 @@ const navItems = [
     label: 'Instituto',
     href: '/instituto-de-educacao-e-lideranca',
   },
+  { label: 'Sobre', href: '/sobre' },
 ];
 
 const mobileItems = [
@@ -50,6 +51,7 @@ type CtaProps = {
   ghost?: boolean;
   dark?: boolean;
   className?: string;
+  onClick?: () => void;
 };
 
 export function Cta({
@@ -58,6 +60,7 @@ export function Cta({
   ghost = false,
   dark = false,
   className = '',
+  onClick,
 }: CtaProps) {
   const variant = ghost ? 'cta--ghost' : dark ? 'cta--dark' : 'cta--gold';
   const classes = `cta ${variant} ${className}`.trim();
@@ -70,14 +73,20 @@ export function Cta({
 
   if (href.startsWith('http')) {
     return (
-      <a className={classes} href={href}>
+      <a
+        className={classes}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onClick}
+      >
         {content}
       </a>
     );
   }
 
   return (
-    <Link className={classes} href={href}>
+    <Link className={classes} href={href} onClick={onClick}>
       {content}
     </Link>
   );
@@ -180,12 +189,6 @@ export function EditorialCard({
 
 export function Header() {
   const pathname = usePathname();
-  const campaignMode = getCampaignMode();
-  const gpsExpired = isGpsCampaignExpired();
-  const campaignLink = campaignMode === 'gps'
-    ? { label: 'GPS 5.0', href: '/gps-5-0' }
-    : { label: 'Trilha', href: '/trilha-da-lideranca' };
-  const visibleNavItems = [campaignLink, ...navItems.filter((item) => item.href !== campaignLink.href && (item.href !== '/gps-5-0' || !gpsExpired))];
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -205,6 +208,15 @@ export function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
   return (
     <header
       className={`site-header${isScrolled ? ' is-scrolled' : ''}${pathname === '/instituto-de-educacao-e-lideranca' ? ' site-header--institute' : ''}`}
@@ -220,7 +232,7 @@ export function Header() {
         </Link>
 
         <nav className="desktop-nav" aria-label="Navegação principal">
-          {visibleNavItems.map((item) => (
+          {navItems.map((item) => (
             <Link
               className={`nav-link${pathname === item.href ? ' is-active' : ''}`}
               href={item.href}
@@ -232,7 +244,7 @@ export function Header() {
         </nav>
 
         <Link className="header-cta" href="/contato">
-          <span>{campaignMode === 'gps' ? 'Conheça o GPS' : 'Conheça a Trilha'}</span>
+          <span>Vamos conversar</span>
           <ArrowRight size={14} aria-hidden="true" />
         </Link>
 
@@ -257,7 +269,7 @@ export function Header() {
       >
         <div className="mobile-menu__inner">
           <p className="eyebrow">Navegação</p>
-          {[{ ...campaignLink }, ...mobileItems.filter((item) => item.href !== campaignLink.href && (item.href !== '/gps-5-0' || !gpsExpired))].map((item, index) => (
+          {mobileItems.map((item, index) => (
             <Link
               href={item.href}
               key={item.label}
@@ -269,7 +281,11 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <Cta href="/contato" className="mobile-menu__cta">
+          <Cta
+            href="/contato"
+            className="mobile-menu__cta"
+            onClick={() => setIsOpen(false)}
+          >
             Fale com a Jamilla
           </Cta>
         </div>
@@ -352,12 +368,24 @@ export function Footer() {
           <Link href="/reset">RESET</Link>
           <Link href="/palestras">Palestras</Link>
           <Link href="/ata-inteligente">ATA Inteligente</Link>
+          <Link href="/instituto-de-educacao-e-lideranca">Instituto</Link>
         </div>
         <div>
-          <b>Redes</b>
-          <span>Instagram</span>
-          <span>LinkedIn</span>
-          <span>YouTube</span>
+          <b>Canais</b>
+          <a
+            href={SITE_CONFIG.instituteInstagram}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram do Instituto
+          </a>
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp
+          </a>
         </div>
       </ScrollReveal>
       <ScrollReveal className="wrap copyright" delay={90}>
@@ -371,15 +399,21 @@ export function Footer() {
 export function WhatsAppButton() {
   const pathname = usePathname();
   const context = pathname.includes('trilha')
-    ? 'Tenho interesse na Trilha da Liderança.'
+    ? 'Gostaria de saber mais sobre a Trilha da Liderança.'
     : pathname.includes('gps')
       ? 'Tenho interesse no Método GPS da Liderança Escolar.'
       : pathname.includes('palestras')
-        ? 'Gostaria de conversar sobre palestras para minha escola.'
-        : 'Vim pelo site e gostaria de entender qual solução faz mais sentido para a minha escola.';
+        ? 'Gostaria de conversar sobre uma palestra com Jamilla Salviano.'
+        : pathname.includes('reset')
+          ? 'Gostaria de saber mais sobre a Experiência RESET.'
+          : pathname.includes('ata-inteligente')
+            ? 'Gostaria de saber mais sobre o minicurso ATA Inteligente.'
+            : pathname.includes('instituto')
+              ? 'Gostaria de conversar sobre o Instituto de Educação e Liderança.'
+              : 'Vim pelo site e gostaria de entender qual solução faz mais sentido para a minha escola.';
 
   return (
-    <a aria-label="Fale com a Jamilla pelo WhatsApp" className="whatsapp" href={whatsappUrl(`Olá, Jamilla! ${context}`)} target="_blank" rel="noreferrer">
+    <a aria-label="Fale com a Jamilla pelo WhatsApp" className="whatsapp" href={whatsappUrl(`Olá, Jamilla! ${context}`)} target="_blank" rel="noopener noreferrer">
       <span className="whatsapp__label">Fale com a Jamilla</span>
       <span className="whatsapp__icon" aria-hidden="true">
         <svg viewBox="0 0 32 32" aria-hidden="true">

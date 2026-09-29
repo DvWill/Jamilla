@@ -2,6 +2,7 @@ import {
   Brain,
   BookOpenCheck,
   ChartNoAxesCombined,
+  ClipboardCheck,
   CircleCheck,
   Compass,
   FileText,
@@ -24,6 +25,7 @@ import {
 } from './site';
 import { ScrollReveal } from './scroll-reveal';
 import { TalksGallery } from './talks-gallery';
+import { TalksThemes } from './talks-themes';
 
 type Props = {
   eyebrow: string;
@@ -34,8 +36,14 @@ type Props = {
   theme: 'wine' | 'navy' | 'red';
   problem: string;
   items: string[];
+  itemDescriptions?: string[];
   formats: string[];
+  formatDescriptions?: string[];
   cta: string;
+  challengeDescription?: string;
+  primaryAction?: string;
+  contactHref?: string;
+  finalAction?: string;
   heroVariant?: 'talks' | 'trilha' | 'reset' | 'ata';
   heroBackgroundImage?: string;
   heroBackgroundVideo?: string;
@@ -73,7 +81,7 @@ const trilhaHeroBenefits = [
 const resetHeroBenefits = [
   [Brain, 'Autoconhecimento', 'para decisões mais conscientes'],
   [UsersRound, 'Relações mais saudáveis', 'no ambiente de trabalho'],
-  [ChartNoAxesCombined, 'Resultados reais', 'na sua liderança'],
+  [ChartNoAxesCombined, 'Aplicação prática', 'na sua liderança'],
 ] as const;
 const ataHeroBenefits = [
   [FileText, 'Registros claros', 'e bem estruturados'],
@@ -92,9 +100,46 @@ const talksCredentials = [
   'Experiência como professora, coordenadora, supervisora e diretora',
 ];
 
+const trilhaPainPoints = [
+  'Você conversa, conversa e nada muda.',
+  'Tem receio de cobrar e parecer autoritário.',
+  'Algumas pessoas da equipe ignoram combinados.',
+  'Você resolve problemas que deveriam ser resolvidos por outras pessoas.',
+  'Tem dificuldade de entender por que alguns conflitos continuam voltando.',
+  'Sente que está administrando problemas em vez de liderar pessoas.',
+  'Termina o dia cansado, mas sem a sensação de que avançou.',
+];
+
+const trilhaReceives = [
+  {
+    icon: BookOpenCheck,
+    title: 'Formação prática',
+    description: 'Conteúdo direto para aplicar no cotidiano da liderança.',
+  },
+  {
+    icon: Target,
+    title: 'Diagnóstico de liderança',
+    description:
+      'Ajuda a reconhecer padrões e comportamentos que podem estar prejudicando a equipe.',
+  },
+  {
+    icon: ClipboardCheck,
+    title: 'Exercícios e ferramentas',
+    description:
+      'Atividades práticas para transformar conhecimento em ação.',
+  },
+  {
+    icon: MonitorPlay,
+    title: 'Imersão ao vivo',
+    description:
+      'Encontro pelo Google Meet para aprofundar conteúdos e situações reais da liderança.',
+  },
+];
+
 export function ProductPage(p: Props) {
-  const primaryHref = p.checkoutHref ?? '/contato';
-  const primaryAction = p.checkoutHref ? 'Quero me inscrever' : 'Quero saber mais';
+  const primaryHref = p.checkoutHref ?? p.contactHref ?? '/contato';
+  const primaryAction =
+    p.primaryAction ?? (p.checkoutHref ? 'Quero me inscrever' : 'Quero saber mais');
   const hasHeroBackdrop = Boolean(p.heroBackgroundImage || p.heroBackgroundVideo);
 
   return (
@@ -161,6 +206,11 @@ export function ProductPage(p: Props) {
             <div className="wrap trilha-hero__grid">
               <ScrollReveal className="trilha-hero__copy">
                 <Eyebrow>{p.eyebrow}</Eyebrow>
+                <div className="trilha-hero__event-meta" aria-label="Detalhes da imersão">
+                  <span>Imersão ao vivo</span>
+                  <strong>Google Meet</strong>
+                  <b>R$ 37,90</b>
+                </div>
                 <h1><span>Pare de liderar</span><span>no <em>achismo.</em></span></h1>
                 <p>{p.intro}</p>
                 <Cta href={primaryHref}>{primaryAction}</Cta>
@@ -255,33 +305,63 @@ export function ProductPage(p: Props) {
             <section className="section trilha-details" aria-labelledby="trilha-o-que-e">
               <div className="wrap">
                 <SectionHeader eyebrow="Trilha da Liderança" title={<><span id="trilha-o-que-e">Uma formação prática para liderar com mais clareza.</span> <em>Sem achismo.</em></>} />
-                <div className="trilha-details__grid">
-                  <article className="trilha-detail-card"><h3>O que é</h3><p>Um percurso direto para gestores escolares reconhecerem padrões, organizarem decisões e aplicarem ferramentas de liderança na rotina.</p></article>
-                  <article className="trilha-detail-card"><h3>Para quem é</h3><p>Para gestores, coordenadores e profissionais da educação que precisam conduzir pessoas e situações reais com mais segurança.</p></article>
-                  <article className="trilha-detail-card"><h3>O que você aprende</h3><ul>{p.items.map((item) => <li key={item}>{item}</li>)}</ul></article>
-                  <article className="trilha-detail-card"><h3>O que você recebe</h3><ul>{p.formats.map((item) => <li key={item}>{item}</li>)}<li>Imersão ao vivo pelo Google Meet, com dados a confirmar.</li></ul></article>
-                  <article className="trilha-detail-card"><h3>Dificuldades que poderá superar</h3><ul><li>Repetição de conversas sem mudança prática.</li><li>Insegurança para delegar, cobrar e tomar decisões.</li><li>Conflitos e padrões de comportamento difíceis de interpretar.</li></ul></article>
-                  <article className="trilha-detail-card"><h3>Investimento</h3><p className="offer-price">R$ 37,90</p><p>Condições e acesso conforme a confirmação no checkout.</p></article>
+                <div className="trilha-details__intro">
+                  <p>Um percurso direto para gestores, coordenadores e profissionais da educação reconhecerem padrões, organizarem decisões e conduzirem pessoas com mais segurança.</p>
+                </div>
+                <div className="trilha-modules">
+                  {p.items.map((item, index) => (
+                    <article className="trilha-module" key={item}>
+                      <span>{String(index + 1).padStart(2, '0')}</span>
+                      <h3>{item}</h3>
+                      <p>{p.itemDescriptions?.[index]}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+            <section className="section trilha-pains surface-cream" aria-labelledby="trilha-dores-title">
+              <div className="wrap">
+                <SectionHeader eyebrow="Na prática" title={<span id="trilha-dores-title">Se você vive alguma dessas situações, essa Trilha foi criada para você.</span>} />
+                <div className="trilha-pains__grid">
+                  {trilhaPainPoints.map((pain, index) => (
+                    <article key={pain}>
+                      <span>{String(index + 1).padStart(2, '0')}</span>
+                      <p>{pain}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+            <section className="section trilha-receives" aria-labelledby="trilha-recebe-title">
+              <div className="wrap">
+                <SectionHeader eyebrow="O que você recebe" title={<><span id="trilha-recebe-title">Conteúdo para entender.</span> <em>Ferramentas para agir.</em></>} />
+                <div className="trilha-receives__grid">
+                  {trilhaReceives.map(({ icon: Icon, title, description }) => (
+                    <article key={title}>
+                      <Icon size={28} strokeWidth={1.4} aria-hidden="true" />
+                      <h3>{title}</h3>
+                      <p>{description}</p>
+                    </article>
+                  ))}
                 </div>
               </div>
             </section>
           </>
         ) : null}
 
-        <section className="section surface-cream product-challenge">
+        {p.heroVariant !== 'trilha' ? <section className="section surface-cream product-challenge">
           <div className="wrap split split--challenge">
             <ScrollReveal>
               <SectionHeader eyebrow="O desafio" title={p.problem} />
             </ScrollReveal>
             <ScrollReveal className="prose product-challenge__copy" delay={100}>
               <p>
-                Liderança consistente nasce quando intenção encontra método. Esta
-                experiência foi desenhada para traduzir desafios reais em conversas,
-                decisões e práticas possíveis.
+                {p.challengeDescription ??
+                  'Liderança consistente nasce quando intenção encontra método. Esta experiência foi desenhada para traduzir desafios reais em conversas, decisões e práticas possíveis.'}
               </p>
             </ScrollReveal>
           </div>
-        </section>
+        </section> : null}
 
         {p.heroVariant === 'talks' ? <>
           <section className="section talks-gallery-section surface-paper" aria-labelledby="palestras-galeria-title">
@@ -315,15 +395,16 @@ export function ProductPage(p: Props) {
                 </ScrollReveal>
                 <ScrollReveal className="talks-authority__intro" delay={70}>
                   <p>
-                    Professora e especialista em Gestão Escolar, Jamilla Salviano
-                    construiu sua trajetória vivendo de perto os desafios da
-                    liderança na educação.
+                    Jamilla Salviano é professora especialista em Gestão Escolar,
+                    Supervisão Escolar, Docência do Ensino Superior e Orientação
+                    Escolar. Também atua como assessora e consultora educacional,
+                    mentora de gestores e palestrante em liderança escolar.
                   </p>
                   <p>
-                    Atuou como professora, coordenadora, supervisora e diretora de
-                    escola pública de grande porte. Hoje é assessora e consultora
-                    educacional, mentora de gestores escolares e palestrante em
-                    liderança escolar.
+                    Sua trajetória reúne atuação como professora, coordenadora,
+                    supervisora e diretora de escola pública de grande porte — uma
+                    experiência que aproxima cada palestra das situações reais
+                    vividas por quem lidera na educação.
                   </p>
                 </ScrollReveal>
 
@@ -356,22 +437,14 @@ export function ProductPage(p: Props) {
                 </div>
 
                 <ScrollReveal delay={220}>
-                  <Cta href="/contato" className="talks-authority__cta">
+                  <Cta href={primaryHref} className="talks-authority__cta">
                     Leve Jamilla para o seu evento
                   </Cta>
                 </ScrollReveal>
               </div>
             </div>
           </section>
-          <section className="section talks-themes surface-paper">
-            <div className="wrap talks-themes__inner">
-              <div><Eyebrow>Temas de palestras</Eyebrow><h2>Conteúdos para o momento que sua escola está vivendo.</h2></div>
-              <details className="talks-themes__disclosure">
-                <summary>Ver temas de palestras <span aria-hidden="true">+</span></summary>
-                <ul>{(p.showcase?.words?.length ? p.showcase.words : ['Temas em atualização pela Jamilla']).map((theme) => <li key={theme}>{theme}</li>)}</ul>
-              </details>
-            </div>
-          </section>
+          <TalksThemes contactHref={primaryHref} />
         </> : p.showcase ? <section className="section talks-showcase"><div className="wrap"><div className="talks-showcase__composition">{p.showcase.images.map((image, index) => <figure className={`talks-showcase__image talks-showcase__image--${index + 1}`} key={image.src}><Image fill sizes="(max-width: 760px) 78vw, 29vw" src={image.src} alt={image.alt ?? `Jamilla Salviano em ${image.label.toLowerCase()}`} /><figcaption>{image.label}</figcaption></figure>)}<h2 className={p.showcase.words ? 'talks-showcase__words' : ''}>{(p.showcase.words ?? [p.showcase.title]).map((word, index) => <span key={word} style={{ animationDelay: `${index * 3}s` }}>{word}</span>)}</h2></div></div></section> : <section className="section product-content surface-paper">
           <div className="wrap">
             <ScrollReveal>
@@ -394,7 +467,7 @@ export function ProductPage(p: Props) {
                     index={String(index + 1).padStart(2, '0')}
                     icon={contentIcons[index % contentIcons.length]}
                     title={item}
-                    description="Conceitos objetivos, provocações e aplicação conectada ao cotidiano da liderança."
+                    description={p.itemDescriptions?.[index]}
                   />
                 </ScrollReveal>
               ))}
@@ -418,6 +491,9 @@ export function ProductPage(p: Props) {
                     <div className="format-card">
                       <Icon aria-hidden="true" size={27} strokeWidth={1.35} />
                       <span>{format}</span>
+                      {p.formatDescriptions?.[index] ? (
+                        <small>{p.formatDescriptions[index]}</small>
+                      ) : null}
                     </div>
                   </ScrollReveal>
                 );
@@ -484,7 +560,7 @@ export function ProductPage(p: Props) {
         ) : null}
 
         <FinalCta
-          action={p.checkoutHref ? 'Garantir minha vaga' : 'Falar com Jamilla'}
+          action={p.finalAction ?? (p.checkoutHref ? 'Garantir minha vaga' : 'Falar com Jamilla')}
           href={primaryHref}
           title={p.cta}
           variant={p.theme === 'navy' ? 'wine' : 'navy'}

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import styles from './gps-landing.module.css';
@@ -37,9 +38,16 @@ export function GPSHeader() {
   return (
     <header className={`${styles.gpsHeader}${isScrolled ? ` ${styles.gpsHeaderScrolled}` : ''}`}>
       <div className={styles.gpsHeaderBar}>
-        <Link className={styles.gpsBrand} href="/gps-5-0" aria-label="GPS — início" onClick={closeMenu}>
-          <span>GPS</span>
-          <small>Método GPS da Liderança Escolar</small>
+        <Link className={styles.gpsBrand} href="/gps-5-0" aria-label="GPS 5.0 — início" onClick={closeMenu}>
+          <Image
+            className={styles.gpsBrandLogo}
+            src="/images/gps-5-logo.png"
+            alt="GPS 5.0"
+            width={2172}
+            height={724}
+            sizes="(max-width: 768px) 104px, 138px"
+            priority
+          />
         </Link>
 
         <nav className={styles.gpsDesktopNav} aria-label="Navegação do GPS">

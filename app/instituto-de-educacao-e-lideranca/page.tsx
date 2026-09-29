@@ -19,15 +19,22 @@ import {
   WhatsAppButton,
 } from '@/components/site';
 import { ScrollReveal } from '@/components/scroll-reveal';
+import { SITE_CONFIG } from '@/lib/site-config';
 import styles from './page.module.css';
 
-const INSTAGRAM_URL =
-  'https://www.instagram.com/institutodeeducacaoelideranca_/';
+const INSTAGRAM_URL = SITE_CONFIG.instituteInstagram;
 
 export const metadata: Metadata = {
   title: 'Instituto de Educação e Liderança | Jamilla Salviano',
   description:
     'Liderança escolar na prática e formação de gestores e redes de ensino com o Método GPS 5.0.',
+  alternates: { canonical: '/instituto-de-educacao-e-lideranca' },
+  openGraph: {
+    title: 'Instituto de Educação e Liderança | Jamilla Salviano',
+    description:
+      'Formação de gestores e redes de ensino conectada aos desafios reais da educação.',
+    type: 'website',
+  },
 };
 
 type Pillar = {
@@ -322,7 +329,12 @@ export default function InstitutoPage() {
                   Educação se constrói com <em>presença.</em>
                 </h2>
               </div>
-              <a className={styles.instagramLink} href={INSTAGRAM_URL}>
+              <a
+                className={styles.instagramLink}
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Camera size={17} aria-hidden="true" />
                 <span>Ver no Instagram</span>
               </a>

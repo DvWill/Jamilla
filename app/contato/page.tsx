@@ -3,10 +3,19 @@ import { ArrowRight, MessageCircle } from 'lucide-react';
 import { Eyebrow, Footer, Header, WhatsAppButton } from '@/components/site';
 import { ContactForm } from './contact-form';
 import styles from './page.module.css';
-import { WHATSAPP_URL } from './whatsapp';
+import { whatsappUrl } from './whatsapp';
 
 export const metadata: Metadata = {
   title: 'Contato | Jamilla Salviano',
+  description:
+    'Converse com a equipe de Jamilla Salviano sobre formações, palestras, mentorias e soluções para sua instituição.',
+  alternates: { canonical: '/contato' },
+  openGraph: {
+    title: 'Contato | Jamilla Salviano',
+    description:
+      'Conte o momento da sua equipe, escola ou instituição e encontre o caminho mais adequado.',
+    type: 'website',
+  },
 };
 
 export default function ContactPage() {
@@ -44,8 +53,10 @@ export default function ContactPage() {
                 </div>
                 <a
                   className={styles.whatsappCta}
-                  href={WHATSAPP_URL}
-                  rel="noreferrer"
+                  href={whatsappUrl(
+                    'Olá! Vim pelo site e gostaria de conversar com a equipe da Jamilla Salviano.',
+                  )}
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <span>Conversar agora</span>

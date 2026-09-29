@@ -1,6 +1,17 @@
 import { ProductPage } from '@/components/product-page';
+import { whatsappUrl } from '@/lib/site-config';
+
 export const metadata = {
   title: 'Palestras para Gestores Escolares | Jamilla Salviano',
+  description:
+    'Palestras sobre liderança, conflitos, feedback e gestão escolar conectadas à realidade de gestores e instituições.',
+  alternates: { canonical: '/palestras' },
+  openGraph: {
+    title: 'Palestras para Gestores Escolares | Jamilla Salviano',
+    description:
+      'Leve para o seu evento uma conversa que une experiência na escola, método e aplicação prática.',
+    type: 'website' as const,
+  },
 };
 export default function Page() {
   return (
@@ -50,11 +61,30 @@ export default function Page() {
         'Equipes pedagógicas',
         'Mudança na prática',
       ]}
+      itemDescriptions={[
+        'Autoridade, clareza e influência para conduzir pessoas sem recorrer ao medo.',
+        'Conversas difíceis, resistência e ruídos que precisam ser enfrentados.',
+        'Consciência emocional para decidir e se posicionar sob pressão.',
+        'Acordos e comportamentos que constroem responsabilidade no cotidiano.',
+        'Alinhamento entre liderança e trabalho pedagógico.',
+        'Reflexão que se transforma em próximos passos possíveis.',
+      ]}
       formats={[
         'Palestra presencial',
         'Encontro para lideranças',
         'Trilha para instituições',
       ]}
+      formatDescriptions={[
+        'Conteúdo presencial ajustado ao contexto e ao público do evento.',
+        'Conversa direcionada a quem toma decisões e conduz equipes.',
+        'Sequência formativa para aprofundar temas ao longo de mais de um encontro.',
+      ]}
+      challengeDescription="Uma palestra relevante não ocupa apenas um horário da agenda: ela nomeia problemas que a equipe reconhece, oferece novas perguntas e abre caminho para atitudes concretas."
+      contactHref={whatsappUrl(
+        'Olá! Gostaria de conversar sobre uma palestra com Jamilla Salviano.',
+      )}
+      primaryAction="Levar Jamilla para o meu evento"
+      finalAction="Solicitar proposta"
       cta="A próxima transformação pode começar por uma conversa."
     />
   );

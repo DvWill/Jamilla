@@ -1,6 +1,6 @@
-/* oxlint-disable next/no-html-link-for-pages -- Standalone hub keeps native navigation for static export. */
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   ArrowRight,
   FileText,
@@ -8,19 +8,30 @@ import {
   MessageCircle,
   Mic2,
   RotateCcw,
+  UserRound,
 } from 'lucide-react';
-import { LinksTrilhaCard } from '@/components/links-gps-card';
+import { LinksTrilhaCard } from '@/components/links-featured-card';
 import { FooterAgencyCredit } from '@/components/footer-agency-credit';
+import { isTrilhaFeatured } from '@/lib/site-config';
 
 export const metadata: Metadata = {
-  title: 'Links | Jamilla Salviano',
-  description: 'Acesse os conteúdos, formações e canais de Jamilla Salviano.',
+  title: 'Projetos e formações | Jamilla Salviano',
+  description:
+    'Conheça as formações, palestras, produtos e iniciativas de Jamilla Salviano para gestores e instituições de ensino.',
+  alternates: { canonical: '/links' },
+  openGraph: {
+    title: 'Projetos e formações | Jamilla Salviano',
+    description:
+      'Um ecossistema de educação, liderança e gestão para pessoas e instituições.',
+    type: 'website',
+  },
 };
 
 const links = [
   {
     title: 'Experiência RESET',
-    description: 'Uma nova maneira de liderar',
+    description: 'Reorganize sua forma de liderar pessoas e equipes.',
+    action: 'Conhecer o RESET',
     href: '/reset',
     image: '/images/jamilla-reset.png',
     position: 'center 48%',
@@ -28,7 +39,8 @@ const links = [
   },
   {
     title: 'Palestras para instituições',
-    description: 'Conversas que transformam equipes',
+    description: 'Conteúdo conectado aos desafios reais da educação.',
+    action: 'Ver palestras',
     href: '/palestras',
     image: '/images/jamilla-palestras-transparent.png',
     position: 'center 32%',
@@ -36,7 +48,8 @@ const links = [
   },
   {
     title: 'Mini curso ATA Inteligente',
-    description: 'Registros claros e profissionais',
+    description: 'Registros claros sem começar cada ata do zero.',
+    action: 'Conhecer o minicurso',
     href: '/ata-inteligente',
     image: '/images/jamilla-red.webp',
     position: 'center 24%',
@@ -44,15 +57,26 @@ const links = [
   },
   {
     title: 'Instituto de Educação e Liderança',
-    description: 'Educação e liderança que transformam realidades',
+    description: 'Formação de gestores e redes de ensino.',
+    action: 'Conhecer o Instituto',
     href: '/instituto-de-educacao-e-lideranca',
     image: '/images/links-stage-bg.jpeg',
     position: '58% center',
     icon: GraduationCap,
   },
   {
+    title: 'Quem é Jamilla Salviano',
+    description: 'Conheça sua trajetória na educação e na liderança escolar.',
+    action: 'Conhecer Jamilla',
+    href: '/sobre',
+    image: '/images/jamilla-cream.webp',
+    position: 'center 18%',
+    icon: UserRound,
+  },
+  {
     title: 'Vamos conversar?',
-    description: 'Fale diretamente com Jamilla',
+    description: 'Conte o momento da sua escola ou instituição.',
+    action: 'Abrir contato',
     href: '/contato',
     image: '/images/jamilla-diagnostico.webp',
     position: 'center 34%',
@@ -61,18 +85,20 @@ const links = [
 ];
 
 export default function LinksPage() {
+  const trilhaIsFeatured = isTrilhaFeatured();
+
   return (
     <main className="links-v2">
       <div className="links-v2__ambient" aria-hidden="true" />
       <div className="links-v2__frame">
         <section className="links-v2__hero" aria-labelledby="links-v2-title">
-          <a
+          <Link
             className="links-v2__monogram"
             href="/inicio"
             aria-label="Abrir o site completo"
           >
             JS
-          </a>
+          </Link>
           <div className="links-v2__hero-art" aria-hidden="true">
             <span className="links-v2__halo" />
             <span className="links-v2__hero-label">
@@ -92,19 +118,20 @@ export default function LinksPage() {
             <span className="links-v2__hero-line" />
           </div>
           <div className="links-v2__intro">
-            <p id="links-v2-title">MENTORA DE LÍDERES E EQUIPES DE SUCESSO</p>
+            <h1 id="links-v2-title">Projetos, formações e experiências</h1>
+            <p>LIDERANÇA • EDUCAÇÃO • GESTÃO</p>
           </div>
         </section>
 
-        <LinksTrilhaCard />
+        <LinksTrilhaCard featured={trilhaIsFeatured} />
 
         <nav className="links-v2__list" aria-label="Produtos e serviços">
           {links.map(
             (
-              { title, description, href, image, position, icon: Icon },
+              { title, description, action, href, image, position, icon: Icon },
               index,
             ) => (
-              <a className="links-v2__item" href={href} key={href}>
+              <Link className="links-v2__item" href={href} key={href}>
                 <span className="links-v2__item-number" aria-hidden="true">
                   {String(index + 2).padStart(2, '0')}
                 </span>
@@ -120,18 +147,19 @@ export default function LinksPage() {
                 <span className="links-v2__item-copy">
                   <strong>{title}</strong>
                   <small>{description}</small>
+                  <span className="links-v2__item-cta">{action}</span>
                 </span>
                 <span className="links-v2__item-arrow" aria-hidden="true">
                   <Icon size={16} />
                   <ArrowRight size={17} />
                 </span>
-              </a>
+              </Link>
             ),
           )}
         </nav>
 
         <footer className="links-v2__footer">
-          <a href="/inicio">jamillasalviano.com.br</a>
+          <Link href="/inicio">jamillasalviano.com.br</Link>
           <span>FORMAÇÃO QUE TRANSFORMA PESSOAS E RESULTADOS.</span>
           <FooterAgencyCredit />
         </footer>

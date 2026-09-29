@@ -10,6 +10,7 @@ const interestOptions = [
   'Experiência RESET',
   'Palestras',
   'Mini Curso ATA Inteligente',
+  'Instituto de Educação e Liderança',
   'Outro',
   'Ainda não sei qual é a melhor opção',
 ] as const;
@@ -93,6 +94,20 @@ export function ContactForm({ global = false }: { global?: boolean }) {
     window.addEventListener('jamilla:open-chat', openChat);
     return () => window.removeEventListener('jamilla:open-chat', openChat);
   }, [global]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: globalThis.KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const history = historyRef.current;

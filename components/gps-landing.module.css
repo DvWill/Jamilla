@@ -56,11 +56,15 @@
 .gpsBrand {
   display: flex;
   flex: 0 0 auto;
-  flex-direction: column;
-  line-height: 1;
+  align-items: center;
+  justify-content: center;
 }
-.gpsBrand span { color: var(--gold); font-size: 1.1rem; font-weight: 900; letter-spacing: 0.16em; }
-.gpsBrand small { margin-top: 0.35rem; color: rgba(255,255,255,.68); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; }
+.gpsBrandLogo {
+  display: block;
+  width: clamp(6.875rem, 8vw, 8.625rem);
+  height: auto;
+  object-fit: contain;
+}
 .gpsDesktopNav {
   position: absolute;
   left: 50%;
@@ -2135,7 +2139,6 @@
   }
 }
 @media (max-width: 440px) {
-  .gpsBrand small { display: none; }
   .gpsHeader { right: 10px; left: 10px; }
   .fixedCta {
     width: 3.55rem;
@@ -2382,12 +2385,7 @@
     min-width: 0;
     max-width: calc(100% - 58px);
   }
-  .gpsBrand span { font-size: 1.05rem; }
-  .gpsBrand small {
-    max-width: 100%;
-    font-size: 0.52rem;
-    letter-spacing: 0.08em;
-  }
+  .gpsBrandLogo { width: 6.5rem; }
   .gpsMenuButton {
     flex: 0 0 40px;
     width: 40px;
@@ -2696,7 +2694,7 @@
   .heroBenefits .wrap {
     padding-inline: 16px;
   }
-  .gpsBrand small { display: none; }
+  .gpsBrandLogo { width: 6rem; }
   .hero h1 { font-size: clamp(2.5rem, 11.5vw, 3.15rem); }
   .hero h1 em { font-size: clamp(2.15rem, 9.8vw, 2.75rem); }
   .heroVisual { width: min(88vw, 320px); }

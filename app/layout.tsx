@@ -15,6 +15,7 @@ const serif = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://jamilla-pi.vercel.app'),
   title: 'Jamilla Salviano | Liderança, Educação e Gestão',
   description:'Formação, método e experiências para líderes e instituições que querem transformar equipes.',
   icons: {
