@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const AGENCY_INSTAGRAM_URL = 'https://www.instagram.com/asuapublicidade/';
+const AGENCY_WEBSITE_URL = 'https://www.asuapublicidade.com/';
 
 type FooterAgencyCreditProps = {
   className?: string;
@@ -14,10 +14,10 @@ export function FooterAgencyCredit({
       <span className="footer-agency-credit__label">Desenvolvido por</span>
       <a
         className="footer-agency-credit__link"
-        href={AGENCY_INSTAGRAM_URL}
+        href={AGENCY_WEBSITE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Conheça a A Sua Publicidade no Instagram"
+        aria-label="Conheça a A Sua Publicidade"
       >
         <Image
           className="footer-agency-credit__logo"
