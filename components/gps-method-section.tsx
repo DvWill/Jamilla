@@ -5,10 +5,10 @@ import styles from './gps-method-section.module.css';
 
 const pillars = [
   { number: '01', shortTitle: 'Propósito', title: 'Propósito visível e prático' },
-  { number: '02', shortTitle: 'Equilíbrio', title: 'Equilíbrio emocional para liderança' },
-  { number: '03', shortTitle: 'Equipe', title: 'Gestão eficaz de equipe e clima escolar' },
-  { number: '04', shortTitle: 'Estratégia', title: 'Planejamento estratégico com foco em resultado' },
-  { number: '05', shortTitle: 'Resultados', title: 'Cultura de altas expectativas com suporte' },
+  { number: '02', shortTitle: 'Equipe', title: 'Gestão eficaz de equipe e clima escolar' },
+  { number: '03', shortTitle: 'Estratégia', title: 'Planejamento estratégico com foco em resultado' },
+  { number: '04', shortTitle: 'Resultados', title: 'Cultura de altas expectativas com suporte' },
+  { number: '05', shortTitle: 'Equilíbrio', title: 'Equilíbrio emocional para liderança' },
 ] as const;
 
 function point(angle: number, radius: number) {

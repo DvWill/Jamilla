@@ -3,13 +3,17 @@ import Link from 'next/link';
 import {
   ArrowRight,
   Award,
+  BadgeCheck,
   BookOpen,
   Check,
   ChevronDown,
+  Clock3,
   GraduationCap,
   HeartHandshake,
   LayoutTemplate,
   MessageCircle,
+  Play,
+  ShieldCheck,
   Sparkles,
   UsersRound,
 } from 'lucide-react';
@@ -37,6 +41,35 @@ const supportItems = [
   { icon: MessageCircle, title: 'Mentorias mensais', description: 'Leve situações reais da sua escola e receba direcionamento prático para lidar com conflitos, equipe, decisões e desafios da gestão.' },
   { icon: BookOpen, title: 'Livros digitais', description: 'Acesso aos livros digitais da Jamilla sobre liderança, conflitos, feedback, comportamento, formação continuada e gestão escolar.' },
   { icon: UsersRound, title: 'Comunidade de gestores', description: 'Acesso a uma comunidade com centenas de gestores, onde você pode trocar experiências, compartilhar desafios e contar com apoio de pessoas que vivem situações semelhantes.' },
+];
+
+const heroBenefits = [
+  { icon: GraduationCap, title: 'Formação em liderança escolar' },
+  { icon: LayoutTemplate, title: 'Mentorias mensais com situações reais' },
+  { icon: Award, title: 'Livros digitais da Jamilla' },
+  { icon: Sparkles, title: 'Comunidade com gestores' },
+  { icon: HeartHandshake, title: 'Suporte pelos canais informados após a inscrição.' },
+  {
+    icon: BadgeCheck,
+    title: 'Certificado reconhecido pelo MEC',
+    description:
+      'Ao concluir o curso, você recebe um certificado que valoriza sua formação e sua trajetória profissional.',
+    featured: true,
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Garantia total',
+    description:
+      'Faça sua inscrição com segurança. Você conta com garantia para conhecer o curso com tranquilidade.',
+    featured: true,
+  },
+];
+
+const bonusLessons = [
+  'Construindo sua autoridade como gestor referência',
+  'Do gestor ao mentor: novas oportunidades e caminhos na educação',
+  'Oratória',
+  'Processo seletivo: como ser aprovado?',
 ];
 
 const beforeItems = [
@@ -117,16 +150,73 @@ export function GPSLanding() {
 
       <section id="beneficios" className={styles.heroBenefits} aria-label="Benefícios da formação">
         <ScrollReveal className={`${styles.wrap} ${styles.heroBenefitsContent}`}>
-          {[
-            { icon: GraduationCap, label: <>Formação em liderança<br />escolar</> },
-            { icon: LayoutTemplate, label: <>Mentorias mensais com<br />situações reais</> },
-            { icon: Award, label: <>Livros digitais da Jamilla</> },
-            { icon: Sparkles, label: <>Comunidade com gestores</> },
-            { icon: HeartHandshake, label: <>Suporte pelos canais<br />informados após a inscrição.</> },
-          ].map(({ icon: Icon, label }, index) => (
-            <div key={index}><Icon aria-hidden="true" /><span>{label}</span></div>
+          {heroBenefits.map(({ icon: Icon, title, description, featured }) => (
+            <article
+              className={`${styles.heroBenefitCard} ${featured ? styles.heroBenefitFeatured : ''}`}
+              key={title}
+            >
+              <span className={styles.heroBenefitIcon} aria-hidden="true"><Icon /></span>
+              <div className={styles.heroBenefitCopy}>
+                <strong>{title}</strong>
+                {description ? <p>{description}</p> : null}
+              </div>
+            </article>
           ))}
         </ScrollReveal>
+      </section>
+
+      <section className={`${styles.section} ${styles.exclusiveBonuses}`} aria-labelledby="exclusive-bonuses-title">
+        <div className={styles.wrap}>
+          <header className={styles.exclusiveBonusesHeader}>
+            <p className={styles.exclusiveBonusesBadge}>Bônus e materiais exclusivos</p>
+            <h2 id="exclusive-bonuses-title">Ao acessar o Curso Liderança Escolar Transformadora...</h2>
+            <p>Você terá acesso a aulas bônus e materiais exclusivos para projetar o próximo nível da sua carreira com autoridade, clareza e propósito.</p>
+          </header>
+
+          <div className={styles.bonusLessonsGrid}>
+            <ScrollReveal className={styles.bonusLessonsCard}>
+              <div className={styles.bonusLessonsTitle}>
+                <span aria-hidden="true"><Play /></span>
+                <div><small>Conteúdo adicional</small><h3>Aulas <strong>Bônus</strong></h3></div>
+              </div>
+              <ul>
+                {bonusLessons.map((lesson, index) => (
+                  <li key={lesson}>
+                    <span aria-hidden="true"><Check /></span>
+                    {index === bonusLessons.length - 1
+                      ? <p><strong>Processo seletivo</strong>: como ser aprovado?</p>
+                      : <p>{lesson}</p>}
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+
+            <ScrollReveal className={styles.bonusLaptop} delay={100}>
+              <div className={styles.bonusLaptopFrame}>
+                <Image src="/images/gps-device-module-5.png" alt="Formação GPS 5.0 apresentada em notebook, tablet e celular" fill sizes="(max-width: 900px) 94vw, 54vw" />
+                <span>Bônus &amp;<br />Materiais Exclusivos</span>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          <ScrollReveal className={styles.jamiliaBonus}>
+            <div className={styles.jamiliaVisual}>
+              <Image src="/images/jamilla-bonus-seal.png" alt="JamillIA, sua mentora em Liderança Escolar" fill sizes="(max-width: 900px) 86vw, 38vw" />
+              <div><span>JamillIA</span><strong>Sua mentora em Liderança Escolar</strong><small>24h por dia</small></div>
+            </div>
+            <div className={styles.jamiliaContent}>
+              <p className={styles.jamiliaBadge}>Bônus exclusivo</p>
+              <h3>JamillIA — Sua Mentora em Liderança Escolar, <strong>24h por dia</strong></h3>
+              <p>Ao se inscrever no Método GPS 5.0, você não leva apenas um curso. Você ganha acesso à JamillIA, uma mentora virtual treinada para pensar como uma mentora experiente em gestão e liderança escolar.</p>
+              <p>A JamillIA foi criada para apoiar diretores, gestores e coordenadores pedagógicos nos desafios reais da escola: tomada de decisão, liderança de equipes, gestão estratégica e resolução de conflitos — na prática e no dia a dia.</p>
+              <div className={styles.jamiliaHighlight}>
+                <span aria-hidden="true"><Clock3 /></span>
+                <p>É como ter Jamilla Salviano ao seu lado, <strong>24 horas por dia</strong>, orientando, esclarecendo dúvidas e ajudando você a agir com mais segurança, clareza e autoridade.</p>
+              </div>
+              <p className={styles.jamiliaClosing}>Você não estará mais sozinho na liderança. Com o Método GPS e a JamillIA, suas decisões deixam de ser improviso e passam a ser estratégicas.</p>
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
 
       <section id="video" className={`${styles.section} ${styles.video}`}>

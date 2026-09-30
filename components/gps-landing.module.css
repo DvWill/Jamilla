@@ -1073,14 +1073,14 @@
   border: 0;
 }
 .heroBenefits {
-  padding: 0;
+  padding: 1.15rem 0;
   background: #d9ae58;
 }
 .heroBenefitsContent {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  min-height: 104px;
-  align-items: center;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: stretch;
 }
 .heroBenefitsContent:global(.reveal--ready) {
   transition:
@@ -1091,27 +1091,397 @@
   opacity: 0;
   transform: translateY(10px);
 }
-.heroBenefits .wrap > div {
+.heroBenefitCard {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  grid-column: span 3;
+  gap: 0.9rem;
   min-width: 0;
-  min-height: 104px;
-  padding: 1rem clamp(0.8rem, 1.25vw, 1.25rem);
-  border-right: 0;
+  min-height: 106px;
+  padding: 1.15rem;
+  overflow: hidden;
+  border: 1px solid rgba(10, 30, 45, 0.23);
+  border-radius: 0.75rem;
   color: var(--navy);
-  font-size: clamp(0.76rem, 0.9vw, 0.9rem);
-  font-weight: 700;
-  line-height: 1.4;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 20px rgba(10, 30, 45, 0.08);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease;
 }
-.heroBenefits .wrap > div:first-child { padding-left: 0; }
-.heroBenefits .wrap > div:last-child { padding-right: 0; }
-.heroBenefits .wrap > div + div {
-  border-left: 1px solid rgba(10, 30, 45, 0.25);
+.heroBenefitCard:nth-child(n + 5) {
+  grid-column: span 4;
 }
-.heroBenefits svg {
+.heroBenefitCard:hover {
+  z-index: 1;
+  transform: translateY(-4px);
+  border-color: rgba(10, 30, 45, 0.48);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 28px rgba(10, 30, 45, 0.15);
+}
+.heroBenefitIcon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid rgba(10, 30, 45, 0.23);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+}
+.heroBenefitIcon svg {
+  width: 1.35rem;
+  height: 1.35rem;
   flex: 0 0 auto;
   color: var(--navy);
+}
+.heroBenefitCopy {
+  display: grid;
+  gap: 0.32rem;
+  min-width: 0;
+}
+.heroBenefitCopy strong {
+  font-size: clamp(0.78rem, 0.85vw, 0.91rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+.heroBenefitCopy p {
+  margin: 0;
+  color: rgba(10, 30, 45, 0.76);
+  font-size: clamp(0.68rem, 0.72vw, 0.77rem);
+  line-height: 1.42;
+}
+.heroBenefitFeatured {
+  border-color: rgba(10, 30, 45, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 26px rgba(10, 30, 45, 0.16);
+}
+.heroBenefitFeatured::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--navy);
+  content: '';
+}
+.heroBenefitFeatured .heroBenefitIcon {
+  border-color: var(--navy);
+  background: var(--navy);
+  box-shadow: 0 7px 16px rgba(10, 30, 45, 0.22);
+}
+.heroBenefitFeatured .heroBenefitIcon svg {
+  color: var(--goldlight);
+}
+.exclusiveBonuses {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(30, 115, 255, 0.2), transparent 31%),
+    radial-gradient(circle at 8% 72%, rgba(213, 172, 91, 0.13), transparent 27%),
+    linear-gradient(145deg, #061a2c 0%, #09263d 52%, #041524 100%);
+}
+.exclusiveBonuses::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.2;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  content: '';
+}
+.exclusiveBonusesHeader {
+  display: grid;
+  max-width: 60rem;
+  justify-items: center;
+  margin: 0 auto;
+  text-align: center;
+}
+.exclusiveBonusesBadge,
+.jamiliaBadge {
+  width: fit-content;
+  margin: 0 0 1.35rem;
+  padding: 0.52rem 0.85rem;
+  border: 1px solid rgba(227, 197, 125, 0.42);
+  border-radius: 999px;
+  color: var(--goldlight);
+  background: rgba(213, 172, 91, 0.08);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.exclusiveBonusesHeader h2 {
+  margin: 0;
+  font-size: clamp(2.65rem, 5vw, 4.8rem);
+}
+.exclusiveBonusesHeader > p:last-child {
+  max-width: 46rem;
+  margin: 1.6rem 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.98rem, 1.3vw, 1.12rem);
+  line-height: 1.75;
+}
+.bonusLessonsGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(1.4rem, 3vw, 2.75rem);
+  align-items: stretch;
+  margin-top: clamp(3.25rem, 6vw, 5rem);
+}
+.bonusLessonsCard,
+.bonusLaptop,
+.jamiliaBonus {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 1.7rem;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    transform 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+}
+.bonusLessonsCard:hover,
+.bonusLaptop:hover,
+.jamiliaBonus:hover {
+  border-color: rgba(227, 197, 125, 0.38);
+  box-shadow: 0 30px 72px rgba(0, 0, 0, 0.28);
+  transform: translateY(-4px);
+}
+.bonusLessonsCard {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+.bonusLessonsTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.7rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.bonusLessonsTitle > span,
+.jamiliaHighlight > span {
+  display: grid;
+  flex: 0 0 auto;
+  width: 3.15rem;
+  height: 3.15rem;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #176ff2;
+  box-shadow: 0 10px 24px rgba(23, 111, 242, 0.3);
+}
+.bonusLessonsTitle svg,
+.jamiliaHighlight svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.bonusLessonsTitle small {
+  display: block;
+  margin-bottom: 0.22rem;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.61rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.bonusLessonsTitle h3 {
+  margin: 0;
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  line-height: 1;
+}
+.bonusLessonsTitle h3 strong {
+  color: var(--goldlight);
+  font-weight: inherit;
+}
+.bonusLessonsCard ul {
+  display: grid;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.bonusLessonsCard li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  align-items: start;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.bonusLessonsCard li:last-child {
+  border-bottom: 0;
+}
+.bonusLessonsCard li > span {
+  display: grid;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-top: 0.05rem;
+  place-items: center;
+  border: 1px solid rgba(227, 197, 125, 0.45);
+  border-radius: 50%;
+  color: var(--goldlight);
+}
+.bonusLessonsCard li svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+.bonusLessonsCard li p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.bonusLessonsCard li p strong {
+  color: #fff;
+}
+.bonusLaptop {
+  min-width: 0;
+  padding: 0.65rem;
+  overflow: hidden;
+}
+.bonusLaptopFrame {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #04070a;
+}
+.bonusLaptopFrame::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(5, 24, 40, 0.12), transparent 48%, rgba(23, 111, 242, 0.08));
+  pointer-events: none;
+  content: '';
+}
+.bonusLaptopFrame img {
+  object-fit: cover;
+}
+.bonusLaptopFrame > span {
+  position: absolute;
+  z-index: 1;
+  top: 1.2rem;
+  left: 1.2rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(227, 197, 125, 0.45);
+  border-radius: 0.75rem;
+  color: #fff;
+  background: rgba(5, 25, 40, 0.76);
+  font-size: clamp(0.68rem, 1vw, 0.8rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+.jamiliaBonus {
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding: clamp(1.2rem, 3vw, 2.5rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 25%, rgba(213, 172, 91, 0.13), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(10, 41, 64, 0.58));
+}
+.jamiliaVisual {
+  position: relative;
+  min-height: 31rem;
+}
+.jamiliaVisual img {
+  object-fit: contain;
+  filter: drop-shadow(0 24px 32px rgba(0, 0, 0, 0.3));
+}
+.jamiliaVisual > div {
+  position: absolute;
+  right: 0;
+  bottom: 0.6rem;
+  left: 0;
+  display: grid;
+  width: min(88%, 19rem);
+  margin: auto;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid rgba(227, 197, 125, 0.38);
+  border-radius: 1rem;
+  background: rgba(5, 25, 40, 0.84);
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+.jamiliaVisual > div span {
+  color: var(--goldlight);
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+}
+.jamiliaVisual > div strong {
+  margin-top: 0.12rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+.jamiliaVisual > div small {
+  margin-top: 0.35rem;
+  color: #66a6ff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.jamiliaContent {
+  padding: 1rem 1rem 1rem 0;
+}
+.jamiliaContent h3 {
+  max-width: 38rem;
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  line-height: 1.02;
+}
+.jamiliaContent h3 strong {
+  color: var(--goldlight);
+  font-weight: inherit;
+}
+.jamiliaContent > p:not(.jamiliaBadge) {
+  max-width: 42rem;
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+.jamiliaHighlight {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin: 1.7rem 0;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid rgba(91, 158, 255, 0.38);
+  border-radius: 1.1rem;
+  background: rgba(23, 111, 242, 0.11);
+}
+.jamiliaHighlight > span {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+.jamiliaHighlight p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.jamiliaHighlight strong {
+  color: var(--goldlight);
+}
+.jamiliaContent .jamiliaClosing {
+  margin-bottom: 0;
+  color: #fff;
+  font-weight: 700;
 }
 .conversion {
   background: var(--navy);
@@ -2713,8 +3083,152 @@
   .transformationMarker strong { width: 3rem; height: 3rem; }
   .faqList summary { gap: 0.65rem; font-size: 0.92rem; }
 }
+@media (max-width: 1000px) {
+  .heroBenefitsContent {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+  .heroBenefitCard,
+  .heroBenefitCard:nth-child(n + 5) {
+    grid-column: span 1;
+    min-height: 112px;
+  }
+  .heroBenefitCard:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 520px) {
+  .heroBenefits {
+    padding-block: 0.8rem;
+  }
+  .heroBenefitsContent {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+  .heroBenefitCard,
+  .heroBenefitCard:nth-child(n + 5),
+  .heroBenefitCard:last-child:nth-child(odd) {
+    grid-column: 1;
+    min-height: 0;
+    padding: 1rem;
+  }
+  .heroBenefitIcon {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+  .heroBenefitCopy strong {
+    font-size: 0.85rem;
+  }
+  .heroBenefitCopy p {
+    font-size: 0.73rem;
+  }
+}
+@media (max-width: 900px) {
+  .bonusLessonsGrid,
+  .jamiliaBonus {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .bonusLaptop {
+    order: -1;
+  }
+  .bonusLaptopFrame {
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+  }
+  .jamiliaBonus {
+    gap: 1.5rem;
+  }
+  .jamiliaVisual {
+    min-height: 28rem;
+  }
+  .jamiliaContent {
+    padding: 0.5rem 1.2rem 1.3rem;
+  }
+}
+@media (max-width: 600px) {
+  .section.exclusiveBonuses {
+    padding-block: 4.75rem;
+  }
+  .exclusiveBonusesHeader {
+    justify-items: start;
+    text-align: left;
+  }
+  .exclusiveBonusesHeader h2 {
+    font-size: clamp(2.5rem, 12vw, 3.35rem);
+  }
+  .exclusiveBonusesHeader > p:last-child {
+    margin-top: 1.25rem;
+    font-size: 0.94rem;
+  }
+  .bonusLessonsGrid {
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .bonusLessonsCard,
+  .bonusLaptop,
+  .jamiliaBonus {
+    border-radius: 1.25rem;
+  }
+  .bonusLessonsCard {
+    padding: 1.25rem;
+  }
+  .bonusLessonsTitle {
+    gap: 0.8rem;
+    padding-bottom: 1.25rem;
+  }
+  .bonusLessonsTitle > span {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .bonusLessonsTitle h3 {
+    font-size: 2rem;
+  }
+  .bonusLessonsCard li {
+    padding-block: 0.85rem;
+  }
+  .bonusLaptop {
+    padding: 0.4rem;
+  }
+  .bonusLaptopFrame {
+    border-radius: 0.95rem;
+  }
+  .bonusLaptopFrame > span {
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.55rem 0.65rem;
+    font-size: 0.6rem;
+  }
+  .jamiliaBonus {
+    gap: 0.65rem;
+    margin-top: 2.5rem;
+    padding: 0.8rem;
+  }
+  .jamiliaVisual {
+    min-height: 23rem;
+  }
+  .jamiliaVisual > div {
+    bottom: 0;
+  }
+  .jamiliaContent {
+    padding: 1rem 0.45rem 0.7rem;
+  }
+  .jamiliaContent h3 {
+    font-size: clamp(2.15rem, 10.5vw, 3rem);
+  }
+  .jamiliaContent > p:not(.jamiliaBadge) {
+    font-size: 0.9rem;
+  }
+  .jamiliaHighlight {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1rem;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .heroCopy,
   .heroVisual,
   .fixedCta { animation: none; }
+  .heroBenefitCard,
+  .bonusLessonsCard,
+  .bonusLaptop,
+  .jamiliaBonus { transition: none; }
 }
