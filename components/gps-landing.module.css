@@ -271,31 +271,42 @@
   flex-wrap: wrap;
 }
 .button {
-  background: var(--gold);
-  color: var(--ink);
+  position: relative;
+  isolation: isolate;
+  min-height: 62px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #d7ff35 0%, #b8ff00 55%, #9fea00 100%);
+  background-size: 145% 145%;
+  color: #11150f;
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.25rem;
+  gap: 1rem;
+  padding: .5rem .55rem .5rem 1.25rem;
   text-transform: uppercase;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.07em;
-  box-shadow: 0 0.7rem 1.5rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 30px rgba(184,255,0,.20), 0 2px 8px rgba(0,0,0,.15);
   transition:
-    transform 0.2s,
-    background 0.2s;
+    transform 300ms cubic-bezier(.2,.8,.2,1), box-shadow 300ms ease, background-position 300ms ease;
 }
+.button::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.25) 45%, transparent 65%); content: ''; transform: translateX(-120%); transition: transform 700ms ease; }
 .button:hover {
-  background: var(--goldlight);
-  transform: translateY(-3px);
+  background-position: 100% 50%;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 38px rgba(184,255,0,.28), 0 4px 12px rgba(0,0,0,.18);
 }
+.button:hover::before { transform: translateX(120%); }
 .button svg {
   transition: transform 0.2s;
 }
 .button:hover svg {
   transform: translateX(5px);
 }
+.button:active { transform: translateY(0) scale(.985); }
+.button:focus-visible { outline: 2px solid #b8ff00; outline-offset: 4px; }
 .fixedCta {
   position: fixed;
   z-index: 30;
@@ -309,17 +320,17 @@
   width: min(28rem, calc(100vw - 2rem));
   padding: 0.55rem 0.65rem 0.55rem 0.75rem;
   overflow: hidden;
-  border: 1px solid #f6dda0;
-  background: linear-gradient(110deg, #c18a36 0%, #f4d48b 25%, #d9ad60 55%, #f5d994 75%, #b98532 100%);
-  color: #0d2030;
-  box-shadow: inset 0 0 0 2px rgba(117, 75, 18, 0.28), inset 0 0 1rem rgba(255, 245, 202, 0.42), 0 1rem 2.4rem rgba(20, 32, 43, 0.34), 0 0 1.25rem rgba(234, 190, 91, 0.48);
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #d7ff35 0%, #b8ff00 55%, #9fea00 100%);
+  color: #11150f;
+  box-shadow: 0 8px 30px rgba(184,255,0,.20), 0 2px 8px rgba(0,0,0,.15);
   font-size: 0.74rem;
   line-height: 1.1;
   text-transform: uppercase;
   --mouse-x: 50%;
   --mouse-y: 50%;
-  animation: fixedCtaPulse 2.4s ease-in-out infinite;
-  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  transition: transform 300ms cubic-bezier(.2,.8,.2,1), box-shadow 300ms ease, filter 300ms ease;
 }
 .fixedCta::before {
   content: '';
@@ -347,13 +358,12 @@
 .fixedCta:hover::before { opacity: 1; }
 .fixedCta:hover::after { left: 115%; }
 .fixedCta:hover {
-  color: #14202b;
-  filter: brightness(1.08);
-  transform: translateY(-0.18rem);
-  box-shadow: inset 0 0 0 2px rgba(117, 75, 18, 0.24), inset 0 0 1.2rem rgba(255, 245, 202, 0.5), 0 1rem 2.7rem rgba(20, 32, 43, 0.4), 0 0 1.8rem rgba(249, 211, 119, 0.75);
+  color: #11150f;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 38px rgba(184,255,0,.28), 0 4px 12px rgba(0,0,0,.18);
 }
 .fixedCta:focus-visible {
-  outline: 3px solid #0d2030;
+  outline: 2px solid #b8ff00;
   outline-offset: 4px;
 }
 .fixedCtaCrown,
@@ -363,15 +373,15 @@
   place-items: center;
   width: 2.8rem;
   height: 2.8rem;
-  border: 1px solid rgba(244, 212, 139, 0.78);
+  border: 1px solid rgba(17, 21, 15, 0.18);
   border-radius: 50%;
-  background: #0d2030;
-  color: #f4d48b;
-  box-shadow: 0 0 0.8rem rgba(255, 218, 125, 0.38);
+  background: #11150f;
+  color: #b8ff00;
+  box-shadow: none;
 }
 .fixedCtaCrown {
-  border-color: rgba(13, 32, 48, 0.7);
-  background: rgba(13, 32, 48, 0.9);
+  border-color: rgba(17, 21, 15, 0.18);
+  background: #11150f;
 }
 .fixedCtaCopy {
   display: flex;
@@ -401,8 +411,9 @@
   transition: background 300ms ease, box-shadow 300ms ease;
 }
 .fixedCta:hover .fixedCtaArrow {
-  background: #132c42;
-  box-shadow: 0 0 1.15rem rgba(255, 218, 125, 0.72);
+  background: #11150f;
+  box-shadow: none;
+  transform: scale(1.05);
 }
 .fixedCtaArrow svg {
   flex: none;

@@ -32,7 +32,6 @@ const navItems = [
     label: 'Instituto',
     href: '/instituto-de-educacao-e-lideranca',
   },
-  { label: 'Sobre', href: '/sobre' },
 ];
 
 const mobileItems = [
@@ -66,8 +65,10 @@ export function Cta({
   const classes = `cta ${variant} ${className}`.trim();
   const content = (
     <>
-      <span>{children}</span>
-      <ArrowRight className="cta__icon" size={16} aria-hidden="true" />
+      <span className="cta__copy">{children}</span>
+      <span className="cta__arrow" aria-hidden="true">
+        <ArrowRight className="cta__icon" size={18} />
+      </span>
     </>
   );
 
@@ -237,6 +238,7 @@ export function Header() {
               className={`nav-link${pathname === item.href ? ' is-active' : ''}`}
               href={item.href}
               key={item.label}
+              aria-current={pathname === item.href ? 'page' : undefined}
             >
               {item.label}
             </Link>
@@ -274,6 +276,7 @@ export function Header() {
               href={item.href}
               key={item.label}
               tabIndex={isOpen ? 0 : -1}
+              aria-current={pathname === item.href ? 'page' : undefined}
               onClick={() => setIsOpen(false)}
               style={{ '--menu-index': index } as CSSProperties}
             >

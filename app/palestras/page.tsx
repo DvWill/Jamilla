@@ -28,9 +28,9 @@ export default function Page() {
         words: ['Clareza', 'Estratégia', 'Coragem'],
         images: [
           {
-            src: '/images/jamilla-navy.webp',
+            src: '/images/palestras-estrategia-retrato-full.jpg',
             label: 'Clareza para pensar',
-            alt: 'Jamilla Salviano em retrato de roupa azul',
+            alt: 'Jamilla Salviano conduzindo uma palestra',
           },
           {
             src: '/images/jamilla-mentora.webp',
@@ -38,9 +38,9 @@ export default function Page() {
             alt: 'Jamilla Salviano sentada em retrato editorial',
           },
           {
-            src: '/images/jamilla-cream.webp',
+            src: '/images/palestras-estrategia-palco.jpeg',
             label: 'Estratégia para agir',
-            alt: 'Jamilla Salviano em retrato com blazer claro',
+            alt: 'Jamilla Salviano falando ao microfone em uma palestra',
           },
         ],
       }}

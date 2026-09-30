@@ -54,6 +54,12 @@ export default function Page() {
       finalAction="Quero participar da Trilha"
       checkoutHref="https://pay.kiwify.com.br/ZrK7t7E"
       offer={{
+        bullets: [
+          'Imersão ao vivo pelo Google Meet',
+          'Diagnóstico de liderança orientado',
+          'Exercícios práticos de aplicação',
+          'Plano de ação aplicável à sua realidade',
+        ],
         meta: [
           { label: 'Imersão', value: 'Ao vivo pelo Google Meet' },
           { label: 'Data', value: 'A confirmar' },

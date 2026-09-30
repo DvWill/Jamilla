@@ -1,4 +1,5 @@
 import {
+  ArrowUp,
   Brain,
   BookOpenCheck,
   ChartNoAxesCombined,
@@ -24,6 +25,7 @@ import {
   WhatsAppButton,
 } from './site';
 import { ScrollReveal } from './scroll-reveal';
+import { JamillaLibraryBooks } from './jamilla-library-books';
 import { TalksGallery } from './talks-gallery';
 import { TalksThemes } from './talks-themes';
 
@@ -100,6 +102,19 @@ const talksCredentials = [
   'Experiência como professora, coordenadora, supervisora e diretora',
 ];
 
+const jamillaLibraryBooks = [
+  { number: '09', shortTitle: 'Bullying na Escola', category: 'Prevenção e intervenção', title: 'Como acabar com o bullying na escola', description: 'Esse material ajuda gestores a lidar com um problema grave e recorrente nas escolas: o bullying e o cyberbullying. Com ele, o gestor poderá criar protocolos, planejar intervenções, adotar medidas preventivas e fortalecer uma cultura antibullying dentro da escola.', image: '/images/library-como-acabar-com-bullying.png', position: 1 },
+  { number: '08', shortTitle: 'Guia Vol. 2', category: 'Liderança escolar', title: 'Guia para Gestores Escolares — Volume 2', description: 'Conteúdos práticos para fortalecer sua atuação, sua comunicação e sua tomada de decisão na liderança escolar.', image: '/images/library-guia-competencias.png', position: 2 },
+  { number: '07', shortTitle: 'Formação Continuada', category: 'Reuniões que movem', title: 'Formação Continuada', description: 'Direcionamentos para desenvolver a equipe e transformar reuniões em momentos reais de crescimento.', image: '/images/library-formacao-continuada.png', position: 3 },
+  { number: '06', shortTitle: 'Estrategista', category: 'Gestão com método', title: 'De Sobrevivente a Estrategista', description: 'Um caminho para parar de viver no improviso e começar a liderar com visão, organização e prioridade.', image: '/images/library-de-sobrevivente.png', position: 4 },
+  { number: '01', shortTitle: 'Inimigo Oculto', category: 'Cultura e autoridade', title: 'O Inimigo Oculto da Gestão Escolar', description: 'Um material direto sobre cultura permissiva, fofocas, resistência, perda de autoridade e sabotadores invisíveis que travam a escola.', image: '/images/library-inimigo-oculto.png', position: 5, featured: true },
+  { number: '10', shortTitle: 'Cérebro, Emoção & Liderança', category: 'Neurociência e liderança', title: 'Cérebro, Emoção & Liderança', description: 'Este e-book mostra como a liderança escolar pode motivar equipes com base em princípios da neurociência. Apresenta a relação entre cérebro, emoção e comportamento no ambiente escolar, trazendo reflexões e estratégias práticas para fortalecer o engajamento, a confiança e a cooperação da equipe. É um material para gestores que desejam liderar com mais inteligência, humanidade e intenção.', image: '/images/library-cerebro-emocao-lideranca.png', position: 6 },
+  { number: '05', shortTitle: 'Três Venenos', category: 'Clima de equipe', title: 'Fofocas, Resistência e Desmotivação', description: 'Entenda e enfrente três venenos silenciosos que corroem a confiança, a energia e a colaboração da equipe escolar.', image: '/images/library-fofocas-resistencia.png', position: 7 },
+  { number: '04', shortTitle: 'Anatomia do Feedback', category: 'Firmeza humana', title: 'Anatomia do Feedback', description: 'Um guia para dar devolutivas firmes, humanas e estratégicas sem transformar tudo em conflito.', image: '/images/library-anatomia-feedback.png', position: 8 },
+  { number: '03', shortTitle: '60 Projetos', category: 'Mobilização escolar', title: '60 Projetos Escolares Prontos', description: 'Ideias práticas para movimentar a escola, envolver a comunidade e fortalecer o trabalho pedagógico.', image: '/images/library-60-projetos.png', position: 9 },
+  { number: '02', shortTitle: 'IA para Gestores', category: 'Tempo e clareza', title: 'Guia de Inteligência Artificial para Gestores', description: 'Use IA na rotina da gestão escolar para organizar ideias, ganhar tempo e tomar decisões com mais repertório.', image: '/images/library-inteligencia-artificial.png', position: 10 },
+];
+
 const trilhaPainPoints = [
   'Você conversa, conversa e nada muda.',
   'Tem receio de cobrar e parecer autoritário.',
@@ -145,7 +160,9 @@ export function ProductPage(p: Props) {
   return (
     <>
       <Header />
-      <main className={`product-page product-page--${p.theme}`}>
+      <main
+        className={`product-page product-page--${p.theme}${p.heroVariant === 'trilha' ? ' product-page--trilha' : ''}`}
+      >
         <Hero className={`product-hero${hasHeroBackdrop ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}${p.heroVariant === 'trilha' ? ' trilha-hero' : ''}${p.heroVariant === 'reset' ? ' reset-hero' : ''}${p.heroVariant === 'ata' ? ' ata-hero' : ''}`}>
           {p.heroVariant === 'ata' ? (
             <div className="wrap ata-hero__grid">
@@ -444,6 +461,27 @@ export function ProductPage(p: Props) {
               </div>
             </div>
           </section>
+          <section className="jamilla-library" aria-labelledby="biblioteca-jamilla-title">
+            <div className="wrap jamilla-library__intro">
+              <ScrollReveal>
+                <Eyebrow>Biblioteca da Jamilla</Eyebrow>
+                <h2 id="biblioteca-jamilla-title">
+                  Conteúdos que formam,<br />
+                  inspiram e transformam.
+                </h2>
+                <p>
+                  Uma trajetória construída na educação também se transforma em conhecimento compartilhado.
+                  Conheça livros e materiais desenvolvidos a partir da experiência prática em liderança,
+                  gestão escolar e desenvolvimento de equipes.
+                </p>
+              </ScrollReveal>
+            </div>
+            <JamillaLibraryBooks books={jamillaLibraryBooks} />
+            <div className="jamilla-library__hint" aria-hidden="true">
+              <ArrowUp size={18} strokeWidth={1.5} />
+              <span>Passe o mouse</span>
+            </div>
+          </section>
           <TalksThemes contactHref={primaryHref} />
         </> : p.showcase ? <section className="section talks-showcase"><div className="wrap"><div className="talks-showcase__composition">{p.showcase.images.map((image, index) => <figure className={`talks-showcase__image talks-showcase__image--${index + 1}`} key={image.src}><Image fill sizes="(max-width: 760px) 78vw, 29vw" src={image.src} alt={image.alt ?? `Jamilla Salviano em ${image.label.toLowerCase()}`} /><figcaption>{image.label}</figcaption></figure>)}<h2 className={p.showcase.words ? 'talks-showcase__words' : ''}>{(p.showcase.words ?? [p.showcase.title]).map((word, index) => <span key={word} style={{ animationDelay: `${index * 3}s` }}>{word}</span>)}</h2></div></div></section> : <section className="section product-content surface-paper">
           <div className="wrap">
@@ -538,14 +576,17 @@ export function ProductPage(p: Props) {
                 ) : null}
                 <div className="offer-main">
                   {p.offer.bullets ? (
-                    <ul>
-                      {p.offer.bullets.map((item) => (
-                        <li key={item}>
-                          <CircleCheck size={19} aria-hidden="true" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className={p.heroVariant === 'trilha' ? 'offer-inclusions offer-inclusions--trilha' : 'offer-inclusions'}>
+                      {p.heroVariant === 'trilha' ? <p>Na sua inscrição, você recebe:</p> : null}
+                      <ul>
+                        {p.offer.bullets.map((item) => (
+                          <li key={item}>
+                            <CircleCheck size={19} aria-hidden="true" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ) : null}
                   <p className="offer-price">{p.offer.price}</p>
                   {p.offer.note ? <p className="offer-note">{p.offer.note}</p> : null}

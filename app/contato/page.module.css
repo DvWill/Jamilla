@@ -122,30 +122,35 @@
   align-items: center;
   justify-content: center;
   gap: 0.7rem;
-  min-height: 3.1rem;
-  padding: 0.85rem 1.1rem;
-  border: 1px solid #bc8c33;
-  border-radius: 0.35rem;
-  color: var(--contact-ink);
+  min-height: 3.75rem;
+  padding: 0.5rem 1.15rem;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #d7ff35 0%, #b8ff00 55%, #9fea00 100%);
+  color: #11150f;
   font-size: 0.61rem;
   font-weight: 800;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  transition:
-    background-color var(--duration-base) var(--ease-out),
-    color var(--duration-base) var(--ease-out),
-    transform var(--duration-base) var(--ease-out);
+  box-shadow: 0 8px 30px rgba(184,255,0,.20), 0 2px 8px rgba(0,0,0,.15);
+  transition: transform 300ms cubic-bezier(.2,.8,.2,1), box-shadow 300ms ease;
 }
 
 .whatsappCta svg {
-  color: #a47d2f;
+  padding: .48rem;
+  box-sizing: content-box;
+  border-radius: 50%;
+  background: #11150f;
+  color: #b8ff00;
 }
 
 .whatsappCta:hover {
-  background: var(--contact-gold);
-  color: var(--contact-ink);
+  color: #11150f;
   transform: translateY(-2px);
+  box-shadow: 0 12px 38px rgba(184,255,0,.28), 0 4px 12px rgba(0,0,0,.18);
 }
+.whatsappCta:active { transform: translateY(0) scale(.985); }
+.whatsappCta:focus-visible { outline: 2px solid #b8ff00; outline-offset: 4px; }
 
 .formCard {
   position: relative;
