@@ -9,7 +9,6 @@ import {
   Header,
   Hero,
   SectionHeader,
-  WhatsAppButton,
 } from '@/components/site';
 import { ScrollReveal } from '@/components/scroll-reveal';
 
@@ -205,7 +204,7 @@ export default function Home() {
                   <span>No centro da gestão</span>
                 </div>
               </div>
-              <Cta href="/sobre" dark>
+              <Cta href="/links" dark>
                 Conheça a trajetória
               </Cta>
             </ScrollReveal>
@@ -530,7 +529,6 @@ export default function Home() {
         />
       </main>
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

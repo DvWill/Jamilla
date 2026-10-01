@@ -20,9 +20,8 @@ import {
 import { GPSHeader } from './gps-header';
 import { GPSMethodSection } from './gps-method-section';
 import { GPSPainPoints } from './gps-pain-points';
-import { PremiumCta } from './premium-cta';
 import { ScrollReveal } from './scroll-reveal';
-import { FooterAgencyCredit } from './footer-agency-credit';
+import { Footer } from './site';
 import { TestimonialsCarousel } from './testimonials-carousel';
 import styles from './gps-landing.module.css';
 
@@ -339,23 +338,7 @@ export function GPSLanding() {
         </div>
       </section>
 
-      <footer className={styles.footer}>
-        <div className={`${styles.wrap} ${styles.footerGrid}`}>
-          <div><div className={styles.footerBrand}>GPS <b>5.0</b></div><p>Formação em gestão escolar e liderança.</p></div>
-          <nav>{[
-            ['Início', '#inicio'],
-            ['Método', '#metodo'],
-            ['Benefícios', '#beneficios'],
-            ['Depoimentos', '#depoimentos'],
-            ['Dúvidas', '#faq'],
-            ['Contato', '/contato'],
-          ].map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</nav>
-          <div><p>Jamilla Salviano</p><span>Instagram</span><span>LinkedIn</span></div>
-        </div>
-        <div className={`${styles.wrap} ${styles.footerBottom}`}><span>© 2026 Jamilla Salviano. Todos os direitos reservados.</span><span>Política de Privacidade &nbsp; • &nbsp; Termos de Uso</span></div>
-        <FooterAgencyCredit className={styles.wrap} />
-      </footer>
-      <PremiumCta />
+      <Footer variant="gps" />
     </main>
   );
 }

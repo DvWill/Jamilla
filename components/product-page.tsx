@@ -26,7 +26,6 @@ import {
   Header,
   Hero,
   SectionHeader,
-  WhatsAppButton,
 } from './site';
 import { ScrollReveal } from './scroll-reveal';
 import { JamillaLibraryBooks } from './jamilla-library-books';
@@ -589,7 +588,7 @@ export function ProductPage(p: Props) {
                 Uma condução humana, direta e comprometida com transformações que
                 continuam depois do encontro.
               </p>
-              <Cta href="/sobre" dark>
+              <Cta href="/links" dark>
                 Conheça Jamilla
               </Cta>
             </ScrollReveal>
@@ -690,7 +689,6 @@ export function ProductPage(p: Props) {
         />
       </main>
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

@@ -10,7 +10,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import { LinksTrilhaCard } from '@/components/links-featured-card';
-import { FooterAgencyCredit } from '@/components/footer-agency-credit';
+import { Footer } from '@/components/site';
 import { isTrilhaFeatured } from '@/lib/site-config';
 
 export const metadata: Metadata = {
@@ -73,7 +73,8 @@ export default function LinksPage() {
   const trilhaIsFeatured = isTrilhaFeatured();
 
   return (
-    <main className="links-v2">
+    <>
+      <main className="links-v2">
       <div className="links-v2__ambient" aria-hidden="true" />
       <div className="links-v2__frame">
         <section className="links-v2__hero" aria-labelledby="links-v2-title">
@@ -135,12 +136,9 @@ export default function LinksPage() {
           )}
         </nav>
 
-        <footer className="links-v2__footer">
-          <Link href="/">jamillasalviano.com.br</Link>
-          <span>FORMAÇÃO QUE TRANSFORMA PESSOAS E RESULTADOS.</span>
-          <FooterAgencyCredit />
-        </footer>
       </div>
-    </main>
+      </main>
+      <Footer variant="links" />
+    </>
   );
 }

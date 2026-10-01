@@ -28,6 +28,7 @@ export function FooterAgencyCredit({
           sizes="(max-width: 620px) 84px, 100px"
         />
       </a>
+      <span className="footer-agency-credit__caption">Design &amp; desenvolvimento digital</span>
     </div>
   );
 }

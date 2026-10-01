@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-import { Eyebrow, Footer, Header, WhatsAppButton } from '@/components/site';
+import { Eyebrow, Footer, Header } from '@/components/site';
 import { ContactForm } from './contact-form';
 import styles from './page.module.css';
 import { whatsappUrl } from './whatsapp';
@@ -70,7 +70,6 @@ export default function ContactPage() {
         </section>
       </main>
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

@@ -1,7 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const routes = [
-  '/inicio',
   '/links',
   '/trilha-da-lideranca',
   '/reset',
@@ -9,7 +8,6 @@ const routes = [
   '/ata-inteligente',
   '/instituto-de-educacao-e-lideranca',
   '/contato',
-  '/sobre',
   '/gps-5-0',
 ];
 const widths = [375, 390, 430, 768, 1024, 1440];
@@ -17,7 +15,6 @@ const screenshotRoutes = new Set([
   '/links',
   '/trilha-da-lideranca',
   '/palestras',
-  '/sobre',
   '/gps-5-0',
 ]);
 const screenshotWidths = new Set([375, 1440]);

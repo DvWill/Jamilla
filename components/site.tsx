@@ -34,19 +34,80 @@ const navItems = [
   },
 ];
 
-const mobileItems = [
-  { label: 'Início', href: '/' },
-  ...navItems,
-  { label: 'Contato', href: '/contato' },
-];
+const mobileItems = [...navItems, { label: 'Contato', href: '/contato' }];
 
-const instituteNavItems = [
-  { label: 'Início', href: '/instituto-de-educacao-e-lideranca' },
-  { label: 'Sobre', href: '#sobre-instituto' },
-  { label: 'Soluções', href: '#solucoes' },
-  { label: 'Metodologia', href: '#metodologia' },
-  { label: 'Contato', href: '/contato' },
-];
+type FooterVariant = 'default' | 'instituto' | 'trilha' | 'reset' | 'palestras' | 'ata' | 'gps' | 'links';
+type FooterLink = { label: string; href: string; external?: boolean };
+type FooterConfig = {
+  brand: string;
+  tagline: string;
+  logo?: string;
+  primary: { title: string; links: FooterLink[] };
+  secondary: { title: string; links: FooterLink[] };
+  copyright: string;
+};
+
+const footerConfigs: Record<FooterVariant, FooterConfig> = {
+  default: {
+    brand: 'Jamilla Salviano', tagline: 'Liderança, gestão e educação com propósito.',
+    primary: { title: 'Jamilla Salviano', links: [{ label: 'Projetos e formações', href: '/links' }, { label: 'Fale com Jamilla', href: '/contato' }] },
+    secondary: { title: 'Soluções', links: [{ label: 'Trilha da Liderança', href: '/trilha-da-lideranca' }, { label: 'RESET', href: '/reset' }, { label: 'Palestras', href: '/palestras' }, { label: 'ATA Inteligente', href: '/ata-inteligente' }, { label: 'Instituto', href: '/instituto-de-educacao-e-lideranca' }] },
+    copyright: '© 2026 Jamilla Salviano. Todos os direitos reservados.',
+  },
+  instituto: {
+    brand: 'Instituto de Educação e Liderança', tagline: 'Estratégia, formação e liderança para redes que querem avançar.', logo: '/images/instituto-logo.png',
+    primary: { title: 'Instituto', links: [{ label: 'Sobre o Instituto', href: '#sobre-instituto' }, { label: 'Áreas de atuação', href: '#areas' }, { label: 'Nosso direcionamento', href: '#missao' }, { label: 'Princípios', href: '#valores' }] },
+    secondary: { title: 'Soluções', links: [{ label: 'Como atuamos', href: '#solucoes' }, { label: 'Nossa abordagem', href: '#metodologia' }, { label: 'Fale com o Instituto', href: whatsappUrl(), external: true }] },
+    copyright: '© 2026 Instituto de Educação e Liderança. Todos os direitos reservados.',
+  },
+  trilha: {
+    brand: 'Jamilla Salviano', tagline: 'Liderança, gestão e educação com propósito.',
+    primary: { title: 'Trilha', links: [{ label: 'Sobre a Trilha', href: '#trilha-o-que-e' }, { label: 'Para quem é', href: '#trilha-dores-title' }, { label: 'O que você vai aprender', href: '#trilha-recebe-title' }, { label: 'Módulos', href: '#trilha-o-que-e' }] },
+    secondary: { title: 'Acesso', links: [{ label: 'Garantir minha vaga', href: 'https://pay.kiwify.com.br/ZrK7t7E', external: true }, { label: 'Entrar em contato', href: '/contato' }] },
+    copyright: '© 2026 Jamilla Salviano. Todos os direitos reservados.',
+  },
+  reset: {
+    brand: 'Jamilla Salviano', tagline: 'Liderança, gestão e educação com propósito.',
+    primary: { title: 'RESET', links: [{ label: 'Sobre a mentoria', href: '/reset' }, { label: 'Como funciona', href: '/reset' }, { label: 'Benefícios', href: '/reset' }, { label: 'Resultados', href: '/reset' }] },
+    secondary: { title: 'Contato', links: [{ label: 'Quero participar', href: '/contato' }, { label: 'Falar com a equipe', href: '/contato' }] },
+    copyright: '© 2026 Jamilla Salviano. Todos os direitos reservados.',
+  },
+  palestras: {
+    brand: 'Jamilla Salviano', tagline: 'Liderança, gestão e educação com propósito.',
+    primary: { title: 'Palestras', links: [{ label: 'Sobre a Jamilla', href: '#quem-e-jamilla' }, { label: 'Temas de palestras', href: '/palestras' }, { label: 'Experiência', href: '#palestras-galeria-title' }, { label: 'Eventos', href: '#palestras-galeria-title' }] },
+    secondary: { title: 'Contratação', links: [{ label: 'Leve Jamilla para seu evento', href: '/contato' }, { label: 'Fale com a equipe', href: '/contato' }] },
+    copyright: '© 2026 Jamilla Salviano. Todos os direitos reservados.',
+  },
+  ata: {
+    brand: 'Jamilla Salviano', tagline: 'Liderança, gestão e educação com propósito.',
+    primary: { title: 'ATA Inteligente', links: [{ label: 'Sobre', href: '/ata-inteligente' }, { label: 'Como funciona', href: '/ata-inteligente' }, { label: 'Benefícios', href: '/ata-inteligente' }, { label: 'Conteúdo', href: '/ata-inteligente' }] },
+    secondary: { title: 'Acesso', links: [{ label: 'Conhecer o programa', href: '/ata-inteligente' }, { label: 'Falar com a equipe', href: '/contato' }] },
+    copyright: '© 2026 Jamilla Salviano. Todos os direitos reservados.',
+  },
+  gps: {
+    brand: 'GPS 5.0', tagline: 'Formação em gestão escolar e liderança.',
+    primary: { title: 'GPS 5.0', links: [{ label: 'Sobre a formação', href: '#sobre' }, { label: 'Método', href: '#metodo' }, { label: 'Benefícios', href: '#beneficios' }, { label: 'Dúvidas frequentes', href: '#faq' }] },
+    secondary: { title: 'Acesso', links: [{ label: 'Conhecer o GPS 5.0', href: '#inscricao' }, { label: 'Entrar em contato', href: '/contato' }] },
+    copyright: '© 2026 Jamilla Salviano. Todos os direitos reservados.',
+  },
+  links: {
+    brand: 'Jamilla Salviano', tagline: 'Liderança, gestão e educação com propósito.',
+    primary: { title: 'Projetos', links: [{ label: 'Trilha da Liderança', href: '/trilha-da-lideranca' }, { label: 'Experiência RESET', href: '/reset' }, { label: 'Palestras', href: '/palestras' }] },
+    secondary: { title: 'Conexões', links: [{ label: 'Instituto', href: '/instituto-de-educacao-e-lideranca' }, { label: 'Fale com Jamilla', href: '/contato' }] },
+    copyright: '© 2026 Jamilla Salviano. Todos os direitos reservados.',
+  },
+};
+
+function getFooterVariant(pathname: string): FooterVariant {
+  if (pathname.includes('instituto-de-educacao-e-lideranca')) return 'instituto';
+  if (pathname.includes('trilha-da-lideranca')) return 'trilha';
+  if (pathname.includes('palestras')) return 'palestras';
+  if (pathname.includes('ata-inteligente')) return 'ata';
+  if (pathname.includes('gps-5-0')) return 'gps';
+  if (pathname.includes('reset')) return 'reset';
+  if (pathname.includes('links')) return 'links';
+  return 'default';
+}
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return <p className="eyebrow">{children}</p>;
@@ -198,11 +259,8 @@ export function EditorialCard({
 
 export function Header() {
   const pathname = usePathname();
-  const isInstitute = pathname === '/instituto-de-educacao-e-lideranca';
-  const visibleNavItems = isInstitute ? instituteNavItems : navItems;
-  const visibleMobileItems = isInstitute
-    ? instituteNavItems
-    : mobileItems;
+  const visibleNavItems = navItems;
+  const visibleMobileItems = mobileItems;
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -233,27 +291,16 @@ export function Header() {
 
   return (
     <header
-      className={`site-header${isScrolled ? ' is-scrolled' : ''}${pathname === '/instituto-de-educacao-e-lideranca' ? ' site-header--institute' : ''}`}
+      className={`site-header${isScrolled ? ' is-scrolled' : ''}`}
     >
       <div className="header-inner">
         <Link
-          className={`logo${isInstitute ? ' institute-brand-logo' : ''}`}
-          href={isInstitute ? '/instituto-de-educacao-e-lideranca' : '/links'}
-          aria-label={isInstitute ? 'Instituto de Educação e Liderança — início' : 'Jamilla Salviano — página de links'}
+          className="logo"
+          href="/links"
+          aria-label="Jamilla Salviano — página de links"
         >
-          {isInstitute ? (
-            <Image
-              src="/images/instituto-logo.png"
-              width={190}
-              height={190}
-              alt="Instituto de Educação e Liderança"
-            />
-          ) : (
-            <>
-              <strong>JAMILLA SALVIANO</strong>
-              <span>LIDERANÇA &amp; EDUCAÇÃO</span>
-            </>
-          )}
+          <strong>JAMILLA SALVIANO</strong>
+          <span>LIDERANÇA &amp; EDUCAÇÃO</span>
         </Link>
 
         <nav className="desktop-nav" aria-label="Navegação principal">
@@ -269,8 +316,8 @@ export function Header() {
           ))}
         </nav>
 
-        <Link className="header-cta" href={isInstitute ? '/contato' : '/contato'}>
-          <span>{isInstitute ? 'Fale com o Instituto' : 'Vamos conversar'}</span>
+        <Link className="header-cta" href="/contato">
+          <span>Vamos conversar</span>
           <ArrowRight size={14} aria-hidden="true" />
         </Link>
 
@@ -368,80 +415,75 @@ export function FinalCta({
   );
 }
 
-export function Footer() {
+function FooterLinkItem({ link }: { link: FooterLink }) {
+  return link.external
+    ? <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+    : <Link href={link.href}>{link.label}</Link>;
+}
+
+export function Footer({ variant }: { variant?: FooterVariant }) {
+  const pathname = usePathname();
+  const config = footerConfigs[variant ?? getFooterVariant(pathname)];
+
   return (
-    <footer className="site-footer">
-      <ScrollReveal className="wrap footer-grid">
-        <div className="footer-brand">
-          <Link
-            className="logo"
-            href="/links"
-            aria-label="Jamilla Salviano — página de links"
-          >
-            <strong>JAMILLA SALVIANO</strong>
-            <span>LIDERANÇA &amp; EDUCAÇÃO</span>
-          </Link>
-          <p>Educação, liderança e transformação de equipes.</p>
-        </div>
-        <div>
-          <b>Institucional</b>
-          <Link href="/">Início</Link>
-          <Link href="/sobre">Sobre</Link>
-          <Link href="/contato">Contato</Link>
-        </div>
-        <div>
-          <b>Soluções</b>
-          <Link href="/trilha-da-lideranca">Trilha da Liderança</Link>
-          <Link href="/reset">RESET</Link>
-          <Link href="/palestras">Palestras</Link>
-          <Link href="/ata-inteligente">ATA Inteligente</Link>
-          <Link href="/instituto-de-educacao-e-lideranca">Instituto</Link>
-        </div>
-        <div>
-          <b>Canais</b>
-          <a
-            href={SITE_CONFIG.instituteInstagram}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram do Instituto
-          </a>
-          <a
-            href={whatsappUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WhatsApp
-          </a>
-        </div>
-      </ScrollReveal>
-      <ScrollReveal className="wrap copyright" delay={90}>
-        © 2026 Jamilla Salviano. Todos os direitos reservados.
-      </ScrollReveal>
-      <FooterAgencyCredit className="wrap" />
-    </footer>
+    <>
+      <footer className="site-footer">
+        <ScrollReveal className="wrap footer-grid">
+          <div className="footer-brand">
+            {config.logo ? (
+              <Link href="/instituto-de-educacao-e-lideranca" className="footer-brand__logo" aria-label={config.brand}>
+                <Image src={config.logo} alt={config.brand} width={220} height={220} sizes="(max-width: 620px) 150px, 180px" />
+              </Link>
+            ) : (
+              <Link className="footer-brand__wordmark" href="/links" aria-label="Jamilla Salviano — página de links">
+                <strong>{config.brand}</strong><span>Liderança &amp; educação</span>
+              </Link>
+            )}
+            <p>{config.tagline}</p>
+          </div>
+          <nav className="footer-nav" aria-label={config.primary.title}>
+            <b>{config.primary.title}</b>
+            {config.primary.links.map((link) => <FooterLinkItem key={link.label} link={link} />)}
+          </nav>
+          <nav className="footer-nav" aria-label={config.secondary.title}>
+            <b>{config.secondary.title}</b>
+            {config.secondary.links.map((link) => <FooterLinkItem key={link.label} link={link} />)}
+          </nav>
+          <div className="footer-meta">
+            <nav className="footer-nav" aria-label="Redes sociais">
+              <b>Redes sociais</b>
+              <a href={SITE_CONFIG.instituteInstagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            </nav>
+            <FooterAgencyCredit />
+          </div>
+        </ScrollReveal>
+        <ScrollReveal className="wrap copyright" delay={90}>{config.copyright}</ScrollReveal>
+      </footer>
+      <WhatsAppButton />
+    </>
   );
 }
 
 export function WhatsAppButton() {
   const pathname = usePathname();
-  const context = pathname.includes('trilha')
-    ? 'Gostaria de saber mais sobre a Trilha da Liderança.'
+  const details = pathname.includes('trilha')
+    ? { label: 'Quero participar', context: 'Gostaria de saber mais sobre a Trilha da Liderança.' }
     : pathname.includes('gps')
-      ? 'Tenho interesse no Método GPS da Liderança Escolar.'
+      ? { label: 'Conhecer o GPS 5.0', context: 'Tenho interesse no Método GPS da Liderança Escolar.' }
       : pathname.includes('palestras')
-        ? 'Gostaria de conversar sobre uma palestra com Jamilla Salviano.'
+        ? { label: 'Fale com a Jamilla', context: 'Gostaria de conversar sobre uma palestra com Jamilla Salviano.' }
         : pathname.includes('reset')
-          ? 'Gostaria de saber mais sobre a Experiência RESET.'
+          ? { label: 'Quero participar do RESET', context: 'Gostaria de saber mais sobre a Experiência RESET.' }
           : pathname.includes('ata-inteligente')
-            ? 'Gostaria de saber mais sobre o minicurso ATA Inteligente.'
+            ? { label: 'Conhecer o programa', context: 'Gostaria de saber mais sobre o minicurso ATA Inteligente.' }
             : pathname.includes('instituto')
-              ? 'Gostaria de conversar sobre o Instituto de Educação e Liderança.'
-              : 'Vim pelo site e gostaria de entender qual solução faz mais sentido para a minha escola.';
+              ? { label: 'Fale com o Instituto', context: 'Gostaria de conversar sobre o Instituto de Educação e Liderança.' }
+              : { label: 'Fale com a Jamilla', context: 'Vim pelo site e gostaria de entender qual solução faz mais sentido para a minha escola.' };
 
   return (
-    <a aria-label="Fale com a Jamilla pelo WhatsApp" className="whatsapp" href={whatsappUrl(`Olá, Jamilla! ${context}`)} target="_blank" rel="noopener noreferrer">
-      <span className="whatsapp__label">Fale com a Jamilla</span>
+    <a aria-label={`${details.label} pelo WhatsApp`} className="whatsapp" href={whatsappUrl(`Olá, Jamilla! ${details.context}`)} target="_blank" rel="noopener noreferrer">
+      <span className="whatsapp__label">{details.label}</span>
       <span className="whatsapp__icon" aria-hidden="true">
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <path d="M16 4.5A11.5 11.5 0 0 0 6.1 21.84L4.5 27.5l5.8-1.52A11.5 11.5 0 1 0 16 4.5Z" />
