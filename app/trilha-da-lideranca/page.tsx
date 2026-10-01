@@ -66,8 +66,8 @@ export default function Page() {
           { label: 'Horário', value: 'A confirmar' },
         ],
         price: 'R$ 37,90',
-        note: 'Condições e acesso conforme confirmação no checkout.',
-        button: 'Quero participar da Trilha',
+        note: 'Garanta sua participação na imersão ao vivo e saia com orientações práticas para aplicar na sua realidade escolar.',
+        button: 'Quero garantir minha vaga',
       }}
     />
   );

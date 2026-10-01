@@ -48,7 +48,7 @@ export default function Page() {
       challengeDescription="Sem um registro claro, acordos se perdem, responsabilidades ficam vagas e a gestão precisa reconstruir conversas importantes. A ATA Inteligente organiza esse processo com orientação e modelos práticos."
       primaryAction="Quero o ATA Inteligente"
       finalAction="Quero acessar o minicurso"
-      cta="Pare de depender da memória ou do improviso para registrar decisões."
+      cta={<>Pare de depender da memória ou do improviso para registrar <em>decisões.</em></>}
       checkoutHref="https://pay.kiwify.com.br/UinkB7z"
       offer={{
         bullets: [

@@ -348,7 +348,6 @@ export default function Home() {
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-              <Cta href="/trilha-da-lideranca">Explorar a Trilha</Cta>
             </ScrollReveal>
             <ScrollReveal
               className="feature-section__visual"

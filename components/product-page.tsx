@@ -2,6 +2,7 @@ import {
   ArrowUp,
   Brain,
   BookOpenCheck,
+  CalendarDays,
   ChartNoAxesCombined,
   ClipboardCheck,
   CircleCheck,
@@ -9,10 +10,13 @@ import {
   FileText,
   MessageCircle,
   MonitorPlay,
+  ShieldCheck,
   Target,
   UsersRound,
+  Zap,
 } from 'lucide-react';
 import Image from 'next/image';
+import { type ReactNode } from 'react';
 import {
   Cta,
   EditorialCard,
@@ -41,7 +45,7 @@ type Props = {
   itemDescriptions?: string[];
   formats: string[];
   formatDescriptions?: string[];
-  cta: string;
+  cta: ReactNode;
   challengeDescription?: string;
   primaryAction?: string;
   contactHref?: string;
@@ -161,7 +165,7 @@ export function ProductPage(p: Props) {
     <>
       <Header />
       <main
-        className={`product-page product-page--${p.theme}${p.heroVariant === 'trilha' ? ' product-page--trilha' : ''}`}
+        className={`product-page product-page--${p.theme}${p.heroVariant === 'trilha' ? ' product-page--trilha' : ''}${p.heroVariant === 'reset' ? ' product-page--reset' : ''}${p.heroVariant === 'talks' ? ' product-page--talks' : ''}${p.heroVariant === 'ata' ? ' product-page--ata' : ''}`}
       >
         <Hero className={`product-hero${hasHeroBackdrop ? ' product-hero--with-background' : ''}${p.heroVariant === 'talks' ? ' product-hero--talks' : ''}${p.heroVariant === 'trilha' ? ' trilha-hero' : ''}${p.heroVariant === 'reset' ? ' reset-hero' : ''}${p.heroVariant === 'ata' ? ' ata-hero' : ''}`}>
           {p.heroVariant === 'ata' ? (
@@ -282,6 +286,38 @@ export function ProductPage(p: Props) {
           </>
           )}
         </Hero>
+
+        {p.heroVariant === 'trilha' && p.offer ? (
+          <section className="trilha-priority-offer" aria-labelledby="trilha-priority-offer-title">
+            <div className="wrap trilha-priority-offer__wrap">
+              <ScrollReveal className="trilha-priority-offer__content" variant="scale">
+                <span className="trilha-priority-offer__badge">Investimento especial</span>
+                <h2 id="trilha-priority-offer-title">Transforme sua liderança escolar por apenas</h2>
+                <div className="trilha-priority-offer__price-row">
+                  <p className="trilha-priority-offer__price" aria-label={p.offer.price}>
+                    <span>R$</span>
+                    <strong>{p.offer.price.replace(/^R\$\s*/, '')}</strong>
+                  </p>
+                  <p className="trilha-priority-offer__live-access">
+                    <CalendarDays aria-hidden="true" />
+                    <span>acesso à imersão<br />ao vivo</span>
+                  </p>
+                </div>
+                <div className="trilha-priority-offer__divider" aria-hidden="true" />
+                <ul className="trilha-priority-offer__benefits" aria-label="Benefícios da inscrição">
+                  <li><MonitorPlay aria-hidden="true" /><span>Imersão<br />ao vivo</span></li>
+                  <li><Zap aria-hidden="true" /><span>Acesso<br />imediato</span></li>
+                  <li><ShieldCheck aria-hidden="true" /><span>Pagamento<br />seguro</span></li>
+                </ul>
+                <Cta className="trilha-priority-offer__button" href={p.checkoutHref ?? primaryHref}>
+                  {p.offer.button}
+                </Cta>
+                <small>🔒 Pagamento seguro pela plataforma Kiwify.</small>
+              </ScrollReveal>
+              <span className="trilha-priority-offer__rings" aria-hidden="true" />
+            </div>
+          </section>
+        ) : null}
 
         {p.heroVariant === 'talks' && p.editorialShowcase ? (
           <section className="section talks-showcase" aria-label="Clareza, estratégia e coragem">
@@ -561,9 +597,43 @@ export function ProductPage(p: Props) {
         </section>
 
         {p.offer ? (
-          <section className="offer-section">
-            <div className="wrap offer-box">
+          <section className={`offer-section${p.heroVariant === 'ata' ? ' ata-offer-section' : ''}`}>
+            <div className={`wrap offer-box${p.heroVariant === 'ata' ? ' ata-offer-box' : ''}`}>
               <ScrollReveal variant="scale">
+                {p.heroVariant === 'ata' ? (
+                  <div className="ata-offer-grid">
+                    <div className="ata-offer-copy">
+                      <span className="ata-offer-badge">Oferta especial</span>
+                      <h2>Tudo o que você precisa para agir com mais segurança na gestão escolar.</h2>
+                      {p.offer.bullets ? (
+                        <ul className="ata-offer-benefits">
+                          {p.offer.bullets.map((item) => (
+                            <li key={item}>
+                              <CircleCheck aria-hidden="true" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </div>
+
+                    <aside className="ata-offer-card" aria-label="Investimento do minicurso">
+                      <span>Investimento único</span>
+                      <p className="ata-offer-price">R$ 97,90</p>
+                      <p className="ata-offer-cash">à vista</p>
+                      <p className="ata-offer-installments">ou <strong>12x de R$ 10,13</strong></p>
+                      <p className="ata-offer-value">Menos de R$ 0,34 por dia para ter materiais práticos sempre à mão.</p>
+                      <Cta className="ata-offer-button" href={p.checkoutHref ?? '/contato'}>
+                        Quero garantir meu acesso
+                      </Cta>
+                      <div className="ata-offer-trust" aria-label="Informações de segurança da compra">
+                        <span><ShieldCheck aria-hidden="true" />Pagamento seguro via Kiwify</span>
+                        <span><CircleCheck aria-hidden="true" />Acesso liberado após a confirmação do pagamento</span>
+                        <span><ShieldCheck aria-hidden="true" />Compra 100% segura</span>
+                      </div>
+                    </aside>
+                  </div>
+                ) : <>
                 {p.offer.meta ? (
                   <div className="offer-meta">
                     {p.offer.meta.map((item) => (
@@ -574,7 +644,7 @@ export function ProductPage(p: Props) {
                     ))}
                   </div>
                 ) : null}
-                <div className="offer-main">
+                <div className={`offer-main${p.heroVariant === 'trilha' ? ' offer-main--trilha' : ''}`}>
                   {p.offer.bullets ? (
                     <div className={p.heroVariant === 'trilha' ? 'offer-inclusions offer-inclusions--trilha' : 'offer-inclusions'}>
                       {p.heroVariant === 'trilha' ? <p>Na sua inscrição, você recebe:</p> : null}
@@ -588,13 +658,25 @@ export function ProductPage(p: Props) {
                       </ul>
                     </div>
                   ) : null}
-                  <p className="offer-price">{p.offer.price}</p>
+                  {p.heroVariant === 'trilha' ? (
+                    <div className="trilha-offer-decision">
+                      <span className="trilha-offer-badge">Investimento especial</span>
+                      <p className="trilha-offer-title">Transforme sua liderança escolar por apenas</p>
+                      <p className="offer-price trilha-offer-price" aria-label={p.offer.price}>
+                        <span>R$</span>
+                        <strong>{p.offer.price.replace(/^R\$\s*/, '')}</strong>
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="offer-price">{p.offer.price}</p>
+                  )}
                   {p.offer.note ? <p className="offer-note">{p.offer.note}</p> : null}
                   <Cta className="offer-button" href={p.checkoutHref ?? '/contato'}>
                     {p.offer.button}
                   </Cta>
                   <small className="offer-safe">Pagamento seguro pela plataforma Kiwify.</small>
                 </div>
+                </>}
               </ScrollReveal>
             </div>
           </section>
@@ -604,7 +686,7 @@ export function ProductPage(p: Props) {
           action={p.finalAction ?? (p.checkoutHref ? 'Garantir minha vaga' : 'Falar com Jamilla')}
           href={primaryHref}
           title={p.cta}
-          variant={p.theme === 'navy' ? 'wine' : 'navy'}
+          variant={p.heroVariant === 'ata' ? 'ata' : p.theme === 'navy' ? 'wine' : 'navy'}
         />
       </main>
       <Footer />

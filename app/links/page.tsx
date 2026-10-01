@@ -8,7 +8,6 @@ import {
   MessageCircle,
   Mic2,
   RotateCcw,
-  UserRound,
 } from 'lucide-react';
 import { LinksTrilhaCard } from '@/components/links-featured-card';
 import { FooterAgencyCredit } from '@/components/footer-agency-credit';
@@ -34,7 +33,6 @@ const links = [
     action: 'Conhecer o RESET',
     href: '/reset',
     image: '/images/jamilla-reset.png',
-    position: 'center 48%',
     icon: RotateCcw,
   },
   {
@@ -43,7 +41,6 @@ const links = [
     action: 'Ver palestras',
     href: '/palestras',
     image: '/images/jamilla-palestras-transparent.png',
-    position: 'center 32%',
     icon: Mic2,
   },
   {
@@ -52,7 +49,6 @@ const links = [
     action: 'Conhecer o minicurso',
     href: '/ata-inteligente',
     image: '/images/jamilla-red.webp',
-    position: 'center 24%',
     icon: FileText,
   },
   {
@@ -61,17 +57,7 @@ const links = [
     action: 'Conhecer o Instituto',
     href: '/instituto-de-educacao-e-lideranca',
     image: '/images/links-stage-bg.jpeg',
-    position: '58% center',
     icon: GraduationCap,
-  },
-  {
-    title: 'Quem é Jamilla Salviano',
-    description: 'Conheça sua trajetória na educação e na liderança escolar.',
-    action: 'Conhecer Jamilla',
-    href: '/sobre',
-    image: '/images/jamilla-cream.webp',
-    position: 'center 18%',
-    icon: UserRound,
   },
   {
     title: 'Vamos conversar?',
@@ -79,7 +65,6 @@ const links = [
     action: 'Abrir contato',
     href: '/contato',
     image: '/images/jamilla-diagnostico.webp',
-    position: 'center 34%',
     icon: MessageCircle,
   },
 ];
@@ -92,13 +77,6 @@ export default function LinksPage() {
       <div className="links-v2__ambient" aria-hidden="true" />
       <div className="links-v2__frame">
         <section className="links-v2__hero" aria-labelledby="links-v2-title">
-          <Link
-            className="links-v2__monogram"
-            href="/inicio"
-            aria-label="Abrir o site completo"
-          >
-            JS
-          </Link>
           <div className="links-v2__hero-art" aria-hidden="true">
             <span className="links-v2__halo" />
             <span className="links-v2__hero-label">
@@ -128,7 +106,7 @@ export default function LinksPage() {
         <nav className="links-v2__list" aria-label="Produtos e serviços">
           {links.map(
             (
-              { title, description, action, href, image, position, icon: Icon },
+              { title, description, action, href, image, icon: Icon },
               index,
             ) => (
               <Link className="links-v2__item" href={href} key={href}>
@@ -141,7 +119,6 @@ export default function LinksPage() {
                     sizes="64px"
                     src={image}
                     alt=""
-                    style={{ objectPosition: position }}
                   />
                 </span>
                 <span className="links-v2__item-copy">
@@ -159,7 +136,7 @@ export default function LinksPage() {
         </nav>
 
         <footer className="links-v2__footer">
-          <Link href="/inicio">jamillasalviano.com.br</Link>
+          <Link href="/">jamillasalviano.com.br</Link>
           <span>FORMAÇÃO QUE TRANSFORMA PESSOAS E RESULTADOS.</span>
           <FooterAgencyCredit />
         </footer>

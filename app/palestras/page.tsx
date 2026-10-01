@@ -48,8 +48,8 @@ export default function Page() {
         title: 'Presença',
         images: [
           { src: '/images/palestras-hero-background.jpeg', label: 'Imagem de palco disponível no projeto', alt: 'Palco de uma palestra disponível nos materiais da Jamilla Salviano' },
-          { src: '/images/links-stage-bg.jpeg', label: 'Apresentação para uma plateia', alt: 'Jamilla Salviano em uma apresentação para uma plateia' },
-          { src: '/images/jamilla-palestras.png', label: 'Material visual da página de palestras', alt: 'Jamilla Salviano em material visual da página de palestras' },
+          { src: '/images/jamilla-palestra-palco-nova.jpeg', label: 'Apresentação para uma plateia', alt: 'Jamilla Salviano em uma apresentação para uma plateia' },
+          { src: '/images/jamilla-palestra-auditorio.png', label: 'Material visual da página de palestras', alt: 'Jamilla Salviano em material visual da página de palestras' },
         ],
       }}
       problem="Preencher a agenda é fácil. Mudar uma realidade exige método."

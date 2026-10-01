@@ -35,8 +35,16 @@ const navItems = [
 ];
 
 const mobileItems = [
-  { label: 'Início', href: '/inicio' },
+  { label: 'Início', href: '/' },
   ...navItems,
+  { label: 'Contato', href: '/contato' },
+];
+
+const instituteNavItems = [
+  { label: 'Início', href: '/instituto-de-educacao-e-lideranca' },
+  { label: 'Sobre', href: '#sobre-instituto' },
+  { label: 'Soluções', href: '#solucoes' },
+  { label: 'Metodologia', href: '#metodologia' },
   { label: 'Contato', href: '/contato' },
 ];
 
@@ -190,6 +198,11 @@ export function EditorialCard({
 
 export function Header() {
   const pathname = usePathname();
+  const isInstitute = pathname === '/instituto-de-educacao-e-lideranca';
+  const visibleNavItems = isInstitute ? instituteNavItems : navItems;
+  const visibleMobileItems = isInstitute
+    ? instituteNavItems
+    : mobileItems;
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -224,16 +237,27 @@ export function Header() {
     >
       <div className="header-inner">
         <Link
-          className="logo"
-          href="/inicio"
-          aria-label="Jamilla Salviano — página inicial"
+          className={`logo${isInstitute ? ' institute-brand-logo' : ''}`}
+          href={isInstitute ? '/instituto-de-educacao-e-lideranca' : '/links'}
+          aria-label={isInstitute ? 'Instituto de Educação e Liderança — início' : 'Jamilla Salviano — página de links'}
         >
-          <strong>JAMILLA SALVIANO</strong>
-          <span>LIDERANÇA &amp; EDUCAÇÃO</span>
+          {isInstitute ? (
+            <Image
+              src="/images/instituto-logo.png"
+              width={190}
+              height={190}
+              alt="Instituto de Educação e Liderança"
+            />
+          ) : (
+            <>
+              <strong>JAMILLA SALVIANO</strong>
+              <span>LIDERANÇA &amp; EDUCAÇÃO</span>
+            </>
+          )}
         </Link>
 
         <nav className="desktop-nav" aria-label="Navegação principal">
-          {navItems.map((item) => (
+          {visibleNavItems.map((item) => (
             <Link
               className={`nav-link${pathname === item.href ? ' is-active' : ''}`}
               href={item.href}
@@ -245,8 +269,8 @@ export function Header() {
           ))}
         </nav>
 
-        <Link className="header-cta" href="/contato">
-          <span>Vamos conversar</span>
+        <Link className="header-cta" href={isInstitute ? '/contato' : '/contato'}>
+          <span>{isInstitute ? 'Fale com o Instituto' : 'Vamos conversar'}</span>
           <ArrowRight size={14} aria-hidden="true" />
         </Link>
 
@@ -271,7 +295,7 @@ export function Header() {
       >
         <div className="mobile-menu__inner">
           <p className="eyebrow">Navegação</p>
-          {mobileItems.map((item, index) => (
+          {visibleMobileItems.map((item, index) => (
             <Link
               href={item.href}
               key={item.label}
@@ -312,7 +336,7 @@ export function FinalCta({
   description?: ReactNode;
   href?: string;
   action?: ReactNode;
-  variant?: 'wine' | 'navy';
+  variant?: 'wine' | 'navy' | 'ata';
   imageSrc?: string;
   imageAlt?: string;
 }) {
@@ -351,8 +375,8 @@ export function Footer() {
         <div className="footer-brand">
           <Link
             className="logo"
-            href="/inicio"
-            aria-label="Jamilla Salviano — página inicial"
+            href="/links"
+            aria-label="Jamilla Salviano — página de links"
           >
             <strong>JAMILLA SALVIANO</strong>
             <span>LIDERANÇA &amp; EDUCAÇÃO</span>
@@ -361,7 +385,7 @@ export function Footer() {
         </div>
         <div>
           <b>Institucional</b>
-          <Link href="/inicio">Início</Link>
+          <Link href="/">Início</Link>
           <Link href="/sobre">Sobre</Link>
           <Link href="/contato">Contato</Link>
         </div>

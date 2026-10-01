@@ -53,7 +53,6 @@ export function TalksGallery({ items }: { items: GalleryItem[] }) {
                   src={item.src}
                   alt={isActive ? item.alt : ''}
                 />
-                <figcaption>{item.label}</figcaption>
               </figure>
             );
           })}

@@ -18,7 +18,7 @@ export const SITE_CONFIG = {
     trilhaToGpsAt: null as string | null,
     gpsStartAt: null as string | null,
     gpsEndAt: null as string | null,
-    gpsAfterCampaignPath: '/inicio',
+    gpsAfterCampaignPath: '/',
   },
 } as const;
 
