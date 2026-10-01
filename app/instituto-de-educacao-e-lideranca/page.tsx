@@ -61,6 +61,15 @@ const values = [
   ['Melhoria contínua', 'Nenhuma rede precisa permanecer refém dos resultados que possui hoje. Avaliar, corrigir, aprender e avançar fazem parte do processo.'],
 ];
 
+const institutePhotos = [
+  ['/images/instituto-formacao-1.jpeg', 'Liderança na gestão escolar'],
+  ['/images/instituto-formacao-2.jpeg', 'Planejamento colaborativo'],
+  ['/images/instituto-formacao-3.jpeg', 'Acompanhamento pedagógico'],
+  ['/images/instituto-formacao-4.jpeg', 'Formação para equipes'],
+  ['/images/instituto-formacao-5.jpeg', 'Práticas educacionais'],
+  ['/images/instituto-formacao-6.jpeg', 'Aprendizagem em sala de aula'],
+] as const;
+
 export default function InstitutoPage() {
   return <><Header /><main className={styles.page}>
     <section className={styles.hero} aria-labelledby="instituto-title"><div className={styles.heroTexture} aria-hidden="true" /><div className={styles.heroBackdrop} aria-hidden="true"><Image fill priority sizes="100vw" src="/images/instituto-hero-palestra.jpeg" alt="" /></div><div className={`wrap ${styles.heroGrid}`}>
@@ -78,5 +87,6 @@ export default function InstitutoPage() {
     <section className={styles.values} id="valores" aria-labelledby="valores-title"><div className="wrap"><ScrollReveal className={styles.sectionHeading}><Eyebrow>Nossos valores</Eyebrow><h2 id="valores-title">Princípios que sustentam nossa forma de <em>transformar.</em></h2></ScrollReveal><div className={styles.valuesGrid}>{values.map(([title, description], index) => <ScrollReveal delay={index * 42} key={title}><article><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{description}</p></article></ScrollReveal>)}</div></div></section>
     <section className={styles.institutionalPhrase} aria-label="Frase institucional"><ScrollReveal><p>Desenvolvemos líderes,<br /><em>fortalecemos redes</em><br />e transformamos estratégia em <em>resultados educacionais.</em></p></ScrollReveal></section>
     <section className={styles.closing} aria-labelledby="contato-title"><div className={styles.closingImage}><Image fill sizes="100vw" src="/images/jamilla-cream.webp" alt="Jamilla Salviano em retrato institucional" /></div><div className={`wrap ${styles.closingContent}`}><ScrollReveal><Eyebrow>Vamos avançar</Eyebrow><h2 id="contato-title">Sua rede pode avançar ainda mais.</h2><p>Conte com formação, estratégia e acompanhamento para transformar desafios em resultados.</p><div className={styles.closingActions}><Cta href={contactHref}>Fale com o Instituto</Cta><a href="#solucoes">Conheça nossas soluções</a></div><small>Atendimento personalizado para redes e profissionais da educação.</small></ScrollReveal></div></section>
+    <section className={styles.photoStory} aria-labelledby="photo-story-title"><div className="wrap"><ScrollReveal className={styles.sectionHeading}><Eyebrow>Na prática</Eyebrow><h2 id="photo-story-title">Formação que acontece <em>junto das pessoas.</em></h2></ScrollReveal><div className={styles.photoGrid}>{institutePhotos.map(([src, alt], index) => <ScrollReveal key={src} className={index === 0 ? styles.photoFeature : undefined} delay={index * 45} variant="image"><figure><Image fill sizes={index === 0 ? '(max-width: 720px) 100vw, 58vw' : '(max-width: 720px) 100vw, 28vw'} src={src} alt={alt} /><figcaption>{alt}</figcaption></figure></ScrollReveal>)}</div></div></section>
   </main><Footer variant="instituto" /></>
 }

@@ -221,7 +221,7 @@ export function GPSLanding() {
       <section id="video" className={`${styles.section} ${styles.video}`}>
         <div className={`${styles.wrap} ${styles.videoGrid}`}>
           <ScrollReveal className={styles.videoFrame}>
-            <video className={styles.videoMedia} autoPlay muted loop playsInline preload="metadata" poster="/images/video-frame.jpg"><source src="/videos/lider-extraordinario.mp4" type="video/mp4" /></video>
+            <video className={styles.videoMedia} autoPlay muted loop playsInline preload="metadata"><source src="/videos/lider-extraordinario.mp4" type="video/mp4" /></video>
           </ScrollReveal>
           <div className={styles.videoCopy}>
             <p className={styles.eyebrow}>Uma formação para quem lidera</p>

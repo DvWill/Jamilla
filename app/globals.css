@@ -9256,6 +9256,21 @@ p {
 .header-cta:focus-visible,
 .mobile-menu__cta:focus-visible { outline: 2px solid #b8ff00; outline-offset: 4px; }
 
+/* The compact CTA rules above come after the base navigation breakpoints.
+   Reassert the mobile state here so the desktop CTA cannot push the menu
+   trigger outside the viewport on narrow screens. */
+@media (max-width: 900px) {
+  .site-header .desktop-nav,
+  .site-header .header-cta {
+    display: none;
+  }
+
+  .site-header .menu-btn {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+}
+
 /* Institute header keeps its own blue-and-gold signature over the landscape hero. */
 .site-header--institute,
 .site-header--institute.is-scrolled {

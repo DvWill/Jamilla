@@ -1,6 +1,9 @@
 import { mkdir, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
-const routes = [
+const defaultRoutes = [
+  '/',
   '/links',
   '/trilha-da-lideranca',
   '/reset',
@@ -10,16 +13,18 @@ const routes = [
   '/contato',
   '/gps-5-0',
 ];
-const widths = [375, 390, 430, 768, 1024, 1440];
+const defaultWidths = [320, 375, 390, 430, 768, 1024, 1440];
+const routes = process.env.QA_ROUTES?.split(',').filter(Boolean) ?? defaultRoutes;
+const widths = process.env.QA_WIDTHS?.split(',').map(Number).filter(Number.isFinite) ?? defaultWidths;
 const screenshotRoutes = new Set([
+  '/',
   '/links',
   '/trilha-da-lideranca',
   '/palestras',
   '/gps-5-0',
 ]);
 const screenshotWidths = new Set([375, 1440]);
-const outputDir =
-  'C:\\Users\\Pichau\\AppData\\Local\\Temp\\jamilla-qa';
+const outputDir = join(tmpdir(), 'jamilla-qa');
 
 await mkdir(outputDir, { recursive: true });
 
@@ -95,7 +100,7 @@ async function inspect(route, width) {
   const loaded = once('Page.loadEventFired');
   await send('Page.navigate', { url: `http://localhost:3000${route}` });
   await Promise.race([loaded, delay(10000)]);
-  await delay(180);
+  await delay(1200);
 
   const evaluation = await send('Runtime.evaluate', {
     expression: `(() => {
@@ -106,6 +111,7 @@ async function inspect(route, width) {
           const rect = element.getBoundingClientRect();
           const style = getComputedStyle(element);
           return rect.width > 1 && rect.height > 1 && style.position !== 'fixed' &&
+            style.display !== 'none' && style.visibility !== 'hidden' &&
             (rect.left < -1 || rect.right > viewport + 1);
         })
         .slice(0, 8)
@@ -136,7 +142,8 @@ async function inspect(route, width) {
       format: 'png',
       captureBeyondViewport: false,
     });
-    screenshot = `${outputDir}\\${route.slice(1).replaceAll('/', '-')}-${width}.png`;
+    const routeName = route === '/' ? 'home' : route.slice(1).replaceAll('/', '-');
+    screenshot = join(outputDir, `${routeName}-${width}.png`);
     await writeFile(screenshot, Buffer.from(capture.data, 'base64'));
   }
 
@@ -158,4 +165,22 @@ for (const route of routes) {
   }
 }
 
-process.stdout.write(`${JSON.stringify(results, null, 2)}\n`);
+const summary = {
+  checks: results.length,
+  routes: routes.length,
+  widths,
+  overflows: results.filter((result) => result.overflow).map(({ route, width, scrollWidth, clientWidth }) => ({ route, width, scrollWidth, clientWidth })),
+  accessibility: results
+    .filter((result) => result.h1Count !== 1 || result.missingAlt || result.emptyLinks || result.unnamedButtons)
+    .map(({ route, width, h1Count, missingAlt, emptyLinks, unnamedButtons }) => ({ route, width, h1Count, missingAlt, emptyLinks, unnamedButtons })),
+  offscreenControls: results
+    .flatMap((result) => result.leaking
+      .filter(({ tag }) => ['a', 'button', 'input', 'select', 'textarea'].includes(tag))
+      .map((element) => ({ route: result.route, width: result.width, ...element }))),
+  consoleErrors: results
+    .filter((result) => result.consoleErrors.length)
+    .map(({ route, width, consoleErrors }) => ({ route, width, consoleErrors })),
+  screenshots: results.flatMap((result) => result.screenshot ? [result.screenshot] : []),
+};
+
+process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
