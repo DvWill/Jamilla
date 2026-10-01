@@ -1560,6 +1560,22 @@
   overflow: visible;
   place-items: center;
   padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  clip-path: none !important;
+  animation: institute-seal-enter 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.heroLogoClip {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 50%;
   background:
@@ -1569,7 +1585,6 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.4),
     0 0 4rem rgba(246, 173, 0, 0.1);
   backdrop-filter: blur(8px);
-  animation: institute-seal-enter 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .heroLogo::before {
@@ -1643,5 +1658,255 @@
   .heroVisual::before,
   .heroVisual::after {
     animation: none;
+  }
+}
+
+/* Institutional photography — each image has a specific narrative role. */
+.heroBackdrop img {
+  object-position: 50% top;
+  filter: saturate(0.9) contrast(0.98) brightness(1.06);
+}
+
+.aboutGrid {
+  grid-template-areas:
+    'heading media'
+    'content media';
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem) clamp(2.5rem, 6vw, 6rem);
+}
+
+.aboutHeading {
+  grid-area: heading;
+  align-self: end;
+}
+
+.aboutContent {
+  grid-area: content;
+  align-self: start;
+  padding-left: 0;
+}
+
+.aboutMedia {
+  grid-area: media;
+}
+
+.aboutMedia figure,
+.pillarMedia figure,
+.impactVisual figure {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 1.35rem;
+  background: #dfe4e7;
+  box-shadow: 0 24px 60px rgba(6, 45, 91, 0.12);
+}
+
+.aboutMedia figure {
+  aspect-ratio: 4 / 3;
+}
+
+.aboutMedia img {
+  object-fit: cover;
+  object-position: 54% center;
+}
+
+.pillarsIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.pillarMedia figure {
+  aspect-ratio: 4 / 3;
+}
+
+.pillarMedia img {
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.pillarGrid {
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+}
+
+.formations {
+  padding-block: clamp(5rem, 8vw, 8rem);
+  background: #f5f2eb;
+}
+
+.formationsHeader {
+  max-width: 52rem;
+}
+
+.formationsHeader h2 {
+  max-width: 14ch;
+  margin-top: 0.75rem;
+  color: var(--blue-deep);
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.formationsHeader h2 em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.formationGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(2.75rem, 5vw, 4.5rem);
+}
+
+.formationCard {
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(11, 74, 132, 0.14);
+  border-radius: 1.2rem;
+  background: #fff;
+  box-shadow: 0 16px 36px rgba(6, 45, 91, 0.08);
+}
+
+.formationCard figure {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  margin: 0;
+  overflow: hidden;
+  background: #dfe4e7;
+}
+
+.formationCard img {
+  object-fit: cover;
+  object-position: 58% center;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.formationGrid > :global(.reveal):nth-child(2) img {
+  object-position: 59% center;
+}
+
+.formationGrid > :global(.reveal):nth-child(3) img {
+  object-position: center 18%;
+}
+
+.formationCard:hover img {
+  transform: scale(1.025);
+}
+
+.formationCard > div {
+  padding: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.formationCard span {
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.formationCard h3 {
+  margin-top: 1rem;
+  color: var(--blue-deep);
+  font-size: clamp(1.65rem, 2.2vw, 2.35rem);
+  line-height: 1.05;
+}
+
+.formationCard p {
+  margin-top: 0.85rem;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.impactVisual {
+  padding-block: clamp(4.5rem, 7vw, 7rem);
+  background: var(--paper);
+}
+
+.impactVisual figure {
+  aspect-ratio: 16 / 7;
+}
+
+.impactVisual img {
+  object-fit: cover;
+  object-position: center 46%;
+}
+
+@media (max-width: 900px) {
+  .heroBackdrop img {
+    object-position: 56% top;
+  }
+
+  .aboutGrid {
+    grid-template-areas:
+      'heading'
+      'content'
+      'media';
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .pillarsIntro {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .formationGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .formationGrid > :global(.reveal):last-child {
+    grid-column: 1 / -1;
+    width: min(100%, 32rem);
+    justify-self: center;
+  }
+
+  .formationsHeader h2 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .impactVisual figure {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 620px) {
+  .aboutMedia figure,
+  .pillarMedia figure {
+    border-radius: 1rem;
+  }
+
+  .formationGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formationGrid > :global(.reveal):last-child {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .formationCard figure {
+    aspect-ratio: 16 / 10;
+  }
+
+  .formationCard img {
+    object-position: 57% center;
+  }
+
+  .impactVisual {
+    padding-block: 4rem;
+  }
+
+  .impactVisual figure {
+    aspect-ratio: 3 / 2;
+    border-radius: 1rem;
+  }
+
+  .impactVisual img {
+    object-position: 48% center;
   }
 }
